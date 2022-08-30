@@ -25,7 +25,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
         cache-dependency-path: ./dtu-praktikportalen/package-lock.json
     - name: ci
       working-directory: ./dtu-praktikportalen
