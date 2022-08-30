@@ -22,16 +22,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache-dependency-path: web/package-lock.json
+        cache-dependency-path: package-lock.json
     - name: ci
       run: npm ci
     - name: build
       run: npm run build --if-present
-      working-directory: web
     - name: test
-      working-directory: web
       run: npm test
     - name: deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: web/build
+        folder: build
