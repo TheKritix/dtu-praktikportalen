@@ -8,6 +8,7 @@ function App() {
     <BrowserRouter>
     <Header/>
         <Routes>
+          <Route path="/" element={Header}/>
         </Routes>
     </BrowserRouter>
   );
