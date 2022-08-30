@@ -34,7 +34,7 @@ jobs:
       run: npm run build --if-present
       working-directory: ./dtu-praktikportalen
     - name: test
-      working-directory: ./wedtu-praktikportalen
+      working-directory: ./dtu-praktikportalen
       run: npm test
     - name: deploy
       uses: JamesIves/github-pages-deploy-action@v4
