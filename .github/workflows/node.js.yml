@@ -27,13 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache-dependency-path: web/package-lock.json
     - name: ci
-      working-directory: ./web
+      working-directory: web
       run: npm ci
     - name: build
       run: npm run build --if-present
-      working-directory: ./web
+      working-directory: web
     - name: test
-      working-directory: ./web
+      working-directory: web
       run: npm test
     - name: deploy
       uses: JamesIves/github-pages-deploy-action@v4
