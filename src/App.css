@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* CUSTOM CSS */
+/* Landingpage */
+.landingpage-header{
+  font-size: 4rem;
+}
+.pre-h-text{
+  color: rgb(22, 192, 192);
+  font-size: 1.3rem;
+}
+.header-text{
+  font-size: 1.3rem;
+}
+.landingpage-buttons{
+  margin-top: 3rem;
+}
+.landingpage-buttons button{
+  border-radius: 30px;
+  padding: 10px;
+}
+.student{
+  background-color: rgb(20, 130, 233);
+  border:5px solid rgb(93, 173, 248);
+  box-shadow: 0 0 5px rgb(20, 130, 233), 0px 0px 30px rgb(93, 173, 248);
+  color: white;
+}
+.employee{
+  background-color: rgb(228, 80, 43);
+  border: 5px solid rgb(255, 101, 101);
+  box-shadow: 0 0 5px rgb(228, 80, 43), 0px 0px 30px rgb(255, 101, 101);
+  color: white;
+}
+
+
+
+
+/* landing page sencond section */
+
+
+

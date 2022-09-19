@@ -1,14 +1,55 @@
 import React from "react";
 import "./header.css";
-import dtulogo from "../../images/dtu-logo.png";
+import dtulogo from "../../res/images/dtu-logo.png";
+
+
+//XXXX Bootstrap XXXX
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 export const Header = () => {
   return (
-    <div>
-      <div>
-        <img className="dtulogo" src={dtulogo} alt="DTU-Logo" />
-      </div>
-    </div>
+    <Container className="mb-5 mt-5 ms-3 me-3" fluid>
+      <Row xs={{ gutterX: 5 }}>
+
+
+        <Col>
+          <Container className="me-5">
+            <Row>
+              <Col sm={2} className="d-flex flex-row">
+                <img className="dtulogo" src={dtulogo} alt="DTU-Logo" />
+              </Col>
+              <Col sm={6} className="d-flex flex-row mt-4">
+                <h4>DTU Praktikportalen</h4>
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+        
+
+        <Col>
+          <Container className="ms-5 me-5">
+            <Row>
+              <Col sm={4} className="d-flex flex-row-reverse  mt-4">
+                <a style={{ textDecoration: 'none', color: 'black'}} className="mx-auto">Praktik pladser</a>
+              </Col>
+              <Col sm={2} className="d-flex flex-row-reverse  mt-4">
+                <a style={{ textDecoration: 'none', color: 'black' }} className="mx-auto">Info</a>
+              </Col>
+              <Col sm={5} className="d-flex flex-row-reverse">
+                <button className="mx-auto bg-white p-2 mt-3 rounded-3">Login Campus Net</button>
+              </Col>
+            </Row>
+            
+          </Container>
+        </Col>
+
+
+      </Row>
+    </Container>
   );
 };
 
