@@ -17,7 +17,7 @@ export const Header = () => {
 
 
         <Col>
-          <Container className="mx-4">
+          <Container className="ms-4">
             <Row>
               <Col sm={2} className="d-flex flex-row">
                 <img className="dtulogo" src={dtulogo} alt="DTU-Logo" />
@@ -40,7 +40,7 @@ export const Header = () => {
                 <a style={{ textDecoration: 'none', color: 'black' }} className="mx-auto">Info</a>
               </Col>
               <Col sm={5} className="d-flex flex-row-reverse">
-                <button className="mx-auto bg-white p-2 mt-3 rounded-3">Login Campus Net</button>
+                <button className="ms-auto bg-white p-2 mt-3 rounded-3">Login Campus Net</button>
               </Col>
             </Row>
             

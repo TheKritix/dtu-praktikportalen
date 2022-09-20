@@ -37,7 +37,7 @@ function App() {
           
         </Col>
         <Col sm={7} className='d-flex flex-row p-0 overflow-hidden'>
-          <img className='img-responsive img-fluid ms-auto p-0 overflow-hidden' src={header_img} alt="Image of DTU"/>
+          <img className='img-responsive img-fluid ms-auto me-5 p-0 overflow-hidden' src={header_img} alt="Image of DTU"/>
         </Col>
       </Row>
     </Container>
