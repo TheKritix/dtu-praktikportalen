@@ -1,6 +1,7 @@
 import React from "react";
 import "./header.css";
 import dtulogo from "../../res/images/dtu-logo.png";
+import {Link} from "react-router-dom"
 
 
 //XXXX Bootstrap XXXX
@@ -37,7 +38,12 @@ export const Header = () => {
                 <a style={{ textDecoration: 'none', color: 'black'}} className="mx-auto">Praktik pladser</a>
               </Col>
               <Col sm={2} className="d-flex flex-row-reverse  mt-4">
-                <a style={{ textDecoration: 'none', color: 'black' }} className="mx-auto">Info</a>
+                <a style={{ textDecoration: 'none', color: 'black' }} className="mx-auto">
+
+
+
+                <Link to="/profile">Info</Link>
+                  </a>
               </Col>
               <Col sm={5} className="d-flex flex-row-reverse">
                 <button className="ms-auto bg-white p-2 mt-3 rounded-3">Login Campus Net</button>
