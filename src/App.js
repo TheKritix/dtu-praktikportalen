@@ -1,7 +1,11 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+// XXXX COMPONENTS XXXX
+import Navbar from './components/navbar/navbar.jsx'
 import Header from './components/header/header.jsx'
 import CreatePost from './pages/createPost';
+
 
 function App() {
 
@@ -13,6 +17,7 @@ function App() {
           <Route path="/post" element={<CreatePost/>}/>
         </Routes>
     </BrowserRouter>
+    
   );
 }
 
