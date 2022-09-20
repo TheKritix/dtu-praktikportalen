@@ -11,9 +11,9 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Header/>
+      <Navbar/>
         <Routes>
-          <Route path="/" element={Header}/>
+          <Route path="/" element={<Header/>}/>
           <Route path="/post" element={<CreatePost/>}/>
         </Routes>
     </BrowserRouter>
