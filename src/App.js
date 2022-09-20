@@ -22,10 +22,10 @@ function App() {
 
     <Header/>
 
-    <Container className='pt-3' fluid >
-      <Row>
-        <Col sm={5}>
-          <div className="ms-5">
+    <Container className='pt-3 w-100 overflow-hidden' fluid='true'>
+      <Row className='overflow-hidden'>
+        <Col sm={5} className='mb-5'>
+          <div className="mx-5">
             <p className='pre-h-text'>Find din drøme praktikplads</p>
             <h1 className='landingpage-header'>Skab kontakt til virksomheder</h1>
             <p className='header-text'>Login med Campus Net og begyndt din søgen efter praktikophold gennem vores brugervenlige portal</p>
@@ -36,8 +36,8 @@ function App() {
           </div>
           
         </Col>
-        <Col sm={7}>
-          <img className='ms-5' src={header_img} alt="Image of DTU"/>
+        <Col sm={7} className='d-flex flex-row p-0 overflow-hidden'>
+          <img className='img-responsive img-fluid ms-auto p-0 overflow-hidden' src={header_img} alt="Image of DTU"/>
         </Col>
       </Row>
     </Container>
@@ -52,7 +52,7 @@ function App() {
 
 
 
-      <Routes className="ms-5">
+      <Routes>
         <Route path="/" element={Header}/>
       </Routes>
     </BrowserRouter>

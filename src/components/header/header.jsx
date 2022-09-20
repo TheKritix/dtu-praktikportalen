@@ -12,12 +12,12 @@ import Col from 'react-bootstrap/Col';
 
 export const Header = () => {
   return (
-    <Container className="mb-5 mt-5 ms-3 me-3" fluid>
+    <Container className="mb-5 mt-5 ms-3 me-3 w-auto p-0 overflow-hidden" fluid>
       <Row xs={{ gutterX: 5 }}>
 
 
         <Col>
-          <Container className="me-5">
+          <Container className="mx-4">
             <Row>
               <Col sm={2} className="d-flex flex-row">
                 <img className="dtulogo" src={dtulogo} alt="DTU-Logo" />
