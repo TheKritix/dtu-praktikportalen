@@ -1,0 +1,154 @@
+/* Container */
+body {
+  font-family: "Poppins";
+}
+
+.profile-container {
+  margin-right: 5rem;
+  margin-left: 5rem;
+  /* DEBUG */height: 20000px;
+}
+
+/* Profile title */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.profileTitle {
+  border-bottom: 2px solid rgb(186, 186, 186);
+}
+
+/* General Profile Stuff */
+
+.profile {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profileMenu {
+  margin-top: 2rem;
+  width: 5rem;
+}
+
+.profileButton {
+  height: 2rem;
+  width: 70%;
+  text-align: left;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0.5rem;
+  font-weight: lighter;
+}
+
+.profileButton:hover {
+  background-color: aliceblue;
+  border-radius: 3px;
+}
+
+.profileMenu {
+  width: 100%;
+  max-width: 25rem;
+}
+
+.profileMain {
+  margin-top: 2rem;
+  width: 100%;
+  position: relative;
+  margin-left: 20px;
+}
+
+.profileBackdrop {
+  position: absolute;
+  height: 15rem;
+  background: linear-gradient(
+    90.01deg,
+    #6574ff 0.01%,
+    rgba(179, 106, 205, 0.53) 48.96%,
+    rgba(255, 0, 0, 0.41) 99.99%
+  );
+  border-radius: 25px;
+  max-width: 75rem;
+  margin-left: auto;
+  margin-right: 5rem;
+  min-width: 25rem;
+  width: 100%;
+}
+
+.profilePicture {
+  position: absolute;
+
+  height: 208px;
+  width: 208px;
+  background: linear-gradient(
+    90.01deg,
+    #cc65ff 0.01%,
+    rgba(179, 106, 205, 0.53) 48.96%,
+    rgba(0, 85, 255, 0.41) 99.99%
+  );
+  border-radius: 25px;
+
+  top: 150px;
+  left: 60px;
+}
+
+.image {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 25px;
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
+.name {
+  position: absolute;
+  left: 290px;
+  top: 250px;
+  font-size: 20px;
+}
+
+.description {
+  position: absolute;
+  left: 290px;
+  top: 280px;
+}
+
+.name-textbox {
+  position: absolute;
+  left: 300px;
+  max-width: 35rem;
+  top: -5px;
+}
+
+.textbox-name {
+  position: absolute;
+}
+
+.namebox-container {
+  position: relative;
+  top: 500px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5rem;
+  max-width: 75rem;
+}
+
+.cv-textbox {
+    position: absolute;
+    left: 300px;
+    max-width: 35rem;
+    top: -5px;
+  }
+  
+  .textbox-cv {
+    position: absolute;
+  }
+  
+  .cv-container {
+    position: relative;
+    top: 550px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5rem;
+    max-width: 75rem;
+  }
