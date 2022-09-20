@@ -1,6 +1,5 @@
 import React from "react";
 import "./header.css";
-import dtulogo from "../../res/images/dtu-logo.png";
 
 
 //XXXX Bootstrap XXXX
@@ -10,46 +9,41 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
+//XXXX IMAGES XXXX
+import header_img from '../../res/images/landingpage_header.png'
+import student from '../../res/images/student.png'
+import employee from '../../res/images/employee.png'
+
+
 export const Header = () => {
   return (
-    <Container className="mb-5 mt-5 ms-3 me-3 w-auto p-0 overflow-hidden" fluid>
-      <Row xs={{ gutterX: 5 }}>
-
-
-        <Col>
-          <Container className="ms-4">
-            <Row>
-              <Col sm={2} className="d-flex flex-row">
-                <img className="dtulogo" src={dtulogo} alt="DTU-Logo" />
-              </Col>
-              <Col sm={6} className="d-flex flex-row mt-4">
-                <h4>DTU Praktikportalen</h4>
-              </Col>
-            </Row>
-          </Container>
-        </Col>
-        
-
-        <Col>
-          <Container className="ms-5 me-5">
-            <Row>
-              <Col sm={4} className="d-flex flex-row-reverse  mt-4">
-                <a style={{ textDecoration: 'none', color: 'black'}} className="mx-auto">Praktik pladser</a>
-              </Col>
-              <Col sm={2} className="d-flex flex-row-reverse  mt-4">
-                <a style={{ textDecoration: 'none', color: 'black' }} className="mx-auto">Info</a>
-              </Col>
-              <Col sm={5} className="d-flex flex-row-reverse">
-                <button className="ms-auto bg-white p-2 mt-3 rounded-3">Login Campus Net</button>
-              </Col>
-            </Row>
+    <div>
+      <Container className='pt-3 w-100 overflow-hidden' fluid='true'>
+        <Row className='overflow-hidden'>
+          <Col sm={5} className='mb-5'>
+            <div className="mx-5">
+              <p className='pre-h-text'>Find din drøme praktikplads</p>
+              <h1 className='landingpage-header'>Skab kontakt til virksomheder</h1>
+              <p className='header-text'>Login med Campus Net og begyndt din søgen efter praktikophold gennem vores brugervenlige portal</p>
+              <div className="d-flex flex-row landingpage-buttons">
+                <button className='me-2 student'><img src={student}/>Student <span>Login</span></button>
+                <button className='ms-5 employee'><img src={employee}/>Employee <span>Login</span></button>
+              </div>
+            </div>
             
-          </Container>
-        </Col>
+          </Col>
+          <Col sm={7} className='d-flex flex-row p-0 overflow-hidden'>
+            <img className='img-responsive img-fluid ms-auto me-5 p-0 overflow-hidden' src={header_img} alt="Image of DTU"/>
+          </Col>
+        </Row>
+      </Container>
 
-
-      </Row>
-    </Container>
+      <div className='d-flex flex-column landingpage-content-h mt-5'>
+        <p className='mx-auto mt-5'>Se alle opslag</p>
+        <h2 className='mx-auto'>Udvalgte Praktik Pladser</h2>
+      </div>
+    </div>
+    
   );
 };
 
