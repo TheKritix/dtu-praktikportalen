@@ -10,8 +10,25 @@
 .form-input {
     height: 4vh;
     margin-bottom: 2.5vh;
+    background-color: lightgray;
 }
 
 .form-submit-button {
     margin-left: 2vh;
+    float: right;
+    background-color: rgb(153, 0 , 0);
+    border-color: rgb(153, 0, 0);
 }
+
+
+.preview-button {
+    background-color: rgb(153, 0 , 0);
+    border-color: rgb(153, 0, 0);
+}
+
+
+.btn-primary:hover {
+    background-color: rgb(123, 0 , 0) !important;
+    border-color: rgb(123, 0, 0) !important;
+}
+

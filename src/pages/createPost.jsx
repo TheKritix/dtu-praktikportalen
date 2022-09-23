@@ -13,9 +13,7 @@ const CreatePost = () => {
                     <h1 className="create-top-text">Opret Praktikopslag</h1>   
                 </div>
                 <div className="create-content">
-                    <InputForm>
-            
-                    </InputForm>
+                    <InputForm/>
                 </div>
             </div>
     );

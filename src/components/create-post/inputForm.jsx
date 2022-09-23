@@ -37,8 +37,8 @@ const InputForm = () => {
                     <Form.Control className="form-input" type="number" placeholder="+45"></Form.Control>
 
                 </Form.Group>
-                <Button className="preview-button" variant="primary">Preview Praktikopslag</Button>
-                <Button className="form-submit-button" variant="primary" type="submit">Opret stilling</Button>
+                <Button className="preview-button" size="lg">Preview opslag</Button>
+                <Button className="form-submit-button" type="submit" size="lg">Opret stilling</Button>
             
             </Form>
         </div>
