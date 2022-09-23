@@ -1,0 +1,29 @@
+.create-container {
+}
+
+.create-top {
+
+    background-color: lightgray;
+    border-radius: 15px;
+    height: 15vh;
+    margin-left: 2.5%;
+    margin-right: 2.5%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-top-text {
+    font-size: 5vh;
+}
+
+.create-content {
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vh;
+}
+

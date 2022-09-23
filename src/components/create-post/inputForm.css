@@ -1,0 +1,17 @@
+.form-titel-text {
+    font-size: 2.5vh;
+    font-style: bold;
+}
+
+.form-container {
+    width: 75vh;
+}
+
+.form-input {
+    height: 4vh;
+    margin-bottom: 2.5vh;
+}
+
+.form-submit-button {
+    margin-left: 2vh;
+}
