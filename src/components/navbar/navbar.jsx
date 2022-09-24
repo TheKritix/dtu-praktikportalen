@@ -9,9 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useState } from "react";
 
 
-export const Navbar = () => {
+const Navbar = () => {
+  const [showLogin, setShowLogin] = useState(false);
+  const toggleModal = () => { 
+    setShowLogin(true);
+  }
   return (
     <Container className="mb-5 mt-5 ms-3 me-3 w-auto p-0 overflow-hidden" fluid>
       <Row>
