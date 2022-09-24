@@ -1,16 +1,26 @@
-.form-titel-text {
-    font-size: 2.5vh;
-    font-style: bold;
+.form-container {
+    display: flex;
 }
 
-.form-container {
-    width: 75vh;
+.left-input-content {
+    width: 50rem;
+    margin-right: 5rem;
+}
+
+.right-input-content {
+    width: 50rem;
+    float: right;
 }
 
 .form-input {
-    height: 4vh;
+    height: 3rem;
     margin-bottom: 2.5vh;
-    background-color: lightgray;
+    background-color: rgb(245, 245, 245);
+}
+
+.form-titel-text {
+    font-size: 1.5rem;
+    font-style: bold;
 }
 
 .form-submit-button {
