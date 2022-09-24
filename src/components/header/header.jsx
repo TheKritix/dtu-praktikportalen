@@ -27,14 +27,14 @@ export const Header = () => {
               <h1 className='landingpage-header'>Skab kontakt til virksomheder</h1>
               <p className='header-text'>Login med Campus Net og begyndt din søgen efter praktikophold gennem vores brugervenlige portal</p>
               <div className="d-flex flex-row landingpage-buttons">
-                <button className='me-2 student'><img src={student}/>Student <span>Login</span></button>
-                <button className='ms-5 employee'><img src={employee}/>Employee <span>Login</span></button>
+                <button className='me-2 student'><img src={student} alt="student"/>Student <span>Login</span></button>
+                <button className='ms-5 employee'><img src={employee} alt="employee"/>Employee <span>Login</span></button>
               </div>
             </div>
             
           </Col>
           <Col sm={7} className='d-flex flex-row p-0 overflow-hidden'>
-            <img className='img-responsive img-fluid ms-auto px-5 overflow-hidden' src={header_img} alt="Image of DTU"/>
+            <img className='img-responsive img-fluid ms-auto px-5 overflow-hidden' src={header_img} alt="DTU entrance"/>
           </Col>
         </Row>
       </Container>
