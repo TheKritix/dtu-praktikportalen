@@ -9,9 +9,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Button } from "react-bootstrap";
 
 
-export const Navbar = () => {
+
+const Navbar = () => {
+ 
   return (
     <Container className="mb-5 mt-5 ms-3 me-3 w-auto p-0 overflow-hidden" fluid>
       <Row>
@@ -27,7 +30,7 @@ export const Navbar = () => {
             <Link to="/" style={{ textDecoration: 'none', color: 'black'}} className=" me-5 mt-1 ms-auto">Praktik pladser</Link>
             <Link to="/" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Info</Link>
             <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Profil(TEMP)</Link>
-            <button className="bg-white p-2 rounded-3 me-2">Login Campus Net</button>
+            <Button variant="outline-danger" href="https://auth.dtu.dk/dtu/login?menulanguage=da-DK">Login Campus Net</Button>
           </div>
         </Col>
       </Row>
