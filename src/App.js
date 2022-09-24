@@ -8,12 +8,12 @@ import Profile from "./components/profile/profile.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Header />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/dtu-praktikportalen" element={<Navigate to="/" />} />
+        {/* <Route path="/dtu-praktikportalen" element={<Navigate to="/" />} /> */}
       </Routes>
     </BrowserRouter>
   );
