@@ -20,7 +20,7 @@ const Login = (props) => {
           <div className="employee-login-content">
             <Modal.Header closeButton>
               <Modal.Title className="employee-login-title">
-                Employee Login
+                Employer Login
               </Modal.Title>
             </Modal.Header>
             <div className="text-center">
