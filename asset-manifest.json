@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/dtu/static/css/main.e8e1ad10.css",
-    "main.js": "/dtu/static/js/main.15415336.js",
-    "static/js/787.8e62d7cb.chunk.js": "/dtu/static/js/787.8e62d7cb.chunk.js",
-    "static/media/landingpage_header.png": "/dtu/static/media/landingpage_header.4d9d8785e5651ce8f6da.png",
-    "static/media/dtu-logo.png": "/dtu/static/media/dtu-logo.ea602c58a08a17384294.png",
-    "static/media/poppins-all-400-normal.woff": "/dtu/static/media/poppins-all-400-normal.6fbfdac99c274b77fe96.woff",
-    "static/media/profileTestImage.jpg": "/dtu/static/media/profileTestImage.ed468a44c3d92a43286f.jpg",
-    "static/media/poppins-devanagari-400-normal.woff2": "/dtu/static/media/poppins-devanagari-400-normal.64d5f06ee726edd58ca3.woff2",
-    "static/media/poppins-latin-400-normal.woff2": "/dtu/static/media/poppins-latin-400-normal.405055dd680fa1dcdfa2.woff2",
-    "static/media/poppins-latin-ext-400-normal.woff2": "/dtu/static/media/poppins-latin-ext-400-normal.4f38b4331448d2313adc.woff2",
-    "index.html": "/dtu/index.html",
-    "main.e8e1ad10.css.map": "/dtu/static/css/main.e8e1ad10.css.map",
-    "main.15415336.js.map": "/dtu/static/js/main.15415336.js.map",
-    "787.8e62d7cb.chunk.js.map": "/dtu/static/js/787.8e62d7cb.chunk.js.map"
+    "main.css": "/dtu-praktikportalen/static/css/main.8fdff39a.css",
+    "main.js": "/dtu-praktikportalen/static/js/main.50d4fdfb.js",
+    "static/js/787.8e62d7cb.chunk.js": "/dtu-praktikportalen/static/js/787.8e62d7cb.chunk.js",
+    "static/media/landingpage_header.png": "/dtu-praktikportalen/static/media/landingpage_header.4d9d8785e5651ce8f6da.png",
+    "static/media/dtu-logo.png": "/dtu-praktikportalen/static/media/dtu-logo.ea602c58a08a17384294.png",
+    "static/media/poppins-all-400-normal.woff": "/dtu-praktikportalen/static/media/poppins-all-400-normal.6fbfdac99c274b77fe96.woff",
+    "static/media/profileTestImage.jpg": "/dtu-praktikportalen/static/media/profileTestImage.ed468a44c3d92a43286f.jpg",
+    "static/media/poppins-devanagari-400-normal.woff2": "/dtu-praktikportalen/static/media/poppins-devanagari-400-normal.64d5f06ee726edd58ca3.woff2",
+    "static/media/poppins-latin-400-normal.woff2": "/dtu-praktikportalen/static/media/poppins-latin-400-normal.405055dd680fa1dcdfa2.woff2",
+    "static/media/poppins-latin-ext-400-normal.woff2": "/dtu-praktikportalen/static/media/poppins-latin-ext-400-normal.4f38b4331448d2313adc.woff2",
+    "index.html": "/dtu-praktikportalen/index.html",
+    "main.8fdff39a.css.map": "/dtu-praktikportalen/static/css/main.8fdff39a.css.map",
+    "main.50d4fdfb.js.map": "/dtu-praktikportalen/static/js/main.50d4fdfb.js.map",
+    "787.8e62d7cb.chunk.js.map": "/dtu-praktikportalen/static/js/787.8e62d7cb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8e1ad10.css",
-    "static/js/main.15415336.js"
+    "static/css/main.8fdff39a.css",
+    "static/js/main.50d4fdfb.js"
   ]
 }
