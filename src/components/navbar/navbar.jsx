@@ -1,6 +1,7 @@
 import React from "react";
 import "./navbar.css";
 import dtulogo from "../../res/images/dtu-logo.png";
+import { Link } from 'react-router-dom';
 
 
 //XXXX Bootstrap XXXX
@@ -16,14 +17,16 @@ export const Navbar = () => {
       <Row>
         <Col>
           <div sm={8} className="d-flex flex-row">
-            <img className="dtulogo ms-4" src={dtulogo} alt="DTU-Logo" />
+            <Link to="/"><img className="dtulogo ms-4" src={dtulogo} alt="DTU-Logo" /></Link>
             <h4 className="d-flex flex-row mt-4 ms-5">DTU Praktikportalen</h4>
           </div>
         </Col>
         <Col>
           <div className="d-flex flex-row mt-4 ms-auto me-2">
+            {/* <a> DISSE BURDE VÆRE <Link> */}
             <a style={{ textDecoration: 'none', color: 'black'}} className=" me-5 mt-1 ms-auto">Praktik pladser</a>
             <a style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Info</a>
+            <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Profil(TEMP)</Link>
             <button className="bg-white p-2 rounded-3 me-2">Login Campus Net</button>
           </div>
         </Col>
