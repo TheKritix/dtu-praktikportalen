@@ -1,5 +1,11 @@
 .form-container {
     display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.form-content {
+    display: flex;
 }
 
 .left-input-content {
@@ -9,11 +15,15 @@
 
 .right-input-content {
     width: 50rem;
-    float: right;
 }
 
 .form-input {
     height: 3rem;
+    margin-bottom: 2.5vh;
+    background-color: rgb(245, 245, 245);
+}
+
+.form-description {
     margin-bottom: 2.5vh;
     background-color: rgb(245, 245, 245);
 }
@@ -23,19 +33,31 @@
     font-style: bold;
 }
 
+.form-banner-image {
+    width: 25rem;
+    background-color: rgb(245, 245, 245);
+}
+
+.form-banner-input {
+    width: 18rem;
+    background-color: rgb(245, 245, 245);
+}
+
+.form-button-div {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .form-submit-button {
     margin-left: 2vh;
-    float: right;
     background-color: rgb(153, 0 , 0);
     border-color: rgb(153, 0, 0);
 }
-
 
 .preview-button {
     background-color: rgb(153, 0 , 0);
     border-color: rgb(153, 0, 0);
 }
-
 
 .btn-primary:hover {
     background-color: rgb(183, 0 , 0) !important;
