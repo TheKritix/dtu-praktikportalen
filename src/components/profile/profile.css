@@ -1,0 +1,87 @@
+/* Container */
+body {
+  font-family: "Poppins";
+}
+
+.profile-container {
+  margin-right: 5rem;
+  margin-left: 5rem;
+  /* DEBUG */height: 20000px;
+}
+
+/* Profile title */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.profileTitle {
+  border-bottom: 2px solid rgb(186, 186, 186);
+}
+
+/* General Profile Stuff */
+
+.profile {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profileMenu {
+  margin-top: 2rem;
+  width: 5rem;
+}
+
+.profileButton {
+  height: 2rem;
+  width: 70%;
+  text-align: left;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0.5rem;
+  font-weight: lighter;
+}
+
+.profileButton:hover {
+  background-color: aliceblue;
+  border-radius: 3px;
+}
+
+.profileMenu {
+  width: 100%;
+  max-width: 25rem;
+}
+
+.profileMain {
+  margin-top: 2rem;
+  width: 100%;
+  position: relative;
+  margin-left: 20px;
+}
+
+.main-textbox {
+  left: 300px;
+  max-width: 35rem;
+  top: -5px;
+  margin-bottom: 2rem;
+}
+
+
+.main-container {
+  position: relative;
+  top: 50px;
+  max-width: 75rem;
+}
+
+.saveMain {
+  width: 100px;
+  height: 40px;
+  background-color:#ff3556;
+  border: none;
+  border-radius: 5px;
+}
+
+.saveMain:hover {
+  background-color:#ff9bab;
+  border-radius: 5px;
+}
