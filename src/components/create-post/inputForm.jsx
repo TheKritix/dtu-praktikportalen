@@ -60,8 +60,8 @@ const InputForm = () => {
                         <Form.Control className="form-description" as="textarea" rows={8} placeholder="Tilføj beskrivelse af stilling"></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <img className="form-banner-image" src={previewBanner}></img>
                         <h3 className="form-titel-text">Upload billede</h3>
+                        <img className="form-banner-image" src={previewBanner}></img>
                         <Form.Control className="form-banner-input" type="file" name="file"/>
                     </Form.Group>
                 </div>
