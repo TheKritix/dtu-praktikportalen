@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./profileSettings.css";
 import "@fontsource/poppins";
 import Form from "react-bootstrap/Form";
