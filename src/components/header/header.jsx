@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./header.css";
 import "@fontsource/poppins";
+import { Link } from 'react-router-dom'
 
 
 //XXXX Bootstrap XXXX
@@ -31,11 +32,11 @@ const Header = () => {
               <h1 className='landingpage-header'>Skab kontakt til virksomheder</h1>
               <p className='header-text'>Login med Campus Net og begyndt din søgen efter praktikophold gennem vores brugervenlige portal</p>
               <div className="d-flex flex-row landingpage-buttons">
-                <a href="/profile">
+                <Link to="/profile">
                   <button className='me-2 student'>
                     <img src={student}/>Student <span>Login</span>
                   </button>
-                </a>
+                </Link>
                 
                 <button className='ms-5 employee' onClick={()=> handleShow()}>
                   <img src={employee}/>Employee <span>Login</span>
