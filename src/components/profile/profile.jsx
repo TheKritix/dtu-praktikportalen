@@ -11,6 +11,12 @@ const Profile = () => {
 
   const [email, setEmail] = useState("foo@boo.com");
 
+  //Not needed for anything, and probably won't be needed for anything
+  const handleChange = (e) => {
+    e.preventDefault();
+    setEmail(e.target.value);    
+  };
+
   const EmailSettings = () => {
     return (
       <div>
@@ -18,7 +24,7 @@ const Profile = () => {
           <p className="textbox-main">Email</p>
           <Form.Control className="main-textbox" placeholder={email} disabled />
           <p className="textbox-main">Skift Email-Adresse</p>
-          <Form.Control className="main-textbox" placeholder="Ny Email" />
+          <Form.Control className="main-textbox" placeholder="Ny Email" onChange={handleChange}/>
           <div className="saveButton">
             <button className="saveMain">Gem</button>
           </div>
