@@ -1,7 +1,8 @@
 {
   "name": "dtu-praktikportalen",
   "version": "0.1.0",
-  "homepage": "https://thekritix.github.io/dtu-praktikportalen",
+  "proxy": "http://localhost:3000",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@fontsource/poppins": "^4.5.9",
