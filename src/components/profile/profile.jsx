@@ -2,38 +2,45 @@ import React, { useState } from "react";
 import "./profile.css";
 import "@fontsource/poppins";
 import Form from "react-bootstrap/Form";
+import ProfileSettings from "./profileSettings.jsx";
 
-import image from "./profileTestImage.jpg";
+// Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const Profile = () => {
   const [view, setView] = useState("profile");
-  const [name, setName] = useState("PLACEHOLDER NAME");
 
-  const ProfileSettings = () => {
+  const [email, setEmail] = useState("foo@boo.com");
+
+  const EmailSettings = () => {
     return (
       <div>
-        <div className="profileBackdrop"></div>
-        <div className="profilePicture">
-          <img src={image} className="image" alt="profilbillede" />
+        <div className="main-container">
+          <p className="textbox-main">Email</p>
+          <Form.Control className="main-textbox" placeholder={email} disabled />
+          <p className="textbox-main">Skift Email-Adresse</p>
+          <Form.Control className="main-textbox" placeholder="Ny Email" />
+          <div className="saveButton">
+            <button className="saveMain">Gem</button>
+          </div>
         </div>
-        <p className="name">{name}</p>
-        <p className="description">Student</p>
-
-        <div className="namebox-container">
-          <p className="textbox-name">Navn</p>
-          <Form.Control className="name-textbox" placeholder="Navn" />
-        </div>
-        <div className="cv-container">
-          <p className="textbox-cv">Resumé</p>
-          <Form.Control className="cv-textbox" placeholder="Navn" />
-        </div>
-
       </div>
     );
   };
 
-  const EmailSettings = () => {
-    return <div>Test</div>;
+  const PasswordSettings = () => {
+    return (
+      <div>
+        <div className="main-container">
+          <p className="textbox-main">Skift Password</p>
+          <Form.Control className="main-textbox" type="password" placeholder="Ny Password" />
+          <p className="textbox-main">Gentag Password</p>
+          <Form.Control className="main-textbox" type="password" placeholder="Gentag Password" />
+          <div className="saveButton">
+            <button className="saveMain">Gem</button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   function getView() {
@@ -45,6 +52,9 @@ const Profile = () => {
         break;
       case "email":
         ViewComponent = EmailSettings();
+        break;
+      case "password":
+        ViewComponent = PasswordSettings();
         break;
       default:
         ViewComponent = ProfileSettings();
@@ -79,9 +89,15 @@ const Profile = () => {
           >
             Email
           </button>
-          <button className="profileButton">Password</button>
-          <button className="profileButton">Notifikationer</button>
-          <button className="profileButton">Kontakt</button>
+          <button
+            style={{
+              fontWeight: view === "password" ? "bold" : "normal",
+            }}
+            onClick={() => setView("password")}
+            className="profileButton"
+          >
+            Password
+          </button>
         </div>
         <div className="profileMain">{getView()}</div>
       </div>
