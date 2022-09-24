@@ -33,12 +33,12 @@ const Header = () => {
               <div className="d-flex flex-row landingpage-buttons">
                 <a href="/profile">
                   <button className='me-2 student'>
-                    <img src={student}/>Student <span>Login</span>
+                    <img src={student} alt="student-logo"/>Student <span>Login</span>
                   </button>
                 </a>
                 
                 <button className='ms-5 employee' onClick={()=> handleShow()}>
-                  <img src={employee}/>Employee <span>Login</span>
+                  <img src={employee} alt="employer-login"/>Employee <span>Login</span>
                 </button>
               </div>
             </div>

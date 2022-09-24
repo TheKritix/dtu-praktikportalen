@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./login.css";
 
 const Login = (props) => {
-  const { show, handleClose, handleShow } = props;
+  const { show, handleClose } = props;
   const [loginMode, setLoginMode] = useState('signIn');
 
   const changeLoginMode = () => {
@@ -55,7 +55,7 @@ const Login = (props) => {
                 </Link>
               </div>
               <p className="forgot-password text-right mt-2">
-                Forgot <a href="#">password?</a>
+                Forgot <a href="/">password?</a>
               </p>
             </Modal.Body>
           </div>
