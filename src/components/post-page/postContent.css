@@ -1,0 +1,40 @@
+.post-left-column {
+
+}
+
+.post-content {
+    margin-top: 2.5vh;
+}
+
+.post-banner {
+    height: 15rem;
+    width: 55rem;
+    background: rgb(245, 245, 245);
+    border-radius: 15px;
+    max-width: 75rem;
+    margin-right: 2rem;
+    min-width: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-banner-text {
+    
+}
+
+.post-overview {
+    margin-top: 5vh;
+    width: 55rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-divider {
+    width: 55rem;
+    border: solid 1px black;
+}
+
+.post-description {
+}
