@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dtu-praktikportalen/static/css/main.8f75f01e.css",
-    "main.js": "/dtu-praktikportalen/static/js/main.a72b68cb.js",
+    "main.js": "/dtu-praktikportalen/static/js/main.caf90585.js",
     "static/js/787.8e62d7cb.chunk.js": "/dtu-praktikportalen/static/js/787.8e62d7cb.chunk.js",
     "static/media/landingpage_header.png": "/dtu-praktikportalen/static/media/landingpage_header.4d9d8785e5651ce8f6da.png",
     "static/media/dtu-logo.png": "/dtu-praktikportalen/static/media/dtu-logo.ea602c58a08a17384294.png",
@@ -13,11 +13,11 @@
     "static/media/poppins-latin-ext-400-normal.woff2": "/dtu-praktikportalen/static/media/poppins-latin-ext-400-normal.4f38b4331448d2313adc.woff2",
     "index.html": "/dtu-praktikportalen/index.html",
     "main.8f75f01e.css.map": "/dtu-praktikportalen/static/css/main.8f75f01e.css.map",
-    "main.a72b68cb.js.map": "/dtu-praktikportalen/static/js/main.a72b68cb.js.map",
+    "main.caf90585.js.map": "/dtu-praktikportalen/static/js/main.caf90585.js.map",
     "787.8e62d7cb.chunk.js.map": "/dtu-praktikportalen/static/js/787.8e62d7cb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8f75f01e.css",
-    "static/js/main.a72b68cb.js"
+    "static/js/main.caf90585.js"
   ]
 }
