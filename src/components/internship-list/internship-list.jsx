@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {Component} from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -5,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'
+// eslint-disable-next-line no-unused-vars
 import {Button, Form} from "react-bootstrap";
 
 
