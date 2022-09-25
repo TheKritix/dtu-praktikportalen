@@ -1,4 +1,4 @@
-import { FormGroup } from 'react-bootstrap';
+
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button';
@@ -11,6 +11,7 @@ import placeholderImg from "../../res/images/CameraImage.svg";
 
 const InputForm = () => {
 
+    // eslint-disable-next-line no-unused-vars
     const [fileImage, setFileImage] = useState();
     const [previewImage, setPreviewImage] = useState(placeholderImg);
 
@@ -67,7 +68,7 @@ const InputForm = () => {
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>
-                        <img className="form-banner-image" src={previewImage}></img>
+                        <img className="form-banner-image" src={previewImage} alt="bannerImg"></img>
                         <Form.Control className="form-banner-input" 
                             name="image"
                             type="file"
