@@ -14,7 +14,7 @@ function App() {
       <Navbar/>
         <Routes>
           <Route path="/" element={<Header/>}/>
-          <Route path="/post" element={<CreatePost/>}/>
+          <Route path="/createpost" element={<CreatePost/>}/>
         </Routes>
     </BrowserRouter>
     

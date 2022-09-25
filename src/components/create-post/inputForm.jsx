@@ -5,13 +5,19 @@ import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
 import {Fragment, useState} from "react";
 
-import previewImg from "../../res/images/CameraImage.svg";
+import placeholderImg from "../../res/images/CameraImage.svg";
 
 
 
 const InputForm = () => {
 
-    const [previewBanner, setPreviewBanner] = useState(previewImg);
+    const [fileImage, setFileImage] = useState();
+    const [previewImage, setPreviewImage] = useState(placeholderImg);
+
+    const saveFile = (e) => {
+        setFileImage(e.target.files[0]);
+        setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    }
     
 
     return (
@@ -61,13 +67,17 @@ const InputForm = () => {
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>
-                        <img className="form-banner-image" src={previewBanner}></img>
-                        <Form.Control className="form-banner-input" type="file" name="file"/>
+                        <img className="form-banner-image" src={previewImage}></img>
+                        <Form.Control className="form-banner-input" 
+                            name="image"
+                            type="file"
+                            accept="image/*"
+                            onChange={saveFile} />
                     </Form.Group>
                 </div>
             </div>
             <div className="form-button-div">
-                <Button className="preview-button" size="lg">Preview opslag</Button>
+                <Button className="preview-button" size="lg" disabled>Preview opslag</Button>
                 <Button className="form-submit-button" type="submit" size="lg">Opret stilling</Button>  
             </div>
         </Form>
