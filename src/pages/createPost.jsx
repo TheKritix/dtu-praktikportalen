@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import InputForm from "../components/create-post/inputForm.jsx"
 import "./createPost.css";
 

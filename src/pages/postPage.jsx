@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import PostContent from "../components/post-page/postContent"
 import PostContactInfo from "../components/post-page/postContactInfo"
 import "./postPage.css";
@@ -8,7 +7,8 @@ import {useState} from "react";
 
 const PostPage = () => {
 
-    const [post,setPost] = useState(postItem);
+    // eslint-disable-next-line no-unused-vars
+    const [post, setPost] = useState(postItem);
     
     return (
             <div className="post-container">
