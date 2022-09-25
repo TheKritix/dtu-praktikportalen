@@ -6,7 +6,7 @@
     margin-top: 2.5vh;
 }
 
-.post-banner {
+.post-banner-div {
     height: 15rem;
     width: 55rem;
     background: rgb(245, 245, 245);
@@ -17,10 +17,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.post-banner {
+    position: absolute;
 }
 
 .post-banner-text {
-    
+    z-index: 10;
 }
 
 .post-overview {
