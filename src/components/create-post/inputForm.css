@@ -5,6 +5,7 @@
 }
 
 .form-content {
+    width: 100rem;
     display: flex;
 }
 
