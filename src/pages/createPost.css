@@ -5,7 +5,7 @@
     background-color: rgb(245, 245, 245);
     border-radius: 15px;
     height: 9rem;
-    width: 110rem;
+    width: 100rem;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@
 }
 
 .create-content {
-    width: 110rem;
+    width: 100rem;
     padding-top: 2rem;
     margin: auto;
     display: flex;

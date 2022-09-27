@@ -67,7 +67,7 @@ const InputForm = () => {
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>
-                        <img className="form-banner-image" src={previewImage} alt="previewImage"></img>
+                        <img className="form-banner-image" src={previewImage} alt="bannerImg"></img>
                         <Form.Control className="form-banner-input" 
                             name="image"
                             type="file"
