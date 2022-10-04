@@ -36,7 +36,7 @@ class InternshipListStore {
     }
 
     fetchInternships (){
-        fetch(baseUrl + "api/giraffes").then(
+        fetch(baseUrl + "api/internships").then(
             (response)=> response.json().then(
                 (json)=> runInAction(()=>this.internships=json)
             )
