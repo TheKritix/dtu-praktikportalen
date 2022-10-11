@@ -25,6 +25,7 @@ jobs:
       # Build Docker image and push to DockerHub
       - name: Build and push
         uses: docker/build-push-action@v3
+        file: ./Dockerfile
         with:
           push: true
           tags: kritix/praktikportalen:${{github.run_number}},
