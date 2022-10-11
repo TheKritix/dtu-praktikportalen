@@ -1,7 +1,4 @@
  {
   "schemaVersion": 2,
-  "dockerfileLines": [
-    "FROM node:14-alpine as development", 
-    "RUN npm update"
-  ]
+  "templateId": "node/16.14.0"
  }
