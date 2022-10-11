@@ -28,7 +28,7 @@ const Header = () => {
         <Row className='overflow-hidden'>
           <Col sm={5} className='mb-5'>
             <div className="mx-5">
-              <p className='pre-h-text'>Find din drøme praktikplads</p>
+              <p className='pre-h-text'>Find din drøme praktikplads TEST TEKST PLEASE FIX</p>
               <h1 className='landingpage-header'>Skab kontakt til virksomheder</h1>
               <p className='header-text'>Login med Campus Net og begyndt din søgen efter praktikophold gennem vores brugervenlige portal</p>
               <div className="d-flex flex-row landingpage-buttons">
