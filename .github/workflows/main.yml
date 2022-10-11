@@ -24,10 +24,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       # Build Docker image and push to DockerHub
       - name: Build and push
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v3
         with:
           push: true
-          tags: kritix/praktikportalen,
+          tags: kritix/praktikportalen:${{github.run_number}},
       # Install caprover cli
       - name: install caprover cli
         run: npm install -g caprover
@@ -36,6 +36,6 @@ jobs:
         env: 
           APP_NAME: 'praktikportal'
           APP_URL: 'https://praktikportal.diplomportal.dk/'
-          IMAGE_NAME: 'kritix/praktikportalen'
+          IMAGE_NAME: 'kritix/praktikportalen:${{github.run_number}}'
         run: 
          'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
