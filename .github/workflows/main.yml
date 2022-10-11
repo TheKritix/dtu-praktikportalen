@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: kritix/praktikportalen:${{github.run_number}},
+          tags: kritix/praktikportalen:latest,
       # Install caprover cli
       - name: install caprover cli
         run: npm install -g caprover
@@ -37,6 +37,6 @@ jobs:
         env: 
           APP_NAME: 'praktikportal'
           APP_URL: 'https://praktikportal.diplomportal.dk/'
-          IMAGE_NAME: 'kritix/praktikportalen:${{github.run_number}}'
+          IMAGE_NAME: 'kritix/praktikportalen:latest'
         run: 
          'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
