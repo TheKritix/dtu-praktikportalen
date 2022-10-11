@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.95234802.css",
-    "main.js": "/static/js/main.56be279b.js",
+    "main.js": "/static/js/main.440bbf24.js",
     "static/js/787.8e62d7cb.chunk.js": "/static/js/787.8e62d7cb.chunk.js",
     "static/media/landingpage_header.png": "/static/media/landingpage_header.4d9d8785e5651ce8f6da.png",
     "static/media/dtu-logo.png": "/static/media/dtu-logo.ea602c58a08a17384294.png",
@@ -13,11 +13,11 @@
     "static/media/poppins-latin-ext-400-normal.woff2": "/static/media/poppins-latin-ext-400-normal.4f38b4331448d2313adc.woff2",
     "index.html": "/index.html",
     "main.95234802.css.map": "/static/css/main.95234802.css.map",
-    "main.56be279b.js.map": "/static/js/main.56be279b.js.map",
+    "main.440bbf24.js.map": "/static/js/main.440bbf24.js.map",
     "787.8e62d7cb.chunk.js.map": "/static/js/787.8e62d7cb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95234802.css",
-    "static/js/main.56be279b.js"
+    "static/js/main.440bbf24.js"
   ]
 }
