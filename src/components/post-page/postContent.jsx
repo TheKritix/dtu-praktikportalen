@@ -10,7 +10,7 @@ const PostContent = ({post}) => {
         <div className="post-left-column">
             <div className="post-banner-div">
                 <h1 className="post-banner-text">Placeholder Banner</h1>
-                <img className="post-banner" src={post[0].bannerImg}></img>    
+                <img className="post-banner" src={post[0].bannerImg} alt="postbanner"></img>    
             </div>
             <div className="post-content">
                 <div>

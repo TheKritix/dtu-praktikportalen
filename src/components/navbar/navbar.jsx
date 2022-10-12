@@ -27,10 +27,11 @@ const Navbar = () => {
         <Col>
           <div className="d-flex flex-row mt-4 ms-auto me-2">
             {/* <a> DISSE BURDE VÆRE <Link> */}
-            <Link to="/" style={{ textDecoration: 'none', color: 'black'}} className=" me-5 mt-1 ms-auto">Praktik pladser</Link>
+            <Link to="/internships" style={{ textDecoration: 'none', color: 'black'}} className=" me-5 mt-1 ms-auto">Praktikpladser</Link>
             <Link to="/" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Info</Link>
             <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Profil(TEMP)</Link>
-            <Link to="/createpost" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Opret Post(TEMP)</Link>
+            <Link to="/post" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Post(TEMP)</Link>
+            <Link to="/createpost" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">CreatePost(TEMP)</Link>
             <Button variant="outline-danger" href="https://auth.dtu.dk/dtu/login?menulanguage=da-DK">Login Campus Net</Button>
           </div>
         </Col>

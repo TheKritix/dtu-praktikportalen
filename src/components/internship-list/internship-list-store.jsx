@@ -1,0 +1,48 @@
+import {makeAutoObservable, runInAction} from "mobx";
+
+const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/":""; //Check if dev environment
+
+class InternshipListStore {
+    internships = [
+        {
+            id: 1,
+            title: "Cleaning assistant in the DTU cafeteria",
+            description: "The DTU cafeteria is looking for a new cleaning assistant to get rid of disgusting grease stains",
+            startDate: "24/12/2022",
+            location: "Ude bagved svømmehallen",
+            compensation: "Ingen",
+            hasApplied: false
+        },
+        {
+            id: 2,
+            title: "Fiskehandler hos Byens FiSK",
+            description: "Vi mangler en ny kollega til at skære grimasser i fiskehoveder. OG det gør vi bare! Vi bliver superglade for at få dig med :D",
+            startDate: "24/12/2022",
+            location: "Ved havnen",
+            compensation: "Hvad tror du selv?",
+            hasApplied: true
+        }
+    ]
+
+    constructor() {
+        makeAutoObservable(this,
+            {},
+            {autoBind:true}//For non-arrow-functions bind
+        )
+    }
+
+    addInternship = (internship)=> {
+        this.internships.push(internship);
+    }
+
+    fetchInternships (){
+        fetch(baseUrl + "api/internships").then(
+            (response)=> response.json().then(
+                (json)=> runInAction(()=>this.internships=json)
+            )
+        )
+    }
+
+}
+
+export const internshipListStore = new InternshipListStore();
