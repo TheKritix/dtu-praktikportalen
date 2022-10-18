@@ -1,4 +1,6 @@
-
+body {
+  font-family: "Poppins";
+}
 
 /* CUSTOM CSS */
 /* Landingpage */
@@ -30,6 +32,10 @@
     border: 5px solid rgb(255, 101, 101);
     box-shadow: 0 0 5px rgb(228, 80, 43), 0px 0px 30px rgb(255, 101, 101);
     color: white;
+  }
+
+  .row {
+    justify-content: space-evenly;
   }
   
   

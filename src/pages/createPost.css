@@ -1,0 +1,26 @@
+.create-container {
+}
+
+.create-top {
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
+    height: 9rem;
+    width: 90rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-top-text {
+    font-size: 3rem;
+}
+
+.create-content {
+    width: 100rem;
+    padding-top: 2rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
