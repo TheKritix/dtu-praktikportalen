@@ -1,3 +1,4 @@
+const getFeedbackUrl = 'http://localhost:3000/api/postFeedback'
 
 export const feedbackData = [
     {
