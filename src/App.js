@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // XXXX COMPONENTS XXXX
 import Navbar from './components/navbar/navbar.jsx'
 import Header from './components/header/header.jsx'
+import InternshipList from "./components/internship-list/internship-list";
 
 
 function App() {
@@ -11,9 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar/>
-      <Routes>
-        <Route path="/" element={<Header/>}/>
-      </Routes>
+      <InternshipList/>
     </BrowserRouter>
     
   );

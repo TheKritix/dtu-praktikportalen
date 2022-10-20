@@ -1,0 +1,72 @@
+import {Form} from "react-bootstrap";
+import React from "react";
+
+export const FilterOptions = () => {
+    return(
+        <div>
+            <Form>
+                <h6>Fritekstsøgning</h6>
+                <Form.Control
+                type="search"
+                placeholder="🔎"
+                />
+                <br/>
+                <h6>Social</h6>
+                <Form.Check
+                    type="checkbox"
+                    name="fredagsbar"
+                    id="filter_fridaybar"
+                    label="Fredagsbar"
+                />
+                <Form.Check
+                    type="checkbox"
+                    name="frokostordning"
+                    id="filter_lunch"
+                    label="Frokostordning"
+                />
+                <br/>
+                <h6>Lokation</h6>
+                <Form.Check
+                    type="checkbox"
+                    name="denmark"
+                    id="filter_denmark"
+                    label="Danmark"
+                />
+                <Form.Check
+                    type="checkbox"
+                    name="sweden"
+                    id="filter_sweden"
+                    label="Sverige"
+                />
+                <Form.Check
+                    type="checkbox"
+                    name="norway"
+                    id="filter_norway"
+                    label="Norge"
+                />
+                <Form.Check
+                    type="checkbox"
+                    name="remote"
+                    id="filter_remote"
+                    label="Remote"
+                />
+                <br/>
+                <h6>Lønnet?</h6>
+                <Form.Check
+                    type="checkbox"
+                    name="salary"
+                    id="filter_salary"
+                    label="Ja"
+                />
+                <Form.Check
+                    type="checkbox"
+                    name="no_salary"
+                    id="filter_no_salary"
+                    label="Nej"
+                />
+            </Form>
+        </div>
+    )
+}
+
+export default FilterOptions;
