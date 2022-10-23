@@ -19,13 +19,23 @@
 }
 
 .profileBackdrop:hover {
-  opacity: 80%;
-  background-color: Black;
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
   cursor: pointer;
 }
 
 .profileBackdrop:hover > .backDropImageAdd {
   display: block;
+  position: absolute;
+  z-index: 10;
+  filter: brightness(0) invert(1) 
+
+}
+
+.backDropImage:hover {
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+  cursor: pointer;
 }
 
 .backDropImageAdd {
@@ -34,7 +44,7 @@
   display: none;
 }
 
-.backDropTest {
+.backDropImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -43,7 +53,6 @@
 
 .profilePicture {
   position: absolute;
-
   height: 208px;
   width: 208px;
   background: linear-gradient(
@@ -56,6 +65,10 @@
 
   top: 150px;
   left: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
@@ -63,9 +76,30 @@
   width: 200px;
   object-fit: cover;
   border-radius: 25px;
-  margin-left: 4px;
-  margin-top: 4px;
+  margin-left: 1px;
+  margin-top: 1px;
+  z-index: 1;
 }
+
+.image:hover {
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+  cursor: pointer;
+}
+
+.profileImageAdd {
+  height: 60px;
+  width: 60px;
+  display: none;
+}
+
+.image:hover > .profileImageAdd {
+  display: block;
+  position: absolute;
+  z-index: 10;
+}
+
+
 
 .name {
   position: absolute;

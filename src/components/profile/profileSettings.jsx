@@ -9,18 +9,18 @@ import addImage from "../../res/images/add-image.png";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
-let test = false;
 
 const ProfileSettings = () => {
   //const [name, setName] = useState("PLACEHOLDER NAME");
   return (
     <div>
       <div className="profileBackdrop" onClick={true /* Do something */}>
-        {test && <img src={image} alt="test image" className="backDropTest"/>}
+        {image && <img src={image} alt="profileBackDropImage" className="backDropImage"/>}
         <img className="backDropImageAdd" alt="addImage icon" src={addImage} />
       </div>
       <div className="profilePicture">
         <img src={image} className="image" alt="profilbillede" />
+        <img className="profileImageAdd" alt="addImage icon" src={addImage} />
       </div>
       <p className="name">{"PLACEHOLDER NAME"}</p>
       <p className="description">Student</p>
