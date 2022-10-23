@@ -17,6 +17,27 @@ const Profile = () => {
     setEmail(e.target.value);    
   };
 
+  function getView() {
+    let ViewComponent;
+
+    switch (view) {
+      case "profile":
+        ViewComponent = ProfileSettings();
+        break;
+      case "email":
+        ViewComponent = EmailSettings();
+        break;
+      case "password":
+        ViewComponent = PasswordSettings();
+        break;
+      default:
+        ViewComponent = ProfileSettings();
+        break;
+    }
+
+    return ViewComponent;
+  }
+
   const EmailSettings = () => {
     return (
       <div>
@@ -48,27 +69,6 @@ const Profile = () => {
       </div>
     );
   };
-
-  function getView() {
-    let ViewComponent;
-
-    switch (view) {
-      case "profile":
-        ViewComponent = ProfileSettings();
-        break;
-      case "email":
-        ViewComponent = EmailSettings();
-        break;
-      case "password":
-        ViewComponent = PasswordSettings();
-        break;
-      default:
-        ViewComponent = ProfileSettings();
-        break;
-    }
-
-    return ViewComponent;
-  }
 
   return (
     <div className="profile-container">

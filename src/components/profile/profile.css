@@ -29,8 +29,12 @@ body {
 }
 
 .profileMenu {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
   margin-top: 2rem;
-  width: 5rem;
+  height: 100%;
+  align-self: stretch;
 }
 
 .profileButton {
@@ -52,6 +56,9 @@ body {
 .profileMenu {
   width: 100%;
   max-width: 25rem;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
 }
 
 .profileMain {
@@ -59,6 +66,8 @@ body {
   margin-left: 15rem;
   min-width: 90rem;
   position: relative;
+    order: 0;
+  flex: 1 0 auto;
   align-self: center;
 }
 
