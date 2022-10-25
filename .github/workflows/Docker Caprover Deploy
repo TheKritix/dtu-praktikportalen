@@ -35,7 +35,7 @@ jobs:
       # Trigger deploy on Caprover instance
       - name: Deploy app
         env: 
-          APP_NAME: 'praktikportal'
+          APP_NAME: 'dtu'
           APP_URL: 'https://praktikportal.diplomportal.dk/'
           IMAGE_NAME: 'kritix/praktikportalen:${{github.run_number}}'
         run: 
