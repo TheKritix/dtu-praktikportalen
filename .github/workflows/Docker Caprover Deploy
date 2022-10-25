@@ -36,7 +36,7 @@ jobs:
       - name: Deploy app
         env: 
           APP_NAME: 'dtu'
-          APP_URL: 'https://dtu.praktikportal.diplomportal.dk/'
+          APP_URL: 'https://praktikportal.diplomportal.dk/'
           IMAGE_NAME: 'kritix/praktikportalen:${{github.run_number}}'
         run: 
          'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
