@@ -11,9 +11,10 @@ import ReactCrop, { makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { returnCrop } from "./returnCrop";
 
 // Profil billede source: https://www.reddit.com/r/DANMAG/comments/2cevxx/vores_allesammens_kronprins_frederik/
-import image from "./profileTestImage.jpg";
+import imageTest from "./profileTestImage.jpg";
 import addImage from "../../res/images/add-image.png";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
@@ -25,14 +26,22 @@ const ProfileSettings = () => {
   const [uploadBackdropImage, setUploadBackdropImage] = useState();
   const [finishedCrop, setFinishedCrop] = useState();
 
+  const imgRef = useRef(null);
+  const finishedImageRef = useRef(null);
+
   const [backdropUploadState, setBackdropUploadState] = useState(false);
+
+  // Test Variables START
+
+  const [image, setImage] = useState(imageTest);
+
+  // --- Test Variables --- END
 
   const handleClick = () => {
     inputRef.current.click();
   };
 
   const handleFileChangeBackdrop = (e) => {
-    console.log(e.target.files[0]);
     if (!e.target.files[0]) {
       return;
     } else {
@@ -53,7 +62,6 @@ const ProfileSettings = () => {
           )
         );
       };
-
       setUploadBackdropImage(imgObject.src);
       setBackdropUploadState(true);
     }
@@ -63,7 +71,9 @@ const ProfileSettings = () => {
     setBackdropUploadState(false);
   };
 
-  const CompleteCrop = () => {};
+  const CompleteCrop = () => {
+    setImage(returnCrop(imgRef.current, finishedImageRef.current, finishedCrop))
+  };
 
   return (
     <div>
@@ -113,8 +123,6 @@ const ProfileSettings = () => {
         <button className="save">Gem</button>
       </div>
 
-      
-
       {/* Det her er til popup når man skal uploade et billede. */}
       {uploadBackdropImage && (
         <Popup
@@ -130,12 +138,26 @@ const ProfileSettings = () => {
                 onComplete={(c) => setFinishedCrop(c)}
                 aspect={5 / 1}
               >
-                <img src={uploadBackdropImage} alt="nah" />
+                <img ref={imgRef} src={uploadBackdropImage} alt="nah" />
               </ReactCrop>
             </div>
             <button className="popupButton" onClick={ClearPopup}>
               Gem
             </button>
+
+            <button className="popupButton" onClick={CompleteCrop}>
+              Se
+            </button>
+            {finishedCrop &&
+            <canvas
+              ref={finishedImageRef}
+              style={{
+                border: '1px solid black',
+                objectFit: 'contain',
+                width: finishedCrop.width,
+                height: finishedCrop.height,
+              }}
+            />}
           </div>
         </Popup>
       )}
