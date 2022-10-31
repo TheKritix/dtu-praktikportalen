@@ -1,28 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import Typist from "react-typist-component";
 import { useEffect } from "react";
+import AuthService from "../../services/auth-service";
+
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
 
 const Login = (props) => {
+  let navigate = useNavigate();
+  const form = useRef();
+  const checkBtn = useRef();
   const { show, handleClose } = props;
   const [loginMode, setLoginMode] = useState("signIn");
   const [count, setCount] = useState(0);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const changeLoginMode = () => {
     setLoginMode(loginMode === "signIn" ? "signUp" : "signIn");
     setCount(1);
   };
 
-  
-
   useEffect(() => { 
     setLoginMode("signIn");
     setCount(0)
   }, [show])
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
+  };
+
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setMessage("");
+    setLoading(true);
+    form.current.validateAll();
+  };
+    
 
   if (loginMode === "signIn" && count === 0) {
     return (
@@ -63,14 +97,10 @@ const Login = (props) => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
+                <div className="d-grid gap-2 mt-3">
+                <Button type="submit" className="btn btn-primary">Sign In</Button>
+                </div>
               </Form>
-              <div className="sign-in">
-                <Link to="/profile" className="d-grid gap-2 mt-3">
-                  <Button type="submit" className="btn btn-primary">
-                    Sign In
-                  </Button>
-                </Link>
-              </div>
               <p className="forgot-password text-right mt-2">
                 Forgot <a href="/">password?</a>
               </p>

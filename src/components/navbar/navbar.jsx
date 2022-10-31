@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Profil(TEMP)</Link>
             <Link to="/post" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">Post(TEMP)</Link>
             <Link to="/createpost" style={{ textDecoration: 'none', color: 'black' }} className=" me-5 mt-1">CreatePost(TEMP)</Link>
-            <Button variant="outline-danger" href="https://auth.dtu.dk/dtu/login?menulanguage=da-DK">Login Campus Net</Button>
+            <Button variant="outline-danger" href="https://auth.dtu.dk/dtu/?service=http://localhost:3001/dtu-praktikportalen">Login Campus Net</Button>
           </div>
         </Col>
       </Row>
