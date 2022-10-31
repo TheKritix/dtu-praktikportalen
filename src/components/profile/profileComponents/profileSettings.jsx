@@ -37,6 +37,11 @@ const ProfileSettings = () => {
   const [backdropImage, setBackdropImage] = useState(imageTest);
   const [profileImage, setProfileImage] = useState(imageTest);
 
+  const [pdfCVAvailable, setPdfCvAvailable] = useState({
+    present: false,
+    file: "",
+  });
+
   const handleClickBackdrop = () => {
     inputRefBackdrop.current.click();
   };
@@ -102,6 +107,14 @@ const ProfileSettings = () => {
     ClearPopup();
   };
 
+  const handleCVUpload = () => {
+    setPdfCvAvailable({
+      present: true,
+      file: "",
+    }); 
+    console.log(pdfCVAvailable)
+  }
+
   return (
     <div>
       <div className="profileBackdrop" onClick={handleClickBackdrop}>
@@ -135,15 +148,14 @@ const ProfileSettings = () => {
 
       <div className="namebox-container">
         <p className="textbox-name">Navn</p>
-        <Form.Control
-          className="name-textbox"
-          placeholder="Navn"
-        />
+        <Form.Control className="name-textbox" placeholder="Navn" />
       </div>
-      <div className="cv-container">
-        <p className="textbox-cv">Resumé</p>
-        <Form.Control className="cv-textbox" type="file" />
-      </div>
+      {!pdfCVAvailable.present && (
+        <div className="cv-container">
+          <p className="textbox-cv">Resumé</p>
+          <Form.Control className="cv-textbox" type="file" onChange={handleCVUpload}/>
+        </div>
+      )}
 
       <div className="description-container">
         <p className="textbox-description">Beskrivelse</p>

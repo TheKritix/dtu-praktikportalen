@@ -28,13 +28,10 @@
   display: block;
   position: absolute;
   z-index: 10;
-  filter: brightness(0) invert(1) 
-
+  filter: brightness(0) invert(1);
 }
 
 .backDropImage:hover {
-  -webkit-filter: brightness(70%);
-  filter: brightness(70%);
   cursor: pointer;
 }
 
@@ -98,8 +95,6 @@
   position: absolute;
   z-index: 10;
 }
-
-
 
 .name {
   position: absolute;
