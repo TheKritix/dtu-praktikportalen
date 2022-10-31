@@ -30,10 +30,20 @@ class PostStore {
     }
 
     //todo: fetch post
+    fetchPost = () => {
+    }
 
-    //todo: fetch post
+    //todo: add post
+    createPost = () => {
+    }
 
     //todo: delete post
+    deletePost = () => {
+    }
 
-    //todo: edit post 
+    //todo: edit post
+    editPost = () => {
+    } 
 }
+
+export const postStore = new PostStore(); 
