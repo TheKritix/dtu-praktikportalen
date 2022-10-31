@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 import "./profile.css";
 import "@fontsource/poppins";
-import Form from "react-bootstrap/Form";
 import ProfileSettings from "./profileSettings.jsx";
+import EmailSettings from "./emailSettings.jsx";
+import PasswordSettings from "./passwordSettings.jsx";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const Profile = () => {
   const [view, setView] = useState("profile");
 
-  const [email, setEmail] = useState("foo@boo.com");
-
-  //Not needed for anything, and probably won't be needed for anything
-  const handleChange = (e) => {
-    e.preventDefault();
-    setEmail(e.target.value);    
-  };
-
-  function getView() {
+  const GetView = () => {
     let ViewComponent;
 
     switch (view) {
@@ -36,38 +29,6 @@ const Profile = () => {
     }
 
     return ViewComponent;
-  }
-
-  const EmailSettings = () => {
-    return (
-      <div>
-        <div className="main-container">
-          <p className="textbox-main">Email</p>
-          <Form.Control className="main-textbox" placeholder={email} disabled />
-          <p className="textbox-main">Skift Email-Adresse</p>
-          <Form.Control className="main-textbox" placeholder="Ny Email" onChange={handleChange}/>
-          <div className="saveButton">
-            <button className="saveMain">Gem</button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const PasswordSettings = () => {
-    return (
-      <div>
-        <div className="main-container">
-          <p className="textbox-main">Skift Password</p>
-          <Form.Control className="main-textbox" type="password" placeholder="Ny Password" />
-          <p className="textbox-main">Gentag Password</p>
-          <Form.Control className="main-textbox" type="password" placeholder="Gentag Password" />
-          <div className="saveButton">
-            <button className="saveMain">Gem</button>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -105,7 +66,9 @@ const Profile = () => {
             Password
           </button>
         </div>
-        <div className="profileMain">{getView()}</div>
+        <div className="profileMain">
+          <GetView />
+        </div>
       </div>
     </div>
   );

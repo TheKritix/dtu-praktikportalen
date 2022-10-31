@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 
 import "./profileSettings.css";
 import "./profileImagePopup.css";
-import "@fontsource/poppins";
 import Form from "react-bootstrap/Form";
 
 // Source: https://www.npmjs.com/package/react-image-crop
@@ -95,14 +94,12 @@ const ProfileSettings = () => {
       setBackdropImage(
         returnCrop(imgRef.current, finishedImageRef.current, finishedCrop)
       );
-    }
-    else {
+    } else {
       setProfileImage(
         returnCrop(imgRef.current, finishedImageRef.current, finishedCrop)
       );
     }
     ClearPopup();
-
   };
 
   return (
@@ -138,7 +135,10 @@ const ProfileSettings = () => {
 
       <div className="namebox-container">
         <p className="textbox-name">Navn</p>
-        <Form.Control className="name-textbox" placeholder="Navn" />
+        <Form.Control
+          className="name-textbox"
+          placeholder="Navn"
+        />
       </div>
       <div className="cv-container">
         <p className="textbox-cv">Resumé</p>
@@ -148,7 +148,7 @@ const ProfileSettings = () => {
       <div className="description-container">
         <p className="textbox-description">Beskrivelse</p>
         <Form.Control
-          as="textArea"
+          as="textarea"
           rows={5}
           className="description-textbox"
           placeholder="Beskrivelse"
@@ -166,14 +166,13 @@ const ProfileSettings = () => {
           position="right center"
           onClose={ClearPopup}
         >
-          {console.log(uploadState)}
           <div className="popupContainer">
             <div className="popupImage">
               <ReactCrop
                 crop={crop}
                 onChange={(c) => setCrop(c)}
                 onComplete={(c) => setFinishedCrop(c)}
-                aspect={uploadState.type === "profile" ? 1/1 : 5/1}
+                aspect={uploadState.type === "profile" ? 1 / 1 : 5 / 1}
               >
                 <img ref={imgRef} src={uploadBackdropImage} alt="nah" />
               </ReactCrop>
@@ -185,11 +184,7 @@ const ProfileSettings = () => {
             <button className="popupButton" onClick={ClearPopup}>
               Afbryd
             </button>
-            {finishedCrop && (
-              <canvas hidden
-                ref={finishedImageRef}
-              />
-            )}
+            {finishedCrop && <canvas hidden ref={finishedImageRef} />}
           </div>
         </Popup>
       )}

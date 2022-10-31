@@ -11,6 +11,7 @@ import InternshipList from './components/internship-list/internship-list.jsx';
 
 
 function App() {
+  document.title = "DTU Praktiportalen"
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Navbar />
