@@ -72,7 +72,9 @@ const ProfileSettings = () => {
   };
 
   const CompleteCrop = () => {
-    setImage(returnCrop(imgRef.current, finishedImageRef.current, finishedCrop))
+    setImage(
+      returnCrop(imgRef.current, finishedImageRef.current, finishedCrop)
+    );
   };
 
   return (
@@ -148,16 +150,17 @@ const ProfileSettings = () => {
             <button className="popupButton" onClick={CompleteCrop}>
               Se
             </button>
-            {finishedCrop &&
-            <canvas
-              ref={finishedImageRef}
-              style={{
-                border: '1px solid black',
-                objectFit: 'contain',
-                width: finishedCrop.width,
-                height: finishedCrop.height,
-              }}
-            />}
+            {finishedCrop && (
+              <canvas
+                ref={finishedImageRef}
+                style={{
+                  border: "1px solid black",
+                  objectFit: "contain",
+                  width: finishedCrop.width,
+                  height: finishedCrop.height,
+                }}
+              />
+            )}
           </div>
         </Popup>
       )}

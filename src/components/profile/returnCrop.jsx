@@ -47,18 +47,30 @@ export function returnCrop(image, canvas, crop) {
   return getImageFromCanvas(canvas);
 }
 
+// const getImageFromCanvas = (canvas) => {
+//   var imageFile = null;
+
+//   canvas.toBlob(
+//     (blob) => {
+//       var formData = new FormData();
+//       formData.append("file", blob, "image.jpg");
+//       for (const pair of formData.entries()) {
+//         imageFile = pair[1];
+//         console.log(imageFile)
+//       }
+//     },
+//     "image/jpeg",
+//     0.8
+//   );
+
+//   console.log(canvas.toImage)
+//   console.log(imageFile)
+//   return imageFile;
+// };
+
+//It works, but would much rather save it as a file object.
 const getImageFromCanvas = (canvas) => {
-  const imgObject = new Image();
-
-  canvas.toBlob((blob) => {
-    const url = URL.createObjectURL(blob);
-
-    imgObject.onload = () => {
-      URL.revokeObjectURL(url);
-    };
-
-    imgObject.src = url;
-  });
-
-  return imgObject;
+  var imageFile = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  return imageFile;
 };
+
