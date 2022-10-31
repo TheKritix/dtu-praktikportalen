@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./profile.css";
 import "@fontsource/poppins";
-import ProfileSettings from "./profileSettings.jsx";
-import EmailSettings from "./emailSettings.jsx";
-import PasswordSettings from "./passwordSettings.jsx";
+import ProfileSettings from "./profileComponents/profileSettings.jsx";
+import EmailSettings from "./profileComponents/emailSettings.jsx";
+import PasswordSettings from "./profileComponents/passwordSettings.jsx";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 

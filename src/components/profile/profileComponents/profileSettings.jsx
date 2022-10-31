@@ -14,7 +14,7 @@ import { returnCrop } from "./returnCrop";
 
 // Profil billede source: https://www.reddit.com/r/DANMAG/comments/2cevxx/vores_allesammens_kronprins_frederik/
 import imageTest from "./profileTestImage.jpg";
-import addImage from "../../res/images/add-image.png";
+import addImage from "../../../res/images/add-image.png";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
