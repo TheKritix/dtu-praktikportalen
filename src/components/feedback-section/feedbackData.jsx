@@ -78,5 +78,5 @@ const feedbackData = [
   },
 ];
 
-
-export default new FeedbackStore();
+export default feedbackData;
+//export default new FeedbackStore();

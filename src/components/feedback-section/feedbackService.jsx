@@ -5,6 +5,9 @@ class FeedbackService {
     get = async () => {
         const options = {
             method: "GET",
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                }
         }
      const request = new Request(url, options); 
      const response = await fetch(request);
