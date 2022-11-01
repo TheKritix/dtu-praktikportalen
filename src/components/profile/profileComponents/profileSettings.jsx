@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
-
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./profileSettings.css";
 import "./profileImagePopup.css";
 import Form from "react-bootstrap/Form";
-
+import authService from "../../../services/auth-service";
 // Source: https://www.npmjs.com/package/react-image-crop
 // Source: https://www.npmjs.com/package/reactjs-popup
 import ReactCrop, { makeAspectCrop } from "react-image-crop";
@@ -19,6 +19,8 @@ import addImage from "../../../res/images/add-image.png";
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const ProfileSettings = () => {
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState("");
   const inputRefBackdrop = useRef(null);
   const inputRefProfile = useRef(null);
   const [crop, setCrop] = useState();
@@ -41,6 +43,17 @@ const ProfileSettings = () => {
     present: false,
     file: "",
   });
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user.username);
+      console.log(user.username);
+    } else {
+      setCurrentUser("");
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleClickBackdrop = () => {
     inputRefBackdrop.current.click();
@@ -111,9 +124,9 @@ const ProfileSettings = () => {
     setPdfCvAvailable({
       present: true,
       file: "",
-    }); 
-    console.log(pdfCVAvailable)
-  }
+    });
+    console.log(pdfCVAvailable);
+  };
 
   return (
     <div>
@@ -143,7 +156,7 @@ const ProfileSettings = () => {
         <img src={profileImage} className="image" alt="profilbillede" />
         <img className="profileImageAdd" alt="addImage icon" src={addImage} />
       </div>
-      <p className="name">{"PLACEHOLDER NAME"}</p>
+      <p className="name">{currentUser}</p>
       <p className="description">Student</p>
 
       <div className="namebox-container">
@@ -153,7 +166,11 @@ const ProfileSettings = () => {
       {!pdfCVAvailable.present && (
         <div className="cv-container">
           <p className="textbox-cv">Resumé</p>
-          <Form.Control className="cv-textbox" type="file" onChange={handleCVUpload}/>
+          <Form.Control
+            className="cv-textbox"
+            type="file"
+            onChange={handleCVUpload}
+          />
         </div>
       )}
 
