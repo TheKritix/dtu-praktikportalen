@@ -10,8 +10,11 @@ class FeedbackService {
                 }
         }
      const request = new Request(url, options); 
+     debugger;
+     console.log(request);
      const response = await fetch(request);
-     return response.json();
+     console.log(response);
+     return response;
     }
     post = async (model) => {
         const headers = new Headers();
