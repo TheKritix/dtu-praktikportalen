@@ -22,7 +22,7 @@ const Profile = () => {
     }
   }, [navigate]);
 
-  const getView = () => {
+  const GetView = () => {
     let ViewComponent;
 
     switch (view) {
