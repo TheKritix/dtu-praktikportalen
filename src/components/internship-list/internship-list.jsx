@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card'
 import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
 import FilterOptions from "./FilterOptions";
+import {remove} from "mobx";
 
 
 const locations = [
@@ -21,24 +22,7 @@ const socialBenefits = [
     {social: "Frokostordning"}
 ]
 
-/*const listInternships = internshipListStore.internships.map((d) =>
-        <Card key={d.id} className="mb-3" onClick={() => this._placeholderFunction()} style={{ cursor: "pointer" }}>
-        <Card.Title>{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
-        <Card.Text>{d.description}</Card.Text>
-        <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
-        </Card>
-)*/
 
-
-
-
-const listInternships = internshipListStore.internships.map((d) =>
-    <Card key={d.id} className="mb-3" onClick={() => this._placeholderFunction()} style={{ cursor: "pointer" }}>
-        <Card.Title>{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
-        <Card.Text>{d.description}</Card.Text>
-        <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
-    </Card>
-)
 
 export const InternshipList = () => {
 
@@ -47,11 +31,22 @@ export const InternshipList = () => {
 
     const [filteredInternships, setFilteredInternships] = useState([])
 
+    const [staredInternships, setStaredInternships] = useState([])
+    const addToFavorites = id => {
+        if (!staredInternships.includes(id)) setStaredInternships(staredInternships.concat(id))
+    }
+    const removeFavorites = id => {
+        let index = staredInternships.indexOf(id)
+        let temp = [...staredInternships.slice(0, index), ...staredInternships.slice(index + 1)]
+        setStaredInternships(temp)
+    }
+
     const liste = filteredInternships.map((d, index) => (
-        <Card key={d.id} className="mb-3" onClick={() => this._placeholderFunction()} style={{ cursor: "pointer" }}>
-            <Card.Title>{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
+        <Card key={d.id} className="mb-3" style={{ cursor: "pointer" }}>
+            <Card.Title>{staredInternships.includes(d.id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
             <Card.Text>{d.description}</Card.Text>
             <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
+            <p onClick={staredInternships.includes(d.id) ? () => removeFavorites(d.id) : () => addToFavorites(d.id)}>{staredInternships.includes(d.id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
         </Card>
     ))
 
@@ -74,8 +69,6 @@ export const InternshipList = () => {
             )
         }
     }, [location])
-
-
 
 
 
