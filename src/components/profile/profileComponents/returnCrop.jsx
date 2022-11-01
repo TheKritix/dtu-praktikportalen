@@ -70,7 +70,7 @@ export function returnCrop(image, canvas, crop) {
 
 //It works, but would much rather save it as a file object.
 const getImageFromCanvas = (canvas) => {
-  var imageFile = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-  return imageFile;
+  var imageData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  return imageData;
 };
 
