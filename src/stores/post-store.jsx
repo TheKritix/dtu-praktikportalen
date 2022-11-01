@@ -1,49 +1,51 @@
-import { makeAutoObservable } from "mobx";
+import {runInAction, makeAutoObservable, observable} from "mobx";
+import PostService from '../services/PostService'; 
 
-const baseUrl = process.env.NODE_ENV === 'development' ? "http://localhost:3000/":"";
+ //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
+
+// const baseUrl = process.env.NODE_ENV === 'development' ? "http://localhost:3000/":"";
+
 
 class PostStore {
-    //needs fixing/revising
-    posts = [
-        {  
-            postId: "1",
-            createdAtDate: "25-09-2022",
-            position: "Studentermedhjælper",
-            type: "Praktik",
-            description: "Vi leder efter en studentmedhjælper der kan smørre madder og lave kaffe",
-            //bannerImg: bannerPlaceholder,
-            location: "København",
-            country: "Denmark",
-            timeframe: "Oktober 2022",
-            company: "firma.com",
-            contact: "Per Son",
-            phonenumber: "10203040",
-            email: "person@mail.com"
-        }
-    ]
-
     constructor() {
-        makeAutoObservable(this,
-            {},
-            {autoBind:true}
-        )
+        makeAutoObservable(this);
+        this.postService = new PostService(); 
+    }
+    postData = {
+        model: []
+    };
+    status = "initial";
+    searchQuery = "";
+
+    getPosts = () => {
+        try {
+            const data = this.postService.getPosts();
+            runInAction(() => {
+                this.postData = data;
+                console.log(data)
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"; 
+            })
+        }
     }
 
-    //todo: fetch post
-    fetchPost = () => {
+    getPostsAsync = async () => {
+        try {
+            const data = await this.postService.getPosts();
+            runInAction(() => {
+                this.postData = data;
+                console.log(data)
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"; 
+            })
+        }
     }
 
-    //todo: add post
-    createPost = () => {
-    }
-
-    //todo: delete post
-    deletePost = () => {
-    }
-
-    //todo: edit post
-    editPost = () => {
-    } 
+    //todo: post, put, delete async functions
 }
 
 export const postStore = new PostStore(); 

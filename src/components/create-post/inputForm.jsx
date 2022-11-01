@@ -4,12 +4,14 @@ import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
 import {useState} from "react";
 
+
 import placeholderImg from "../../res/images/CameraImage.svg";
 
 
 
 const InputForm = () => {
 
+    
     // eslint-disable-next-line no-unused-vars
     const [fileImage, setFileImage] = useState();
     const [previewImage, setPreviewImage] = useState(placeholderImg);
