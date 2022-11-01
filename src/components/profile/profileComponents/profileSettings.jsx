@@ -111,9 +111,9 @@ const ProfileSettings = () => {
     setPdfCvAvailable({
       present: true,
       file: "",
-    }); 
-    console.log(pdfCVAvailable)
-  }
+    });
+    console.log(pdfCVAvailable);
+  };
 
   return (
     <div>
@@ -153,7 +153,11 @@ const ProfileSettings = () => {
       {!pdfCVAvailable.present && (
         <div className="cv-container">
           <p className="textbox-cv">Resumé</p>
-          <Form.Control className="cv-textbox" type="file" onChange={handleCVUpload}/>
+          <Form.Control
+            className="cv-textbox"
+            type="file"
+            onChange={handleCVUpload}
+          />
         </div>
       )}
 

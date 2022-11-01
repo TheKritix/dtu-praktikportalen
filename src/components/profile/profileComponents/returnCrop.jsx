@@ -1,7 +1,7 @@
 // Source: https://codesandbox.io/s/react-image-crop-demo-with-react-hooks-forked-n7xcpl?file=/src/canvasPreview.ts
 // Source: https://www.npmjs.com/package/react-image-crop#how-can-i-center-the-crop
 
-export function returnCrop(image, canvas, crop) {
+export async function returnCrop(image, canvas, crop) {
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {
@@ -44,28 +44,27 @@ export function returnCrop(image, canvas, crop) {
 
   ctx.restore();
 
-  return getImageFromCanvas(canvas);
+  return await getImageFromCanvas(canvas);
 }
 
-// const getImageFromCanvas = (canvas) => {
-//   var imageFile = null;
+// const getImageFromCanvas = async (canvas) => {
+//   const toBlobPromise = new Promise((resolve) => {
+//     canvas.toBlob(
+//       (blob) => {
+//         var formData = new FormData();
+//         formData.append("file", blob, "image.jpg");
+//         for (const pair of formData.entries()) {
+//           resolve(pair[1]);
+//         }
+//       },
+//       "image/jpeg",
+//       0.8
+//     );
+//   });
 
-//   canvas.toBlob(
-//     (blob) => {
-//       var formData = new FormData();
-//       formData.append("file", blob, "image.jpg");
-//       for (const pair of formData.entries()) {
-//         imageFile = pair[1];
-//         console.log(imageFile)
-//       }
-//     },
-//     "image/jpeg",
-//     0.8
-//   );
-
-//   console.log(canvas.toImage)
-//   console.log(imageFile)
-//   return imageFile;
+//   toBlobPromise.then((value) => {
+//     return value
+//   });
 // };
 
 //It works, but would much rather save it as a file object.
@@ -73,4 +72,3 @@ const getImageFromCanvas = (canvas) => {
   var imageData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
   return imageData;
 };
-
