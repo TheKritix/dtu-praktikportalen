@@ -11,6 +11,7 @@ const studentSignin = (ticket) => {
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
+      console.log(JSON.stringify(response.data));
       return response.data;
     });
 };
@@ -28,11 +29,13 @@ const dtuCasLogin = (ticket) => {
     });
 };
 
-const employerSignup = (username, email, password) => {
+const employerSignup = (username, email, password, companyName, name) => {
   return axios.post(API_URL + "signup", {
     username,
     email,
     password,
+    companyName,
+    name,
   });
 };
 
