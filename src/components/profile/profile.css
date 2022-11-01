@@ -23,12 +23,18 @@ body {
 
 .profile {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .profileMenu {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
   margin-top: 2rem;
-  width: 5rem;
+  height: 100%;
+  align-self: stretch;
 }
 
 .profileButton {
@@ -50,13 +56,19 @@ body {
 .profileMenu {
   width: 100%;
   max-width: 25rem;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
 }
 
 .profileMain {
-  margin-top: 2rem;
-  width: 100%;
+  margin-top: -7rem;
+  margin-left: 15rem;
+  min-width: 90rem;
   position: relative;
-  margin-left: 20px;
+    order: 0;
+  flex: 1 0 auto;
+  align-self: center;
 }
 
 .main-textbox {
@@ -69,8 +81,7 @@ body {
 
 .main-container {
   position: relative;
-  top: 50px;
-  max-width: 75rem;
+  max-width: 30rem;
 }
 
 .saveMain {

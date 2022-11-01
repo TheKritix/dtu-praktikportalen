@@ -63,7 +63,7 @@ const InputForm = () => {
                 <div className="right-input-content">
                     <Form.Group>
                         <h3 className="form-titel-text">Beskrivelse</h3>
-                        <Form.Control className="form-description" as="textarea" rows={8} placeholder="Tilføj beskrivelse af stilling"></Form.Control>
+                        <Form.Control className="form-description" as="textArea" rows={8} placeholder="Tilføj beskrivelse af stilling"></Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>
