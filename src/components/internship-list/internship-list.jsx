@@ -1,23 +1,78 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'
+import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
-// eslint-disable-next-line no-unused-vars
-import {Button, Form} from "react-bootstrap";
+import FilterOptions from "./FilterOptions";
+import {remove} from "mobx";
 
 
-const listInternships = internshipListStore.internships.map((d) =>
-        <Card key={d.id} className="mb-3" onClick={() => this._placeholderFunction()} style={{ cursor: "pointer" }}>
-        <Card.Title>{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
-        <Card.Text>{d.description}</Card.Text>
-        <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
-        </Card>
-)
+const locations = [
+    {location: "Danmark"},
+    {location: "Sverige"},
+    {location: "Norge"},
+    {location: "Remote"}
+]
+
+const socialBenefits = [
+    {social: "Fredagsbar"},
+    {social: "Frokostordning"}
+]
+
+
 
 export const InternshipList = () => {
+
+    const [location, setLocation] = useState([])
+    const [socialBenefit, setSocialBenefits] = useState([])
+
+    const [filteredInternships, setFilteredInternships] = useState([])
+
+    const [staredInternships, setStaredInternships] = useState([])
+    const addToFavorites = id => {
+        if (!staredInternships.includes(id)) setStaredInternships(staredInternships.concat(id))
+    }
+    const removeFavorites = id => {
+        let index = staredInternships.indexOf(id)
+        let temp = [...staredInternships.slice(0, index), ...staredInternships.slice(index + 1)]
+        setStaredInternships(temp)
+    }
+
+    const liste = filteredInternships.map((d, index) => (
+        <Card key={d.id} className="mb-3" style={{ cursor: "pointer" }}>
+            <Card.Title>{staredInternships.includes(d.id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
+            <Card.Text>{d.description}</Card.Text>
+            <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
+            <p onClick={staredInternships.includes(d.id) ? () => removeFavorites(d.id) : () => addToFavorites(d.id)}>{staredInternships.includes(d.id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
+        </Card>
+    ))
+
+    const handleLocationChange = e => {
+        if (e.target.checked) {
+            setLocation([...location, e.target.value])
+        } else {
+            setLocation(location.filter(id => id !== e.target.value))
+        }
+    }
+
+    useEffect(() => {
+        if (location.length === 0) {
+            setFilteredInternships(internshipListStore.internships)
+        } else {
+            setFilteredInternships(
+                internshipListStore.internships.filter(internship =>
+                    location.some(location => [internship.location].flat().includes(location))
+                )
+            )
+        }
+    }, [location])
+
+
+
+
     return(
         <div>
             <Container className="cont">
@@ -29,81 +84,44 @@ export const InternshipList = () => {
                     <Row className="indhold-row">
                         <Col className="filterstuff col-3">
                             <h4 className="">Filtrér søgning:</h4>
+
+                            <Form>
+                                <h6>Lokation</h6>
+                                {locations.map(location => (
+                                    <React.Fragment key={location.location}>
+                                        <Form.Check
+                                            onChange={handleLocationChange}
+                                            type="checkbox"
+                                            label={location.location}
+                                            value={location.location}
+                                        />
+                                    </React.Fragment>
+                                ))}
+                            </Form>
+
                             <Form>
                                 <h6>Social</h6>
-                                <Form.Check
-                                    type="checkbox"
-                                    name="fredagsbar"
-                                    id="filter_fredagsbar"
-                                    label={"Fredagsbar"}
-                                />
-                                <Form.Check
-                                    type="checkbox"
-                                    name="frokostordning"
-                                    id="filter_frokostordning"
-                                    label={"Frokostordning"}
-                                />
-                                <Form.Check
-                                    type="checkbox"
-                                    name="rundstykker"
-                                    id="filter_rundstykker"
-                                    label={"Grøndlandske rundstykker"}
-                                />
-                                <br/>
-                                <h6>Lokation</h6>
-                                <Form.Check
-                                    type="checkbox"
-                                    name="danmark"
-                                    id="filter_danmark"
-                                    label={"Danmark"}
-                                />
-                                <Form.Check
-                                    type="checkbox"
-                                    name="sverige"
-                                    id="filter_sverige"
-                                    label={"Sverige"}
-                                />
-                                <Form.Check
-                                    type="checkbox"
-                                    name="norge"
-                                    id="filter_norge"
-                                    label={"Norge"}
-                                />
-                                <Form.Check
-                                    type="checkbox"
-                                    name="remote"
-                                    id="filter_remote"
-                                    label={"Remote"}
-                                />
-                                <br/>
-                                <h6>Lønniveau</h6>
-                                <Form.Check
-                                    type="radio"
-                                    name="løn"
-                                    id="filter_ingen_løn"
-                                    label={"Frivillig"}
-                                />
-                                <Form.Check
-                                    type="radio"
-                                    name="løn"
-                                    id="filter_lille_løn"
-                                    label={"10 kr. pr. år"}
-                                />
-                                <Form.Check
-                                    type="radio"
-                                    name="løn"
-                                    id="filter_ceo_løn"
-                                    label={"CEO-løn"}
-                                />
+                                {socialBenefits.map(benefit => (
+                                    <React.Fragment key={benefit.social}>
+                                        <Form.Check
+                                            onChange={handleLocationChange}
+                                            type="checkbox"
+                                            label={benefit.social}
+                                            value={benefit.social}
+                                        />
+                                    </React.Fragment>
+                                ))}
                             </Form>
+
                             <br/>
+                            <FilterOptions/>
 
                         </Col>
                         <Col className="col-1"/>
                         <Col className="opslag col-7">
                             <Row className="">
-                                {listInternships.length ? listInternships :
-                                    <p className="d-flex justify-content-center">There are no internships</p>
+                                {liste.length ? liste :
+                                    <p className="d-flex justify-content-center">Ingen praktikopslag matcher dine søgekriterier</p>
                                 }
                             </Row>
                         </Col>
