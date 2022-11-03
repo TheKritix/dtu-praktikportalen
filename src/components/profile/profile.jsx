@@ -3,24 +3,12 @@ import "./profile.css";
 import "@fontsource/poppins";
 import ProfileSettings from "./profileComponents/profileSettings.jsx";
 import EmailSettings from "./profileComponents/emailSettings.jsx";
-import { useNavigate } from "react-router-dom";
 import PasswordSettings from "./profileComponents/passwordSettings.jsx";
-import authService from "../../services/auth-service";
-import { useEffect } from "react";
+
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const Profile = () => {
   const [view, setView] = useState("profile");
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    const user = authService.getCurrentUser();
-    if (user) {
-      console.log(user.username);
-    } else {
-      navigate("/");
-    }
-  }, [navigate]);
 
   const GetView = () => {
     let ViewComponent;

@@ -62,6 +62,7 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
+
 const authService = {
   studentSignin,
   employerSignup,

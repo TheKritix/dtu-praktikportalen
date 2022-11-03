@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./profileSettings.css";
 import "./profileImagePopup.css";
-import Form from "react-bootstrap/Form";
 import authService from "../../../services/auth-service";
+import employerService from "../../../services/employer-service";
 // Source: https://www.npmjs.com/package/react-image-crop
 // Source: https://www.npmjs.com/package/reactjs-popup
 import ReactCrop, { makeAspectCrop } from "react-image-crop";
@@ -16,17 +16,27 @@ import { returnCrop } from "./returnCrop";
 import imageTest from "./profileTestImage.jpg";
 import addImage from "../../../res/images/add-image.png";
 
+// Setting views for the two types of users.
+
+import EmployerSettings from "./settings/employerSettings";
+import StudentSettings from "./settings/studentSettings";
+
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const ProfileSettings = () => {
+  const user = authService.getCurrentUser();
+
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState("");
+
+  const [userType, setUserType] = useState();
+
+  /* Image Handling */
   const inputRefBackdrop = useRef(null);
   const inputRefProfile = useRef(null);
-  const [crop, setCrop] = useState();
 
   const [uploadBackdropImage, setUploadBackdropImage] = useState();
   const [finishedCrop, setFinishedCrop] = useState();
+  const [crop, setCrop] = useState();
 
   const imgRef = useRef(null);
   const finishedImageRef = useRef(null);
@@ -36,24 +46,44 @@ const ProfileSettings = () => {
     type: "",
   });
 
-  const [backdropImage, setBackdropImage] = useState(imageTest);
-  const [profileImage, setProfileImage] = useState(imageTest);
-
-  const [pdfCVAvailable, setPdfCvAvailable] = useState({
-    present: false,
-    file: "",
-  });
+  const [backdropImage, setBackdropImage] = useState();
+  const [profileImage, setProfileImage] = useState();
+  /* ------------------ */
 
   useEffect(() => {
-    const user = authService.getCurrentUser();
-    if (user) {
-      setCurrentUser(user.username);
-      console.log(user.username);
-    } else {
-      setCurrentUser("");
+    if (user === null) {
       navigate("/");
     }
-  }, [navigate]);
+    if (user && user.companyName) {
+      setUserType("Employer");
+    } else if (user) {
+      setUserType("Student");
+    }
+
+    if (user.backdropImage) {
+      setBackdropImage(user.backdropImage);
+    }
+    if (user.profileImage) {
+      setProfileImage(user.profileImage);
+    }
+  }, [user, navigate]);
+
+  const GetSettingsView = () => {
+    let ViewComponent;
+
+    switch (userType) {
+      case "Student":
+        ViewComponent = StudentSettings();
+        break;
+      case "Employer":
+        ViewComponent = EmployerSettings();
+        break;
+      default:
+        break;
+    }
+
+    return ViewComponent;
+  };
 
   const handleClickBackdrop = () => {
     inputRefBackdrop.current.click();
@@ -108,25 +138,25 @@ const ProfileSettings = () => {
   };
 
   const CompleteCrop = () => {
+    const image = returnCrop(
+      imgRef.current,
+      finishedImageRef.current,
+      finishedCrop
+    );
+
     if (uploadState.type === "backdrop") {
-      setBackdropImage(
-        returnCrop(imgRef.current, finishedImageRef.current, finishedCrop)
-      );
+      setBackdropImage(image);
+      user.backdropImage = image;
+      employerService.updateBackdropImage(user);
     } else {
-      setProfileImage(
-        returnCrop(imgRef.current, finishedImageRef.current, finishedCrop)
-      );
+      setProfileImage(image);
+      user.profileImage = image;
+      employerService.updateProfileImage(user);
     }
+    employerService.getEmployer(user);
     ClearPopup();
   };
 
-  const handleCVUpload = () => {
-    setPdfCvAvailable({
-      present: true,
-      file: "",
-    });
-    console.log(pdfCVAvailable);
-  };
 
   return (
     <div>
@@ -156,37 +186,8 @@ const ProfileSettings = () => {
         <img src={profileImage} className="image" alt="profilbillede" />
         <img className="profileImageAdd" alt="addImage icon" src={addImage} />
       </div>
-      <p className="name">{currentUser}</p>
-      <p className="description">Student</p>
 
-      <div className="namebox-container">
-        <p className="textbox-name">Navn</p>
-        <Form.Control className="name-textbox" placeholder="Navn" />
-      </div>
-      {!pdfCVAvailable.present && (
-        <div className="cv-container">
-          <p className="textbox-cv">Resumé</p>
-          <Form.Control
-            className="cv-textbox"
-            type="file"
-            onChange={handleCVUpload}
-          />
-        </div>
-      )}
-
-      <div className="description-container">
-        <p className="textbox-description">Beskrivelse</p>
-        <Form.Control
-          as="textarea"
-          rows={5}
-          className="description-textbox"
-          placeholder="Beskrivelse"
-        />
-      </div>
-
-      <div className="saveButton">
-        <button className="save">Gem</button>
-      </div>
+      <GetSettingsView />
 
       {/* Det her er til popup når man skal uploade et billede. */}
       {uploadBackdropImage && (

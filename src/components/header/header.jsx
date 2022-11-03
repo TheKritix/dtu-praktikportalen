@@ -24,7 +24,6 @@ const Header = () => {
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-      console.log(user.username);
       setCurrentUser(user);
     } else {
       setCurrentUser(undefined);
@@ -33,9 +32,7 @@ const Header = () => {
 
   useEffect(() => {
     searchParam.get("ticket");
-    console.log(searchParam.get("ticket"));
     const currentUser = authService.getCurrentUser();
-    console.log(currentUser);
   }, [searchParam]);
   const handleStudentLogin = async () => {
     await authService.studentSignin(searchParam.get("ticket")).then(
