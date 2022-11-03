@@ -1,7 +1,7 @@
 // Source: https://codesandbox.io/s/react-image-crop-demo-with-react-hooks-forked-n7xcpl?file=/src/canvasPreview.ts
 // Source: https://www.npmjs.com/package/react-image-crop#how-can-i-center-the-crop
 
-export async function returnCrop(image, canvas, crop) {
+export function returnCrop(image, canvas, crop) {
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {
@@ -44,9 +44,10 @@ export async function returnCrop(image, canvas, crop) {
 
   ctx.restore();
 
-  return await getImageFromCanvas(canvas);
+  return getImageFromCanvas(canvas);
 }
 
+// This is smart, but I am not, so duck this.
 // const getImageFromCanvas = async (canvas) => {
 //   const toBlobPromise = new Promise((resolve) => {
 //     canvas.toBlob(

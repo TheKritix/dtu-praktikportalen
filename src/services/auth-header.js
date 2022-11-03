@@ -1,8 +1,8 @@
 export default function authHeader() {
-  const employer = JSON.parse(localStorage.getItem("employer"));
-  const student = JSON.parse(localStorage.getItem("student"));
+  const employer = JSON.parse(localStorage.getItem("user"));
+  const student = JSON.parse(localStorage.getItem("user"));
 
-  if (employer && employer.accessToken) {
+  if (employer && employer.accessToken && employer.companyName) {
     return { "x-access-token": employer.accessToken };
   } else if (student && student.accessToken) {
     return { "x-access-token": student.accessToken };

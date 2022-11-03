@@ -3,6 +3,7 @@ import "./navbar.css";
 import dtulogo from "../../res/images/dtu-logo.png";
 import { Link, useSearchParams } from 'react-router-dom';
 import authService from "../../services/auth-service";
+import { useNavigate } from "react-router-dom";
 
 
 //XXXX Bootstrap XXXX
@@ -16,12 +17,12 @@ import { useState } from "react";
 
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [searchParam] = useSearchParams();
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-      console.log(user.username);
       setCurrentUser(user.username);
     } else {
       setCurrentUser(undefined);
@@ -30,9 +31,7 @@ const Navbar = () => {
 
  useEffect(() => {
     searchParam.get("ticket");
-    console.log(searchParam.get("ticket"));
     const currentUser = authService.getCurrentUser();
-    console.log(currentUser);
   }, [searchParam]);
   const handleLogin = async () => {
     await authService.studentSignin(searchParam.get("ticket")).then(
@@ -47,6 +46,7 @@ const Navbar = () => {
   }
 
   const handleLogout = () => {
+    navigate("/")
     authService.logout();
     window.location.reload();
   };
