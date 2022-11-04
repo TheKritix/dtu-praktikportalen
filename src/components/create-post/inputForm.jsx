@@ -11,7 +11,19 @@ import placeholderImg from "../../res/images/CameraImage.svg";
 
 const InputForm = () => {
 
-    
+
+    const defaultObject = () => ({
+        company: "",
+        country: "",
+        description: "",
+        location: "",
+        position: "",
+        startdate: "",
+        type: ""
+    });
+    const [createdPost, setCreatedPost] = useState([defaultObject]);
+
+
     // eslint-disable-next-line no-unused-vars
     const [fileImage, setFileImage] = useState();
     const [previewImage, setPreviewImage] = useState(placeholderImg);
@@ -20,6 +32,60 @@ const InputForm = () => {
         setFileImage(e.target.files[0]);
         setPreviewImage(URL.createObjectURL(e.target.files[0]));
     }
+
+    const handleChangePost = (e) => {
+        setCreatedPost({
+            ...createdPost,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const setDefaultState = () => {
+        setCreatedPost(defaultObject);
+    }
+
+    const submitPost = (e) => {
+        //e.preventDefault();
+        const postObject = {
+            company: createdPost.company,
+            country: createdPost.country,
+            description: createdPost.description,
+            location: createdPost.location,
+            position: createdPost.position,
+            startdate: createdPost.startdate,
+            type: createdPost.type
+        };
+
+        const formData = new FormData();
+        formData.append("company", createdPost.company);
+        formData.append("country", createdPost.country)
+        formData.append("description", createdPost.description)
+        formData.append("location", createdPost.location)
+        formData.append("position", createdPost.position)
+        formData.append("startdate", createdPost.startdate);
+        formData.append("type", createdPost.type)
+
+        if (
+            !(
+                postObject.company === "" &&
+                postObject.description === "" &&
+                postObject.type === ""
+            )
+        ) {
+            fetch(`https://api.praktikportal.diplomportal.dk/api/post`, {
+                method: "POST",
+                action: "/",
+                body: formData
+            }).then(() => {
+                setDefaultState();
+                console.log("post created");
+            });
+        } else {
+            //needs changing
+            alert.show("info missing")
+        }
+    };
+
     
 
     return (
@@ -29,7 +95,7 @@ const InputForm = () => {
                 <div className="left-input-content">
                     <Form.Group>
                         <h3 className="form-titel-text">Jobtitel</h3>
-                        <Form.Control className="form-input" type="title" placeholder="Titel på stillingen"></Form.Control>
+                        <Form.Control className="form-input" type="title" placeholder="Titel på stillingen" disabled></Form.Control>
                         
                         <h3 className="form-titel-text">Stillingstype</h3>
                         <Form.Select className="form-input" placeholder="vælg stillingens type">
@@ -65,7 +131,7 @@ const InputForm = () => {
                 <div className="right-input-content">
                     <Form.Group>
                         <h3 className="form-titel-text">Beskrivelse</h3>
-                        <Form.Control className="form-description" as="textarea" rows={8} placeholder="Tilføj beskrivelse af stilling"></Form.Control>
+                        <Form.Control className="form-description" as="textarea" rows={8} placeholder="Tilføj beskrivelse af stilling" onChange={handleChangePost}></Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>
@@ -80,7 +146,7 @@ const InputForm = () => {
             </div>
             <div className="form-button-div">
                 <Button className="preview-button" size="lg" disabled>Preview opslag</Button>
-                <Button className="form-submit-button" type="submit" size="lg">Opret stilling</Button>  
+                <Button className="form-submit-button" type="submit" size="lg" onClick={submitPost}>Opret stilling</Button>  
             </div>
         </Form>
         
