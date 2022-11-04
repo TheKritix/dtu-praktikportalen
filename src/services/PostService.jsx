@@ -4,9 +4,9 @@ const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
 class PostService {
 
-    getPosts = () => {
-        return axios.get(ApiUrl);
-    };
+    // getPosts = () => {
+    //     return axios.get(ApiUrl);
+    // };
 
     // get = async () => {
     //     const options = {
@@ -20,6 +20,15 @@ class PostService {
     //     const response = await fetch(request);
     //     return response.json();
     // }
+
+    fetchPosts = () => {
+        fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
+        .then((response) => response.json())
+        .then((responseJson) =>  {
+            console.log(responseJson);
+            return responseJson;
+        }) 
+    }
 
     // //todo: post
 

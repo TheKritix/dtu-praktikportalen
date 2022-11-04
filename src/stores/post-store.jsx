@@ -17,27 +17,28 @@ class PostStore {
     status = "initial";
     searchQuery = "";
 
-    getPosts = () => {
-        try {
-            const data = this.postService.getPosts();
-            runInAction(() => {
-                this.postData = data;
-                console.log(data)
-            });
-        } catch (error) {
-            runInAction(() => {
-                this.status = "error"; 
-            })
-        }
-    }
+    // getPosts = () => {
+    //     try {
+    //         const data = this.postService.getPosts()
+    //             .then(
+    //             runInAction(() => {
+    //             this.postData = data;
+    //             console.log(data)
+    //         }))
+    //     } catch (error) {
+    //         runInAction(() => {
+    //             this.status = "error"; 
+    //         })
+    //     }
+    // }
 
     getPostsAsync = async () => {
         try {
-            const data = await this.postService.getPosts();
+            const data = await this.postService.fetchPosts()
             runInAction(() => {
                 this.postData = data;
                 console.log(data)
-            });
+            })
         } catch (error) {
             runInAction(() => {
                 this.status = "error"; 
