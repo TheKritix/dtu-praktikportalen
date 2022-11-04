@@ -3,9 +3,8 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
 import {useState} from "react";
-
-
 import placeholderImg from "../../res/images/CameraImage.svg";
+import { uploadPost } from '../../services/PostService'; 
 
 
 
@@ -14,7 +13,6 @@ const InputForm = () => {
 
     const defaultObject = () => ({
         company: "",
-        country: "",
         description: "",
         location: "",
         position: "",
@@ -23,9 +21,9 @@ const InputForm = () => {
     });
     const [createdPost, setCreatedPost] = useState([defaultObject]);
 
-
     // eslint-disable-next-line no-unused-vars
     const [fileImage, setFileImage] = useState();
+    
     const [previewImage, setPreviewImage] = useState(placeholderImg);
 
     const saveFile = (e) => {
@@ -45,48 +43,14 @@ const InputForm = () => {
     }
 
     const submitPost = (e) => {
-        //e.preventDefault();
-        const postObject = {
-            company: createdPost.company,
-            country: createdPost.country,
-            description: createdPost.description,
-            location: createdPost.location,
-            position: createdPost.position,
-            startdate: createdPost.startdate,
-            type: createdPost.type
-        };
-
-        const formData = new FormData();
-        formData.append("company", createdPost.company);
-        formData.append("country", createdPost.country)
-        formData.append("description", createdPost.description)
-        formData.append("location", createdPost.location)
-        formData.append("position", createdPost.position)
-        formData.append("startdate", createdPost.startdate);
-        formData.append("type", createdPost.type)
-
-        if (
-            !(
-                postObject.company === "" &&
-                postObject.description === "" &&
-                postObject.type === ""
-            )
-        ) {
-            fetch(`https://api.praktikportal.diplomportal.dk/api/post`, {
-                method: "POST",
-                action: "/",
-                body: formData
-            }).then(() => {
-                setDefaultState();
-                console.log("post created");
-            });
-        } else {
-            //needs changing
-            alert.show("info missing")
+        e.preventDefault();
+        //temporary
+        if(window.confirm("Upload post?")) {
+            uploadPost(createdPost);
         }
+        setDefaultState();
     };
 
-    
 
     return (
     
@@ -107,10 +71,24 @@ const InputForm = () => {
                         </Form.Select>
 
                         <h3 className="form-titel-text">Firmanavn</h3>
-                        <Form.Control className="form-input" type="text" placeholder="Navn på firmaet"></Form.Control>
+                        <Form.Control 
+                            className="form-input"
+                            name="company" 
+                            placeholder="Navn på firmaet"
+                            value={createdPost.company}
+                            required
+                            onChange={handleChangePost}>
+                        </Form.Control>
                         
                         <h3 className="form-titel-text">Placering</h3>
-                        <Form.Control className="form-input" type="text" placeholder="f.eks. København"></Form.Control>
+                        <Form.Control 
+                            className="form-input"
+                            name="location"   
+                            placeholder="f.eks. København"
+                            value={createdPost.location}
+                            required
+                            onChange={handleChangePost}>
+                        </Form.Control>
 
                         <h3 className="form-titel-text">Kontaktperson</h3>
                         <Form.Control className="form-input" type="text" placeholder="Navn på kontaktperson"></Form.Control>
@@ -131,7 +109,16 @@ const InputForm = () => {
                 <div className="right-input-content">
                     <Form.Group>
                         <h3 className="form-titel-text">Beskrivelse</h3>
-                        <Form.Control className="form-description" as="textarea" rows={8} placeholder="Tilføj beskrivelse af stilling" onChange={handleChangePost}></Form.Control>
+                        <Form.Control 
+                            className="form-description"
+                            name="description" 
+                            as="textarea" 
+                            rows={8} 
+                            placeholder="Tilføj beskrivelse af stilling" 
+                            value={createdPost.description}
+                            required
+                            onChange={handleChangePost}>
+                        </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>

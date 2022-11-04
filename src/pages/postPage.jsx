@@ -5,7 +5,7 @@ import {useState, useEffect} from "react";
 import {observer} from 'mobx-react-lite';
 import { useParams } from "react-router-dom";
 import {postStore} from "../stores/post-store";
-import {fetchPosts} from '../services/PostService'; 
+
 
 
 
@@ -31,17 +31,14 @@ const PostPage = () => {
             console.log(responseJson);
         }) 
     }
-
     
-    useEffect(() => {   
-        fetchPosts();
-        //setFetchedPosts(fetchPosts());
-        console.log(fetchedPosts)
+    useEffect(() => {
+        fetchPosts()
     }, [])
     
     return (
         <>
-            {fetchedPosts.filter((posts) => posts._id === TempPostId).map((post) => (
+            {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post) => (
                 <div className="post-container">
                     <PostContent post={post}/>
                     <PostContactInfo post={post}/>
