@@ -2,12 +2,6 @@ import axios from "axios";
 
 const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
-class PostService {
-
-    // getPosts = () => {
-    //     return axios.get(ApiUrl);
-    // };
-
     // get = async () => {
     //     const options = {
     //         method: "GET",
@@ -21,12 +15,13 @@ class PostService {
     //     return response.json();
     // }
 
-    fetchPosts = () => {
+    export const fetchPosts = () => {
         fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
         .then((response) => response.json())
         .then((responseJson) =>  {
-            console.log(responseJson);
-            return responseJson;
+            //Temporary: should instead fetch only one object identified with useParams();
+            console.log(responseJson[0]);
+            return responseJson[0];
         }) 
     }
 
@@ -35,6 +30,9 @@ class PostService {
     // //todo: put
 
     // //todo: delete
-}
 
-export default PostService;
+const postService = {
+    fetchPosts,
+};
+
+export default postService;

@@ -13,13 +13,13 @@ const PostContent = ({post}) => {
             </div>
             <div className="post-content">
                 <div>
-                    <h3>{post[0].position}</h3>
+                    <h3>{post.position}</h3>
                     <hr className="post-divider"></hr>
-                    <h5>{post[0].type} - {post[0].startdate} - {post[0].location}</h5>
+                    <h5>{post.type} - {post.startdate} - {post.location}</h5>
                 </div>
                 <div className="post-overview">
                     <h4>Overblik</h4>
-                    <h6 className="post-description">{post[0].description}</h6>
+                    <h6 className="post-description">{post.description}</h6>
                 </div>
             </div>
         </div>
