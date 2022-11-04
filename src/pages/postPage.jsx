@@ -9,32 +9,32 @@ import {postStore} from "../stores/post-store";
 
 const PostPage = () => {
 
-    const [postApi, setPostApi] = useState([{}]);
+    // const [postApi, setPostApi] = useState([{}]);
 
 
     //delete eventually - use for now
-    const fetchPosts = () => {
-        fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
-        .then((response) => response.json())
-        .then((responseJson) =>  {
-            setPostApi(responseJson);
-            console.log(postApi)
-        }) 
-    }
-
-    useEffect(() => {
-        //postStore.getPostsAsync()
-        fetchPosts();
-    }, [])
-
-
+    // const fetchPosts = () => {
+    //     fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
+    //     .then((response) => response.json())
+    //     .then((responseJson) =>  {
+    //         setPostApi(responseJson);
+    //         console.log(postApi)
+    //     }) 
+    // }
 
     // eslint-disable-next-line no-unused-vars
     const [post, setPost] = useState(postItem);
+
+    useEffect(() => {
+        postStore.getPostsAsync();
+        // setPostApi(postStore.postData.data);
+        // console.log(postApi)
+        //fetchPosts();
+    }, [])
     
     return (
             <div className="post-container">
-                <PostContent post={postApi}/>
+                <PostContent post={post}/>
                 <PostContactInfo post={post}/>
             </div>
     );
