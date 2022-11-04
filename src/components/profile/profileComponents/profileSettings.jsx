@@ -13,7 +13,6 @@ import "reactjs-popup/dist/index.css";
 import { returnCrop } from "./returnCrop";
 
 // Profil billede source: https://www.reddit.com/r/DANMAG/comments/2cevxx/vores_allesammens_kronprins_frederik/
-import imageTest from "./profileTestImage.jpg";
 import addImage from "../../../res/images/add-image.png";
 
 // Setting views for the two types of users.
