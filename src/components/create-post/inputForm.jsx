@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import bannerPlaceholder from "../../res/images/PlaceholderBanner.png"
 import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { uploadPost } from '../../services/PostService'; 
 
 
@@ -22,10 +22,9 @@ const InputForm = () => {
         website: "",
         //bannerImg: bannerImage,    
     });
-
-    const [createdPost, setCreatedPost] = useState([defaultObject]);
-    // eslint-disable-next-line no-unused-vars
+    const [createdPost, setCreatedPost] = useState(defaultObject);
     const [previewImage, setPreviewImage] = useState(bannerPlaceholder);
+    const [validated, setValidated] = useState(false);
 
     // const saveFile = (e) => {
     //     const img = JSON.stringify(URL.createObjectURL(e.target.files[0]))
@@ -44,7 +43,7 @@ const InputForm = () => {
         setCreatedPost({
             ...createdPost,
             [e.target.name]: e.target.value,
-        });
+        });    
     };
 
     const setDefaultState = () => {
@@ -53,32 +52,54 @@ const InputForm = () => {
     }
 
     const submitPost = (e) => {
-        e.preventDefault();
-        //temporary
-        if(window.confirm("Upload post?")) {
+        console.log(createdPost)   
+        e.preventDefault();     
+        if ((
+            createdPost.title === "" ||
+            createdPost.type === "" ||
+            createdPost.company === "" ||
+            createdPost.location === "" ||
+            createdPost.startdate === "" ||
+            createdPost.description === "" ||
+            createdPost.contact === "" ||
+            createdPost.applyToEmail === "" ||
+            createdPost.website === ""
+        )) {
+            
+            e.stopPropagation();
+            window.alert("Venligst udfyld alle påkrævede felter")
+            setValidated(true); 
+        } else if (window.confirm("Vil du oprette dette opslag?")){
             uploadPost(createdPost);
+            console.log(createdPost);
+            setDefaultState();
+            setValidated(false);
         }
-        console.log(createdPost);
-        setDefaultState();
     };
+
+    // useEffect(() => {
+    //     setCreatedPost([defaultObject])
+    // }, [])
+
 
 
     return (
     
-        <Form className="form-container">
+        <Form className="form-container" 
+            noValidate
+            validated={validated}
+            onSubmit={submitPost}>
             <div className="form-content">
                 <div className="left-input-content">
                     <Form.Group>
                         <h3 className="form-titel-text">Jobtitel</h3>
-                        <Form.Control 
-                            className="form-input" 
-                            type="title" 
+                        <Form.Control
+                            className="form-input"  
                             placeholder="Titel på stillingen"         
                             name="title" 
                             value={createdPost.title}
                             required
                             onChange={handleChangePost}>
-
                         </Form.Control>
                         
                         <h3 className="form-titel-text">Stillingstype</h3>
@@ -150,6 +171,7 @@ const InputForm = () => {
                             placeholder="Navn på kontaktperson"
                             name="contact" 
                             value={createdPost.contact}
+                            required
                             onChange={handleChangePost}>
                         </Form.Control>
 
@@ -160,24 +182,22 @@ const InputForm = () => {
                             placeholder="Indtast Email"
                             name="applyToEmail" 
                             value={createdPost.applyToEmail}
+                            required
                             onChange={handleChangePost}>
 
                         </Form.Control>
                     
                         <h3 className="form-titel-text">Hjemmeside</h3>
                         <Form.Control 
-                                className="form-input" 
-                                type="text"
-                                placeholder="Virksomhedens hjemmeside"
-                                name="website"
-                                value={createdPost.website}
-                                onChange={handleChangePost}>
+                            className="form-input" 
+                            type="text"
+                            placeholder="Virksomhedens hjemmeside"
+                            name="website"
+                            value={createdPost.website}
+                            required
+                            onChange={handleChangePost}>
 
                         </Form.Control>
-                        {/* <InputGroup>
-                            <InputGroup.Text  className="form-input">+45</InputGroup.Text>
-                            
-                        </InputGroup> */}
                         
                     </Form.Group>
                     <Form.Group>
@@ -194,7 +214,7 @@ const InputForm = () => {
             </div>
             <div className="form-button-div">
                 <Button className="preview-button" size="lg" disabled>Preview opslag</Button>
-                <Button className="form-submit-button" type="submit" size="lg" onClick={submitPost}>Opret stilling</Button>  
+                <Button className="form-submit-button" type="submit" size="lg">Opret stilling</Button>  
             </div>
         </Form>
         
