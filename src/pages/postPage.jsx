@@ -4,7 +4,8 @@ import "./postPage.css";
 import {useState, useEffect} from "react";
 import {observer} from 'mobx-react-lite';
 import { useParams } from "react-router-dom";
-import {postStore} from "../stores/post-store";
+// import { postStore } from "../stores/post-store";
+// import { fetchPosts } from "../services/PostService"
 
 
 
@@ -12,14 +13,14 @@ import {postStore} from "../stores/post-store";
 
 const PostPage = () => {
 
-    const { _id } = useParams();
-    const postId = parseInt(_id); 
+    // const { _id } = useParams();
+    // const postId = parseInt(_id); 
 
     //should take id from url with useParams
     const TempPostId = '63665d74b69993bfc623890a'
 
     // eslint-disable-next-line no-unused-vars
-    const [fetchedPosts, setFetchedPosts] = useState([]);
+    const [fetchedPosts, setFetchedPosts] = useState();
 
     //Should fetch from services and store in poststore. 
     //delete eventually - use for now
@@ -28,17 +29,23 @@ const PostPage = () => {
         .then((response) => response.json())
         .then((responseJson) =>  {
             setFetchedPosts(responseJson);
-            console.log(responseJson);
         }) 
     }
-    
+
+    // const callForPost = () => {
+    //     const data = fetchPosts();
+    //     setFetchedPosts(data);
+    //     console.log(fetchedPosts)
+    // }
+     
     useEffect(() => {
         fetchPosts()
+        //callForPost();
     }, [])
     
     return (
         <>
-            {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post) => (
+            {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post, i) => (
                 <div className="post-container">
                     <PostContent post={post}/>
                     <PostContactInfo post={post}/>

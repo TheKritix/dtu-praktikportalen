@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup'
+import bannerPlaceholder from "../../res/images/PlaceholderBanner.png"
 import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
 import {useState} from "react";
@@ -20,20 +20,28 @@ const InputForm = () => {
         description: "",
         contact: "",
         applyToEmail: "",
-        website: "",    
+        website: "",
+        //bannerImg: bannerImage,    
     });
 
     const [createdPost, setCreatedPost] = useState([defaultObject]);
     // eslint-disable-next-line no-unused-vars
-    const [fileImage, setFileImage] = useState();
-    const [previewImage, setPreviewImage] = useState(placeholderImg);
+    const [previewImage, setPreviewImage] = useState(bannerPlaceholder);
 
-    const saveFile = (e) => {
-        setFileImage(e.target.files[0]);
-        setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    }
+    // const saveFile = (e) => {
+    //     const img = JSON.stringify(URL.createObjectURL(e.target.files[0]))
+    //     setCreatedPost({
+    //         ...createdPost,
+    //         bannerImg: img
+    //     })
+    //     // setBannerImage(imgObject);
+    //     setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    // }
 
     const handleChangePost = (e) => {
+        // if (e.target.name === "bannerImg") {
+        //     saveFile(e);
+        // } else
         setCreatedPost({
             ...createdPost,
             [e.target.name]: e.target.value,
@@ -42,6 +50,7 @@ const InputForm = () => {
 
     const setDefaultState = () => {
         setCreatedPost(defaultObject);
+        setPreviewImage(bannerPlaceholder);
     }
 
     const submitPost = (e) => {
@@ -176,10 +185,11 @@ const InputForm = () => {
                         <h3 className="form-titel-text">Upload billede</h3>
                         <img className="form-banner-image" src={previewImage} alt="bannerImg"></img>
                         <Form.Control className="form-banner-input" 
-                            name="image"
+                            name="bannerImg"
                             type="file"
                             accept="image/*"
-                            onChange={saveFile} />
+                            disabled
+                            onChange={handleChangePost} />
                     </Form.Group>
                 </div>
             </div>

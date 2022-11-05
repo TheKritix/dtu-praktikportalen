@@ -25,6 +25,7 @@ const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
             contact: post.contact,
             applyToEmail: post.applyToEmail,
             website: post.website,
+            bannerImg: post.bannerImg,
         });
     };
 
