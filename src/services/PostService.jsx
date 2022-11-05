@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const TestApi = "http://localhost:3000/api/post"
-const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
+// const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
 
     // export const fetchPosts = () => {

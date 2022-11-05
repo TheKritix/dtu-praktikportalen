@@ -3,7 +3,7 @@ import PostContactInfo from "../components/post-page/postContactInfo"
 import "./postPage.css";
 import {useState, useEffect} from "react";
 import {observer} from 'mobx-react-lite';
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 // import { postStore } from "../stores/post-store";
 // import { fetchPosts } from "../services/PostService"
 

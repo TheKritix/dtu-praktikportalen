@@ -1,6 +1,6 @@
-import axios from "axios";
-import {runInAction, makeAutoObservable, observable, action} from "mobx";
-import PostService from '../services/PostService'; 
+// import axios from "axios";
+// import {makeAutoObservable, observable, action} from "mobx";
+// import PostService from '../services/PostService'; 
 
  //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
 
@@ -9,24 +9,24 @@ import PostService from '../services/PostService';
 
 class PostStore {
 
-    posts = [];
+    // posts = [];
 
-    constructor() {
-        makeAutoObservable(this, {
-            posts: observable,
-            getPosts: action,
-        })
-    }
+    // constructor() {
+    //     makeAutoObservable(this, {
+    //         posts: observable,
+    //         getPosts: action,
+    //     })
+    // }
 
-    getPosts = async () => {
-        return await axios.get(`https://api.praktikportal.diplomportal.dk/api/post`);
-    }
+    // getPosts = async () => {
+    //     return await axios.get(`https://api.praktikportal.diplomportal.dk/api/post`);
+    // }
 
-    get = async () => {
-        const response = await this.getPosts();
-        this.posts = response;
-        console.log(response);
-    }
+    // get = async () => {
+    //     const response = await this.getPosts();
+    //     this.posts = response;
+    //     console.log(response);
+    // }
 
 
 

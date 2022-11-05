@@ -3,7 +3,6 @@ import bannerPlaceholder from "../../res/images/PlaceholderBanner.png"
 import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
 import {useState} from "react";
-import placeholderImg from "../../res/images/CameraImage.svg";
 import { uploadPost } from '../../services/PostService'; 
 
 
