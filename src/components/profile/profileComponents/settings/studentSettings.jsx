@@ -1,44 +1,64 @@
 import Form from "react-bootstrap/Form";
 import authService from "../../../../services/auth-service";
+import studentService from "../../../../services/student-service";
 import "../profileSettings.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const StudentSettings = () => {
+  const user = authService.getCurrentUser();
 
-    const user = authService.getCurrentUser();
+  let pdfUpload;
 
-    const handleCVUpload = () => {
-        setPdfCvAvailable({
-          present: true,
-          file: "",
-        });
-        console.log(pdfCVAvailable);
-      };
+  const [pdfFileName, setPdfFileName] = useState();
 
-    const [pdfCVAvailable, setPdfCvAvailable] = useState({
-        present: false,
-        file: "",
-      });
+  const getPDFName = () => {
+    studentService.getStudentPDFName(user).then((response) => {
+      setPdfFileName(response);
+    });
+  };
 
-    return (
-        <div>
-            <p className="name">{user.name}</p>
-      <p className="description">{user.companyName ? user.companyName : "Student"}</p>
+  const handleCVUpload = (e) => {
+    pdfUpload = e.target.files;
+  };
+
+  const saveChange = () => {
+    studentService.studentPDFUpload(pdfUpload, user);
+    setTimeout(getPDFName, 200);
+  };
+
+  useEffect(() => {
+    getPDFName();
+  }, []);
+
+  const downloadPDF = () => {
+    studentService.getStudentPDFDownload(pdfFileName);
+  };
+
+  return (
+    <div>
+      <p className="name">{user.name}</p>
+      <p className="description">
+        {user.companyName ? user.companyName : "Student"}
+      </p>
 
       <div className="namebox-container">
         <p className="textbox-name">Navn</p>
         <Form.Control className="name-textbox" placeholder="Navn" />
       </div>
-      {!pdfCVAvailable.present && (
-        <div className="cv-container">
-          <p className="textbox-cv">Resumé</p>
-          <Form.Control
-            className="cv-textbox"
-            type="file"
-            onChange={handleCVUpload}
-          />
-        </div>
-      )}
+
+      <div className="cv-container">
+        <p className="textbox-cv">Resumé</p>
+        <Form.Control
+          className="cv-textbox"
+          type="file"
+          onChange={(e) => handleCVUpload(e)}
+        />
+        {pdfFileName != null && (
+          <div onClick={downloadPDF} className="exist-cv">
+            Du har allerede uploadet et CV: {pdfFileName.filename}
+          </div>
+        )}
+      </div>
 
       <div className="description-container">
         <p className="textbox-description">Beskrivelse</p>
@@ -51,11 +71,12 @@ const StudentSettings = () => {
       </div>
 
       <div className="saveButton">
-        <button className="save">Gem</button>
+        <button onClick={saveChange} className="save">
+          Gem
+        </button>
       </div>
-        </div>
-    )
-    
-}
+    </div>
+  );
+};
 
 export default StudentSettings;

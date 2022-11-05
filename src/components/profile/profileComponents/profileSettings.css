@@ -139,6 +139,17 @@
   position: absolute;
 }
 
+.exist-cv {
+  position: absolute;
+  margin-top: 50px;
+  cursor: pointer;
+  color:rgba(0, 85, 255, 0.41);
+}
+
+.exist-cv:hover {
+  color:rgb(10, 46, 119)
+}
+
 .cv-container {
   position: relative;
   top: 550px;
