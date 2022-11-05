@@ -23,7 +23,7 @@ const StudentSettings = () => {
 
   const saveChange = () => {
     studentService.studentPDFUpload(pdfUpload, user);
-    setTimeout(getPDFName, 200);
+    setTimeout(getPDFName, 500);
   };
 
   useEffect(() => {
