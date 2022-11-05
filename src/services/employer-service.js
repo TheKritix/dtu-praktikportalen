@@ -21,6 +21,16 @@ const updateBackdropImage = (user) => {
   });
 };
 
+const getBackdropImage = (user) => {
+  return axios
+    .post(API_URL + "employersBackdropImg", {
+      headers: authHeader(),
+      user,
+    })
+    .then((response) => {
+      return response.data});
+};
+
 const updateProfileImage = (user) => {
   return axios.put(API_URL + "employersProfileImg", {
     headers: authHeader(),
@@ -29,11 +39,10 @@ const updateProfileImage = (user) => {
 };
 
 const getEmployer = (user) => {
-
   const userRevised = {
     email: user.email,
-    accessToken: user.accessToken
-  }
+    accessToken: user.accessToken,
+  };
 
   return axios
     .put(API_URL + "employer", {
@@ -51,4 +60,5 @@ export default {
   updateBackdropImage,
   updateProfileImage,
   getEmployer,
+  getBackdropImage,
 };

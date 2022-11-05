@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./profileSettings.css";
 import "./profileImagePopup.css";
 import authService from "../../../services/auth-service";
@@ -25,9 +24,7 @@ import StudentSettings from "./settings/studentSettings";
 const ProfileSettings = () => {
   const user = authService.getCurrentUser();
 
-  const navigate = useNavigate();
-
-  const [userType, setUserType] = useState();
+  const userType = user.companyName ? "Employer" : "Student";
 
   /* Image Handling */
   const inputRefBackdrop = useRef(null);
@@ -47,25 +44,10 @@ const ProfileSettings = () => {
 
   const [backdropImage, setBackdropImage] = useState();
   const [profileImage, setProfileImage] = useState();
-  /* ------------------ */
 
-  useEffect(() => {
-    if (user === null) {
-      navigate("/");
-    }
-    if (user && user.companyName) {
-      setUserType("Employer");
-    } else if (user) {
-      setUserType("Student");
-    }
-
-    if (user.backdropImage) {
-      setBackdropImage(user.backdropImage);
-    }
-    if (user.profileImage) {
-      setProfileImage(user.profileImage);
-    }
-  }, [user, navigate]);
+  // employerService.getBackdropImage(user).then((response) => {
+  //   setBackdropImage(response);
+  // });
 
   const GetSettingsView = () => {
     let ViewComponent;
@@ -155,7 +137,6 @@ const ProfileSettings = () => {
     employerService.getEmployer(user);
     ClearPopup();
   };
-
 
   return (
     <div>
