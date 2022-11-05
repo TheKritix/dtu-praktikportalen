@@ -20,7 +20,7 @@ const PostPage = () => {
     const TempPostId = '63665d74b69993bfc623890a'
 
     // eslint-disable-next-line no-unused-vars
-    const [fetchedPosts, setFetchedPosts] = useState();
+    const [fetchedPosts, setFetchedPosts] = useState([]);
 
     //Should fetch from services and store in poststore. 
     //delete eventually - use for now
@@ -31,16 +31,11 @@ const PostPage = () => {
             setFetchedPosts(responseJson);
         }) 
     }
-
-    // const callForPost = () => {
-    //     const data = fetchPosts();
-    //     setFetchedPosts(data);
-    //     console.log(fetchedPosts)
-    // }
-     
+    
+    
     useEffect(() => {
         fetchPosts()
-        //callForPost();
+        // setFetchedPosts(postStore.posts);
     }, [])
     
     return (

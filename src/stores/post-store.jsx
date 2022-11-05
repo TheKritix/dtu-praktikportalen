@@ -1,61 +1,35 @@
-// import axios from "axios";
-// import {makeAutoObservable, observable, action} from "mobx";
-// import PostService from '../services/PostService'; 
+import axios from "axios";
+import {makeAutoObservable, observable, action, runInAction} from "mobx";
+import {fetchPosts} from '../services/PostService'; 
 
  //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
 
 // const baseUrl = process.env.NODE_ENV === 'development' ? "http://localhost:3000/":"";
-
+const TestApi = "http://localhost:3000/api/post"
 
 class PostStore {
 
-    // posts = [];
+    posts = [];
 
-    // constructor() {
-    //     makeAutoObservable(this, {
-    //         posts: observable,
-    //         getPosts: action,
-    //     })
-    // }
+    constructor() {
+        makeAutoObservable(this, {}, {autoBind: true})
+        this.getPosts();
+    }
 
-    // getPosts = async () => {
-    //     return await axios.get(`https://api.praktikportal.diplomportal.dk/api/post`);
-    // }
-
-    // get = async () => {
-    //     const response = await this.getPosts();
-    //     this.posts = response;
-    //     console.log(response);
-    // }
-
-
-
-
-
-    // constructor() {
-    //     makeAutoObservable(this);
-    //     this.postService = new PostService(); 
-    // }
-    // postData = {
-    //     model: []
-    // };
-    // status = "initial";
-    // searchQuery = "";
-
-    // // getPosts = () => {
-    // //     try {
-    // //         const data = this.postService.getPosts()
-    // //             .then(
-    // //             runInAction(() => {
-    // //             this.postData = data;
-    // //             console.log(data)
-    // //         }))
-    // //     } catch (error) {
-    // //         runInAction(() => {
-    // //             this.status = "error"; 
-    // //         })
-    // //     }
-    // // }
+    getPosts = () => {
+        try {
+            const data = fetchPosts()
+            .then(
+            runInAction(() => {
+                this.posts = data;
+                console.log(data)
+            }))
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"; 
+            })
+        }
+    }
 
     // getPostsAsync = async () => {
     //     try {
