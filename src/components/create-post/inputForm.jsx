@@ -12,18 +12,20 @@ const InputForm = () => {
 
 
     const defaultObject = () => ({
+        title: "",
+        type: "",
         company: "",
-        description: "",
         location: "",
-        position: "",
         startdate: "",
-        type: ""
+        description: "",
+        contact: "",
+        applyToEmail: "",
+        website: "",    
     });
-    const [createdPost, setCreatedPost] = useState([defaultObject]);
 
+    const [createdPost, setCreatedPost] = useState([defaultObject]);
     // eslint-disable-next-line no-unused-vars
     const [fileImage, setFileImage] = useState();
-    
     const [previewImage, setPreviewImage] = useState(placeholderImg);
 
     const saveFile = (e) => {
@@ -48,6 +50,7 @@ const InputForm = () => {
         if(window.confirm("Upload post?")) {
             uploadPost(createdPost);
         }
+        console.log(createdPost);
         setDefaultState();
     };
 
@@ -59,15 +62,30 @@ const InputForm = () => {
                 <div className="left-input-content">
                     <Form.Group>
                         <h3 className="form-titel-text">Jobtitel</h3>
-                        <Form.Control className="form-input" type="title" placeholder="Titel på stillingen" disabled></Form.Control>
+                        <Form.Control 
+                            className="form-input" 
+                            type="title" 
+                            placeholder="Titel på stillingen"         
+                            name="title" 
+                            value={createdPost.title}
+                            required
+                            onChange={handleChangePost}>
+
+                        </Form.Control>
                         
                         <h3 className="form-titel-text">Stillingstype</h3>
-                        <Form.Select className="form-input" placeholder="vælg stillingens type">
-                            <option value="">Vælg type</option>
-                            <option value="elev">Elev</option>
-                            <option value="praktik">Praktik</option>
-                            <option value="fuldtid">Fuldtid</option>
-                            <option value="deltid">Deltid</option>
+                        <Form.Select 
+                            className="form-input" 
+                            placeholder="vælg stillingens type"
+                            name="type"
+                            value={createdPost.type}
+                            required
+                            onChange={handleChangePost}>
+                                <option value="">Vælg type</option>
+                                <option value="elev">Elev</option>
+                                <option value="praktik">Praktik</option>
+                                <option value="fuldtid">Fuldtid</option>
+                                <option value="deltid">Deltid</option>
                         </Form.Select>
 
                         <h3 className="form-titel-text">Firmanavn</h3>
@@ -84,30 +102,22 @@ const InputForm = () => {
                         <Form.Control 
                             className="form-input"
                             name="location"   
-                            placeholder="f.eks. København"
+                            placeholder="F.eks. København"
                             value={createdPost.location}
                             required
                             onChange={handleChangePost}>
                         </Form.Control>
 
-                        <h3 className="form-titel-text">Kontaktperson</h3>
-                        <Form.Control className="form-input" type="text" placeholder="Navn på kontaktperson"></Form.Control>
+                        <h3 className="form-titel-text">Startdato</h3>
+                        <Form.Control 
+                            className="form-input"
+                            name="startdate"   
+                            placeholder="F.eks. Februar 2023"
+                            value={createdPost.startdate}
+                            required
+                            onChange={handleChangePost}>
+                        </Form.Control>
 
-                        <h3 className="form-titel-text">Email</h3>
-                        <Form.Control className="form-input" type="email" placeholder="Indtast Email"></Form.Control>
-                    
-                        <h3 className="form-titel-text">Telefon</h3>
-                        <InputGroup>
-                            <InputGroup.Text  className="form-input">+45</InputGroup.Text>
-                            <Form.Control className="form-input" type="number"></Form.Control>
-                        </InputGroup>
-                
-                        
-                    </Form.Group>
-                                
-                </div>
-                <div className="right-input-content">
-                    <Form.Group>
                         <h3 className="form-titel-text">Beskrivelse</h3>
                         <Form.Control 
                             className="form-description"
@@ -119,6 +129,48 @@ const InputForm = () => {
                             required
                             onChange={handleChangePost}>
                         </Form.Control>
+
+                    </Form.Group>
+                                
+                </div>
+                <div className="right-input-content">
+                    <Form.Group>
+                        <h3 className="form-titel-text">Kontaktperson</h3>
+                        <Form.Control 
+                            className="form-input" 
+                            type="text" 
+                            placeholder="Navn på kontaktperson"
+                            name="contact" 
+                            value={createdPost.contact}
+                            onChange={handleChangePost}>
+                        </Form.Control>
+
+                        <h3 className="form-titel-text">Ansøgning Email</h3>
+                        <Form.Control 
+                            className="form-input" 
+                            type="email" 
+                            placeholder="Indtast Email"
+                            name="applyToEmail" 
+                            value={createdPost.applyToEmail}
+                            onChange={handleChangePost}>
+
+                        </Form.Control>
+                    
+                        <h3 className="form-titel-text">Hjemmeside</h3>
+                        <Form.Control 
+                                className="form-input" 
+                                type="text"
+                                placeholder="Virksomhedens hjemmeside"
+                                name="website"
+                                value={createdPost.website}
+                                onChange={handleChangePost}>
+
+                        </Form.Control>
+                        {/* <InputGroup>
+                            <InputGroup.Text  className="form-input">+45</InputGroup.Text>
+                            
+                        </InputGroup> */}
+                        
                     </Form.Group>
                     <Form.Group>
                         <h3 className="form-titel-text">Upload billede</h3>

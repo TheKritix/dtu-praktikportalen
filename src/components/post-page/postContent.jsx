@@ -13,7 +13,7 @@ const PostContent = ({post}) => {
             </div>
             <div className="post-content">
                 <div>
-                    <h3>{post.position}</h3>
+                    <h3>{post.title}</h3>
                     <hr className="post-divider"></hr>
                     <h5>{post.type} - {post.startdate} - {post.location}</h5>
                 </div>

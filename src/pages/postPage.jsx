@@ -16,7 +16,7 @@ const PostPage = () => {
     const postId = parseInt(_id); 
 
     //should take id from url with useParams
-    const TempPostId = '6360cebb89372848cb7d162c'
+    const TempPostId = '63665d74b69993bfc623890a'
 
     // eslint-disable-next-line no-unused-vars
     const [fetchedPosts, setFetchedPosts] = useState([]);
@@ -24,7 +24,7 @@ const PostPage = () => {
     //Should fetch from services and store in poststore. 
     //delete eventually - use for now
     const fetchPosts = () => {
-        fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
+        fetch(`http://localhost:3000/api/post`)
         .then((response) => response.json())
         .then((responseJson) =>  {
             setFetchedPosts(responseJson);
