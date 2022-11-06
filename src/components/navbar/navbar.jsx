@@ -17,7 +17,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [searchParam] = useSearchParams();
   const [currentUser, setCurrentUser] = useState(undefined);
-  const [newStudent, setNewStudent] = useState(false);
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
@@ -26,7 +25,7 @@ const Navbar = () => {
     } else {
       setCurrentUser(undefined);
     }
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     searchParam.get("ticket");
@@ -43,45 +42,8 @@ const Navbar = () => {
           console.log(error);
         }
       );
-
-      //handleLogin();
     }
   }, [searchParam, navigate]);
-  /*
-  const handleLogin = async (e) => {
-    //e.preventDefault();
-    authService.studentSignup(searchParam.get("ticket")).then(
-      () => {
-        authService.studentLogin().then(
-          () => {
-            navigate("/profile");
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-        //window.location.reload();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  };
-
-  /*
-  const handleLogin = (e) => {
-    authService.studentLogin(searchParam.get("ticket")).then(
-      () => {
-        console.log("Logged in");
-        //navigate("/profile");
-        //window.location.reload();
-      },
-      (error) => {
-        console.log(error.toString());
-      }
-    );
-  };
-  */
 
   const handleLogout = () => {
     navigate("/");

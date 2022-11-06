@@ -32,18 +32,7 @@ const Header = () => {
 
   useEffect(() => {
     searchParam.get("ticket");
-    const currentUser = authService.getCurrentUser();
   }, [searchParam]);
-  const handleStudentLogin = async () => {
-    await authService.studentSignin(searchParam.get("ticket")).then(
-      (response) => {
-        console.log(response.data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  };
 
   return (
     <div>
@@ -51,22 +40,30 @@ const Header = () => {
         <Row className="overflow-hidden">
           <Col sm={5} className="mb-5">
             <div className="mx-5">
-              <p className="pre-h-text">Find din drøme praktikplads</p>
+              <p className="pre-h-text">Find din drømme praktikplads</p>
               <h1 className="landingpage-header">
                 Skab kontakt til virksomheder
               </h1>
-              <p className="header-text">
-                Login med Campus Net og begyndt din søgen efter praktikophold
-                gennem vores brugervenlige portal
-              </p>
               {currentUser ? (
-                <p>Welcome, {currentUser.name}</p>
+                <p className="header-text">
+                  Start din søgning efter et praktikophold i dag!
+                </p>
+              ) : (
+                <p className="header-text">
+                  Login med Campus Net og begyndt din søgen efter praktikophold
+                  gennem vores brugervenlige portal
+                </p>
+              )}
+              {currentUser ? (
+                <p>Velkommen til, {currentUser.name}</p>
               ) : (
                 <div className="d-flex flex-row landingpage-buttons">
                   <button
                     className="me-2 student"
-                    href="https://auth.dtu.dk/dtu/?service=http://localhost:3001/dtu-praktikportalen"
-                    onClick={handleStudentLogin}
+                    onClick={() =>
+                      (window.location.href =
+                        "https://auth.dtu.dk/dtu/?service=http://localhost:3001/dtu-praktikportalen")
+                    }
                   >
                     <img src={student} alt="student-logo" />
                     Student <span>Login</span>

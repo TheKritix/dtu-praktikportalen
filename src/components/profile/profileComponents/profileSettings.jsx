@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./profileSettings.css";
 import "./profileImagePopup.css";
 import authService from "../../../services/auth-service";

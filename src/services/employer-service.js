@@ -28,7 +28,8 @@ const getBackdropImage = (user) => {
       user,
     })
     .then((response) => {
-      return response.data});
+      return response.data;
+    });
 };
 
 const updateProfileImage = (user) => {
@@ -54,11 +55,18 @@ const getEmployer = (user) => {
     });
 };
 
-export default {
+const getEmployerContent = () => {
+  return axios.get(API_URL + "test/user", { headers: authHeader() });
+};
+
+const employerService = {
   getEmployerProfile,
   updateEmployerPosition,
   updateBackdropImage,
+  getBackdropImage,
   updateProfileImage,
   getEmployer,
-  getBackdropImage,
+  getEmployerContent,
 };
+
+export default employerService;
