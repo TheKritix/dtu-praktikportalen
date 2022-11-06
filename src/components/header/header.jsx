@@ -74,7 +74,7 @@ const Header = () => {
                     onClick={() => handleShow()}
                   >
                     <img src={employee} alt="employer-login" />
-                    Employee <span>Login</span>
+                    Employer <span>Login</span>
                   </button>
                 </div>
               )}

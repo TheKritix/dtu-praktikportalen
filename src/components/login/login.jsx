@@ -184,6 +184,7 @@ const Login = (props) => {
                 <div className="d-grid gap-2 mt-3">
                   <Button
                     type="submit"
+                    name="signin"
                     className="btn btn-primary"
                     disabled={loading}
                   >
@@ -276,6 +277,7 @@ const Login = (props) => {
                 <div className="d-grid gap-2 mt-3">
                   <Button
                     type="submit"
+                    name="signin"
                     className="btn btn-primary"
                     disabled={loading}
                   >
@@ -410,6 +412,7 @@ const Login = (props) => {
                 <div className="d-grid gap-2 mt-3">
                   <Button
                     type="submit"
+                    name="signup"
                     className="btn btn-primary"
                     disabled={loading}
                   >
