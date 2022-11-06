@@ -6,8 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'
 import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
-import FilterOptions from "./FilterOptions";
-import {remove} from "mobx";
 
 
 const locations = [
@@ -27,6 +25,7 @@ const socialBenefits = [
 export const InternshipList = () => {
 
     const [location, setLocation] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [socialBenefit, setSocialBenefits] = useState([])
 
     const [filteredInternships, setFilteredInternships] = useState([])
@@ -41,12 +40,12 @@ export const InternshipList = () => {
         setStaredInternships(temp)
     }
 
-    const liste = filteredInternships.map((d, index) => (
-        <Card key={d.id} className="mb-3" style={{ cursor: "pointer" }}>
-            <Card.Title>{staredInternships.includes(d.id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
+    const liste = filteredInternships.map((d) => (
+        <Card key={d._id} className="mb-3" style={{ cursor: "pointer" }}>
+            <Card.Title>{staredInternships.includes(d._id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
             <Card.Text>{d.description}</Card.Text>
             <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
-            <p onClick={staredInternships.includes(d.id) ? () => removeFavorites(d.id) : () => addToFavorites(d.id)}>{staredInternships.includes(d.id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
+            <p onClick={staredInternships.includes(d._id) ? () => removeFavorites(d._id) : () => addToFavorites(d._id)}>{staredInternships.includes(d._id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
         </Card>
     ))
 
@@ -99,6 +98,8 @@ export const InternshipList = () => {
                                 ))}
                             </Form>
 
+                            <br/>
+
                             <Form>
                                 <h6>Social</h6>
                                 {socialBenefits.map(benefit => (
@@ -112,9 +113,6 @@ export const InternshipList = () => {
                                     </React.Fragment>
                                 ))}
                             </Form>
-
-                            <br/>
-                            <FilterOptions/>
 
                         </Col>
                         <Col className="col-1"/>
