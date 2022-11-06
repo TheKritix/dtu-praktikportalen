@@ -60,7 +60,7 @@ const dtuCasLogin = (ticket) => {
   return axios
     .get("https://auth.dtu.dk/dtu/servicevalidate", {
       params: {
-        service: "http://localhost:3001/dtu-praktikportalen",
+        service: "https://dtu.praktikportal.diplomportal.dk/",
         ticket: ticket,
       },
     })
