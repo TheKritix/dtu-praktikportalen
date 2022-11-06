@@ -15,7 +15,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [searchParam] = useSearchParams();
+  //const [searchParam] = useSearchParams();
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -26,6 +26,8 @@ const Navbar = () => {
       setCurrentUser(undefined);
     }
   }, [currentUser]);
+
+  /*
 
   useEffect(() => {
     searchParam.get("ticket");
@@ -44,6 +46,7 @@ const Navbar = () => {
       );
     }
   }, [searchParam, navigate]);
+  */
 
   const handleLogout = () => {
     navigate("/");
