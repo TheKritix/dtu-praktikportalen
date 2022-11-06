@@ -40,14 +40,14 @@ const employerSignup = (username, email, password, companyName, name) => {
 };
 
 const employerLogin = (username, password) => {
-  console.log("auth here")
+  console.log("auth here");
   return axios
     .post(API_URL + "signin", {
       username,
       password,
     })
     .then((response) => {
-      console.log(response)
+      console.log(response);
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }

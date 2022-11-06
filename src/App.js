@@ -9,9 +9,10 @@ import Profile from "./pages/profile";
 import CreatePost from "./pages/createPost";
 import PostPage from "./pages/postPage";
 import InternshipList from "./components/internship-list/internship-list.jsx";
+import EmployerContent from "./components/user-page/usercontent";
 
 function App() {
-  document.title = "DTU Praktiportalen";
+  document.title = "DTU Praktikportalen";
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Navbar />
@@ -20,12 +21,17 @@ function App() {
         <Route
           path="/profile"
           element={
-            authService.getCurrentUser() != null ? <Profile /> : <Navigate replace to={"/"}/>
+            authService.getCurrentUser() != null ? (
+              <Profile />
+            ) : (
+              <Navigate replace to={"/"} />
+            )
           }
         />
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/internships" element={<InternshipList />} />
+        <Route path="/employer" element={<EmployerContent />} />
         {/* <Route path="/dtu-praktikportalen" element={<Navigate to="/" />} /> */}
       </Routes>
     </BrowserRouter>
