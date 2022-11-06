@@ -6,8 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'
 import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
-import FilterOptions from "./FilterOptions";
-import {remove} from "mobx";
 
 
 const locations = [
@@ -41,7 +39,7 @@ export const InternshipList = () => {
         setStaredInternships(temp)
     }
 
-    const liste = filteredInternships.map((d, index) => (
+    const liste = filteredInternships.map((d) => (
         <Card key={d._id} className="mb-3" style={{ cursor: "pointer" }}>
             <Card.Title>{staredInternships.includes(d._id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
             <Card.Text>{d.description}</Card.Text>
