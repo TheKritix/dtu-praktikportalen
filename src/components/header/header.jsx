@@ -62,7 +62,7 @@ const Header = () => {
                     className="me-2 student"
                     onClick={() =>
                       (window.location.href =
-                        "https://auth.dtu.dk/dtu/?service=https://dtu.praktikportal.diplomportal.dk/")
+                        "https://auth.dtu.dk/dtu/?service=https://dtu.praktikportal.diplomportal.dk")
                     }
                   >
                     <img src={student} alt="student-logo" />
