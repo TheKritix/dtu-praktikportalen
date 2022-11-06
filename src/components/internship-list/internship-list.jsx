@@ -25,6 +25,7 @@ const socialBenefits = [
 export const InternshipList = () => {
 
     const [location, setLocation] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [socialBenefit, setSocialBenefits] = useState([])
 
     const [filteredInternships, setFilteredInternships] = useState([])
