@@ -57,14 +57,17 @@ const FeedbackInputSection = () => {
 
     return (
         <Form
-        className="form-container"
+        className="feedback-input-container"
         noValidate
         validated={validated}
         onSubmit={postFeedback}
         >
-            <div className="form-content">
+            <div>
+                
+            </div>
+            <div className="feedback-input-content">
                 <Form.Group>
-                    <h3 className="form-titel-text">Jobtitel</h3>
+                    <h3 className="form-titel-text">XX ud af XX anmeldelser</h3>
                     <Form.Control
                     className="input"
                     placeholder="Giv feedback"
@@ -91,8 +94,8 @@ const FeedbackInputSection = () => {
                 </Form.Group>
             </div>
             <div>
-                <Button className="form-submit-button" type="submit" size="lg">
-                    Opret stilling
+                <Button className="submit-feedback-button" type="submit" size="lg">
+                    Indsend feedback
                 </Button>
             </div>
         </Form>
