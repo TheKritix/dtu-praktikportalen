@@ -106,7 +106,7 @@ const Navbar = () => {
             ) : (
               <Button
                 variant="outline-danger"
-                href="https://auth.dtu.dk/dtu/?service=http://localhost:3001/dtu-praktikportalen/"
+                href="https://auth.dtu.dk/dtu/?service=http://localhost:3001/dtu-praktikportalen"
                 //onClick={handleLogin}
               >
                 Login Campus Net

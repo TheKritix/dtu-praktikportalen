@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "localhost:3000/api/auth/";
+const API_URL = "http://localhost:3000/api/auth/";
 
 const studentSignup = (ticket) => {
   return axios.post(API_URL + "studentSignup", {
@@ -60,7 +60,7 @@ const dtuCasLogin = (ticket) => {
   return axios
     .get("https://auth.dtu.dk/dtu/servicevalidate", {
       params: {
-        service: "localhost:3001/dtu-praktikportalen",
+        service: "http://localhost:3001/dtu-praktikportalen",
         ticket: ticket,
       },
     })
