@@ -11,16 +11,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-const FeedbackInputSection = () => {
+const FeedbackInputSection = ({internshipId}) => {
 
     const fs = feedbackStore;
+
+    console.log('INTERNSHIP ID:')
+    console.log(internshipId)
+
+    //const internship = internshipId;
 
     const defaultFeedback = () => ({
         firstName: "testName",
         lastName: "testSurname",
         postedAt: "2022-01-01",
         text: "",
-        ratingOutOfFive: ""
+        ratingOutOfFive: "",
+        internshipId: internshipId
     })
 
     const [newFeedback, setNewFeedback] = useState(defaultFeedback);
