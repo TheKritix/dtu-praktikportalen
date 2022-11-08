@@ -55,14 +55,14 @@ const Header = () => {
                 </p>
               )}
               {currentUser ? (
-                <p>Velkommen til, {currentUser.name}</p>
+                <p>Velkommen til, {currentUser.studentID}</p>
               ) : (
                 <div className="d-flex flex-row landingpage-buttons">
                   <button
                     className="me-2 student"
                     onClick={() =>
                       (window.location.href =
-                        "https://auth.dtu.dk/dtu/?service=https://dtu.praktikportal.diplomportal.dk")
+                        "https://auth.dtu.dk/dtu/?service=http://localhost:3001/dtu-praktikportalen")
                     }
                   >
                     <img src={student} alt="student-logo" />

@@ -28,7 +28,7 @@ const StudentSettings = () => {
 
   useEffect(() => {
     getPDFName();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const downloadPDF = () => {
@@ -37,7 +37,7 @@ const StudentSettings = () => {
 
   return (
     <div>
-      <p className="name">{user.name}</p>
+      <p className="name">{user.studentID}</p>
       <p className="description">
         {user.companyName ? user.companyName : "Student"}
       </p>
