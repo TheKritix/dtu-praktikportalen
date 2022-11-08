@@ -7,8 +7,8 @@ import axios from 'axios';
 
 
 
-const baseUrl = `https://api.praktikportal.diplomportal.dk/api/feedback`;
-//const baseUrl = 'http://localhost:3000/api/feedback';
+//const baseUrl = `https://api.praktikportal.diplomportal.dk/api/feedback`;
+const baseUrl = 'http://localhost:3000/api/feedback';
 console.log(baseUrl)
 
 class FeedbackStore {
@@ -23,7 +23,28 @@ class FeedbackStore {
     
   }
 
-  fetchFeedback = async () => {
+
+  fetchFeedback = () => {
+    fetch(baseUrl)
+        .then((response) => response.json())
+        .then((responseJson) =>  {
+            this.feedbacks = responseJson;
+        }) 
+  }
+
+
+  postFeedback = (feedback) => {
+    return axios.post(baseUrl, {
+      firstName: feedback.firstName,
+      lastName: feedback.lastName,
+      postedAt: feedback.postedAt,
+      text: feedback.text,
+      ratingOutOfFive: feedback.ratingOutOfFive
+      //intershipId: feedback.internshipId,
+
+  });
+  }
+  /*fetchFeedback = async () => {
     try {
       const response = await fetch(baseUrl, {mode:'cors'});
       const data = await response.json();
@@ -33,7 +54,7 @@ class FeedbackStore {
     catch (e) {
       console.log(e)
     }
-  }
+  }*/
 
   
 
