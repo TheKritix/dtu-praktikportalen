@@ -5,8 +5,13 @@
     max-width: 1200px;
 }
 
+.feedback-header{
+    text-align: center;
+    border-bottom: 1px rgba(0, 0, 0, 0.164) solid;
+}
+
 .feedbackCard{
-    margin: 5rem 0 5rem 0;    
+    margin: 2rem 0 5rem 0;    
 }.feedbackCard div{
     display: flex;
     margin: 0 auto;
@@ -69,3 +74,26 @@
 
 
 /* FEEDBACK INPUT SECTION */
+.feedback-input-header{
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+.feedback-input-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+
+}.feedback-input-content{
+    margin: 0 auto;
+}.submit-feedback-button-container{
+    margin: 0 auto;
+}
+
+.text-input{
+    padding: 1rem 10em 6rem 1rem;
+    margin-bottom: .5rem;
+}.rating-input{
+    margin-bottom: 2rem;
+}

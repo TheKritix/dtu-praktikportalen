@@ -33,7 +33,7 @@ const FeedbackSection = () => {
     
     return (
             <div className="">
-                <h2 className="d-flex m-auto justify-content-center mt-5 mb-5">Feedback fra Tidligere Praktikanter</h2>
+                <h2 className="d-flex m-auto justify-content-center mx-2 mt-5 mb-4 pb-4 feedback-header">Feedback fra Tidligere Praktikanter</h2>
                 {<FeedbackInputSection/>
                 }
                 {feedbacks?.map((el) => 

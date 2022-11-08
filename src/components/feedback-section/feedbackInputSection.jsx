@@ -62,14 +62,11 @@ const FeedbackInputSection = () => {
         validated={validated}
         onSubmit={postFeedback}
         >
-            <div>
-                
-            </div>
             <div className="feedback-input-content">
                 <Form.Group>
-                    <h3 className="form-titel-text">XX ud af XX anmeldelser</h3>
+                    <h3 className="feedback-input-header">XX ud af XX anmeldelser</h3>
                     <Form.Control
-                    className="input"
+                    className="text-input"
                     placeholder="Giv feedback"
                     name="text"
                     value={newFeedback.text}
@@ -77,8 +74,8 @@ const FeedbackInputSection = () => {
                     onChange={changeFeedback}
                     ></Form.Control>
                     <Form.Select
-                    className="form-input"
-                    placeholder="vælg stillingens type"
+                    className="rating-input"
+                    placeholder="Vælg rating"
                     name="ratingOutOfFive"
                     value={newFeedback.ratingOutOfFive}
                     required
@@ -93,7 +90,7 @@ const FeedbackInputSection = () => {
                     </Form.Select>
                 </Form.Group>
             </div>
-            <div>
+            <div className="submit-feedback-button-container">
                 <Button className="submit-feedback-button" type="submit" size="lg">
                     Indsend feedback
                 </Button>
