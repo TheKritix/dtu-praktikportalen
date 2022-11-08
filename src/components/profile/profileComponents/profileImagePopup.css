@@ -1,0 +1,17 @@
+.popupContainer {
+    min-height: 40rem;
+}
+
+.popupImage {
+    max-width: 50rem;
+    max-height: 50rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+}
+
+.popupButton {
+    margin-right: auto;
+    margin-left: auto;
+}
+
