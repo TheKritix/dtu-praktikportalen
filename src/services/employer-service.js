@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "https://api.praktikportal.diplomportal.dk/api/";
+const API_URL = "localhost:3000/api/";
 
 const getEmployerProfile = () => {
   return axios.get(API_URL + "profile", { headers: authHeader() });

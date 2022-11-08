@@ -1,6 +1,6 @@
 import {makeAutoObservable, runInAction} from "mobx";
 
-const baseUrl = process.env.NODE_ENV === 'development' ?  "https://api.praktikportal.diplomportal.dk/":""; //Check if dev environment
+const baseUrl = process.env.NODE_ENV === 'development' ?  "localhost:3000/":""; //Check if dev environment
 
 class InternshipListStore {
     internships = []
