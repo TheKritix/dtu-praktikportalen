@@ -25,8 +25,8 @@ const PostPage = () => {
 
     //Should fetch from services and store in poststore. 
     //delete eventually - use for now
-    //const baseUrl = `https://api.praktikportal.diplomportal.dk/api/post`
-    const baseUrl = 'http://localhost:3000/api/post';
+    const baseUrl = `https://api.praktikportal.diplomportal.dk/api/post`
+    //const baseUrl = 'http://localhost:3000/api/post';
     const fetchPosts = () => {
         fetch(baseUrl)
         .then((response) => response.json())
