@@ -1,12 +1,6 @@
 import PostContent from "../components/post-page/postContent";
 import PostContactInfo from "../components/post-page/postContactInfo";
 import "./postPage.css";
-<<<<<<< HEAD
-import postItem from "../components/post-page/postItem";
-import {useState} from "react";
-import FeedbackSection from "../components/feedback-section/feedbackSection"
-import "../components/feedback-section/feedbackStyles.css"
-=======
 import {useState, useEffect} from "react";
 import {observer} from 'mobx-react-lite';
 // import { useParams } from "react-router-dom";
@@ -14,7 +8,6 @@ import {observer} from 'mobx-react-lite';
 // import { fetchPosts } from "../services/PostService"
 
 
->>>>>>> 0e1ef1ccb6cdaa5814516ae4ccedc30a83937e87
 
 
 
@@ -46,26 +39,15 @@ const PostPage = () => {
     }, [])
     
     return (
-<<<<<<< HEAD
-            <div>
-=======
         <>
             {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post, i) => (
->>>>>>> 0e1ef1ccb6cdaa5814516ae4ccedc30a83937e87
                 <div className="post-container">
                     <PostContent post={post}/>
                     <PostContactInfo post={post}/>
                 </div>
-<<<<<<< HEAD
-                <div className="feedback-container">
-                    <FeedbackSection/>
-                </div>
-            </div>
-=======
                 ))
             }
         </>
->>>>>>> 0e1ef1ccb6cdaa5814516ae4ccedc30a83937e87
     );
 
 }
