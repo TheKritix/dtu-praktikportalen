@@ -24,6 +24,10 @@
     background-color: rgb(245, 245, 245);
 }
 
+.form-feedback {
+    margin-bottom: 2.5vh;
+}
+
 .form-description {
     margin-bottom: 2.5vh;
     background-color: rgb(245, 245, 245);
