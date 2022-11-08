@@ -20,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-      setCurrentUser(user.email);
+      setCurrentUser(user.studentID);
       console.log(currentUser);
     } else {
       setCurrentUser(undefined);
@@ -29,7 +29,6 @@ const Navbar = () => {
 
   useEffect(() => {
     searchParam.get("ticket");
-    const currentUser = authService.getCurrentUser();
     console.log(searchParam.get("ticket"));
     if (searchParam.get("ticket") != null && currentUser == null) {
       authService.studentLogin(searchParam.get("ticket")).then(
