@@ -3,6 +3,7 @@ import PostContactInfo from "../components/post-page/postContactInfo";
 import "./postPage.css";
 import {useState, useEffect} from "react";
 import {observer} from 'mobx-react-lite';
+import FeedbackSection from '../components/feedback-section/feedbackSection';
 // import { useParams } from "react-router-dom";
 // import { postStore } from "../stores/post-store";
 // import { fetchPosts } from "../services/PostService"
@@ -24,8 +25,10 @@ const PostPage = () => {
 
     //Should fetch from services and store in poststore. 
     //delete eventually - use for now
+    //const baseUrl = `https://api.praktikportal.diplomportal.dk/api/post`
+    const baseUrl = 'http://localhost:3000/api/post';
     const fetchPosts = () => {
-        fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
+        fetch(baseUrl)
         .then((response) => response.json())
         .then((responseJson) =>  {
             setFetchedPosts(responseJson);
@@ -39,7 +42,7 @@ const PostPage = () => {
     }, [])
     
     return (
-        <>
+        <div>
             {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post, i) => (
                 <div className="post-container">
                     <PostContent post={post}/>
@@ -47,7 +50,9 @@ const PostPage = () => {
                 </div>
                 ))
             }
-        </>
+            <div><FeedbackSection/></div>
+            
+        </div>
     );
 
 }
