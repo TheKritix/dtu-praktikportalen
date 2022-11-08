@@ -1,20 +1,14 @@
 import PostContent from "../components/post-page/postContent";
 import PostContactInfo from "../components/post-page/postContactInfo";
 import "./postPage.css";
-<<<<<<< HEAD
-import postItem from "../components/post-page/postItem";
-import {useState} from "react";
-import FeedbackSection from "../components/feedback-section/feedbackSection"
-import "../components/feedback-section/feedbackStyles.css"
-=======
 import {useState, useEffect} from "react";
 import {observer} from 'mobx-react-lite';
+import FeedbackSection from '../components/feedback-section/feedbackSection';
 // import { useParams } from "react-router-dom";
 // import { postStore } from "../stores/post-store";
 // import { fetchPosts } from "../services/PostService"
 
 
->>>>>>> 0e1ef1ccb6cdaa5814516ae4ccedc30a83937e87
 
 
 
@@ -31,8 +25,10 @@ const PostPage = () => {
 
     //Should fetch from services and store in poststore. 
     //delete eventually - use for now
+    const baseUrl = `https://api.praktikportal.diplomportal.dk/api/post`
+    //const baseUrl = 'http://localhost:3000/api/post';
     const fetchPosts = () => {
-        fetch(`https://api.praktikportal.diplomportal.dk/api/post`)
+        fetch(baseUrl)
         .then((response) => response.json())
         .then((responseJson) =>  {
             setFetchedPosts(responseJson);
@@ -46,26 +42,17 @@ const PostPage = () => {
     }, [])
     
     return (
-<<<<<<< HEAD
-            <div>
-=======
         <>
             {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post, i) => (
->>>>>>> 0e1ef1ccb6cdaa5814516ae4ccedc30a83937e87
                 <div className="post-container">
                     <PostContent post={post}/>
                     <PostContactInfo post={post}/>
                 </div>
-<<<<<<< HEAD
-                <div className="feedback-container">
-                    <FeedbackSection/>
-                </div>
-            </div>
-=======
                 ))
             }
+            <div><FeedbackSection/></div>
+            
         </>
->>>>>>> 0e1ef1ccb6cdaa5814516ae4ccedc30a83937e87
     );
 
 }
