@@ -42,7 +42,7 @@ const Navbar = () => {
         }
       );
     }
-  }, [searchParam, navigate]);
+  }, [searchParam, navigate, currentUser]);
 
   const handleLogout = () => {
     navigate("/");
@@ -105,7 +105,7 @@ const Navbar = () => {
             ) : (
               <Button
                 variant="outline-danger"
-                href="https://auth.dtu.dk/dtu/?service=https://dtu.praktikportal.diplomportal.dk"
+                href={process.env.REACT_APP_HOST_LOCAL}
                 //onClick={handleLogin}
               >
                 Login Campus Net

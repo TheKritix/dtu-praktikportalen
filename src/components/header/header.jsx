@@ -32,7 +32,17 @@ const Header = () => {
 
   useEffect(() => {
     searchParam.get("ticket");
-  }, [searchParam]);
+    if (searchParam.get("ticket") != null && currentUser == null) {
+      authService.studentLogin(searchParam.get("ticket")).then(
+        () => {
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }, [searchParam, currentUser]);
 
   return (
     <div>
@@ -61,8 +71,7 @@ const Header = () => {
                   <button
                     className="me-2 student"
                     onClick={() =>
-                      (window.location.href =
-                        "https://auth.dtu.dk/dtu/?service=https://dtu.praktikportal.diplomportal.dk/")
+                      (window.location.href = process.env.REACT_APP_HOST_LOCAL)
                     }
                   >
                     <img src={student} alt="student-logo" />
