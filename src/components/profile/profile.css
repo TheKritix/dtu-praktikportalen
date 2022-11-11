@@ -12,11 +12,13 @@ body {
 /* Profile title */
 .title {
   font-size: 1.8rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .profileTitle {
   border-bottom: 2px solid rgb(186, 186, 186);
+  margin-bottom: 1rem;
+
 }
 
 /* General Profile Stuff */
@@ -32,14 +34,14 @@ body {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
-  margin-top: 2rem;
+  margin-top: 1rem;
   height: 100%;
   align-self: stretch;
 }
 
 .profileButton {
   height: 2rem;
-  width: 70%;
+  width: 55%;
   text-align: left;
   font-size: 1.2rem;
   background-color: transparent;
@@ -95,4 +97,20 @@ body {
 .saveMain:hover {
   background-color:#ff9bab;
   border-radius: 5px;
+}
+
+.profileDropdownMenu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .profileDropdownMenu {
+      display: flex;
+      margin-bottom: 100px;
+  }
+
+  .sidebar {
+      display: none;
+  }
+
 }

@@ -49,17 +49,17 @@ const Header = () => {
       <Container className="pt-3 w-100 overflow-hidden" fluid="true">
         <Row className="overflow-hidden">
           <Col sm={5} className="mb-5">
-            <div className="mx-5">
+            <div className="header-text mx-5">
               <p className="pre-h-text">Find din drømme praktikplads</p>
               <h1 className="landingpage-header">
                 Skab kontakt til virksomheder
               </h1>
               {currentUser ? (
-                <p className="header-text">
+                <p className="header-text-p">
                   Start din søgning efter et praktikophold i dag!
                 </p>
               ) : (
-                <p className="header-text">
+                <p className="header-text-p">
                   Login med Campus Net og begyndt din søgen efter praktikophold
                   gennem vores brugervenlige portal
                 </p>
@@ -69,7 +69,7 @@ const Header = () => {
               ) : (
                 <div className="d-flex flex-row landingpage-buttons">
                   <button
-                    className="me-2 student"
+                    className="me-2 student px-4 py-2"
                     onClick={() =>
                       (window.location.href = process.env.REACT_APP_HOST_LOCAL)
                     }
@@ -79,7 +79,7 @@ const Header = () => {
                   </button>
 
                   <button
-                    className="ms-5 employee"
+                    className="employee px-3 mx-2"
                     onClick={() => handleShow()}
                   >
                     <img src={employee} alt="employer-login" />
