@@ -71,7 +71,7 @@ const Header = () => {
                   <button
                     className="me-2 student px-4 py-2"
                     onClick={() =>
-                      (window.location.href = process.env.REACT_APP_HOST_LOCAL)
+                      (window.location.href = process.env.REACT_APP_HOST)
                     }
                   >
                     <img src={student} alt="student-logo" />

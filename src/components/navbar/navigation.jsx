@@ -116,7 +116,7 @@ const Navigation = () => {
       ) : (
         <Button
           variant="outline-danger"
-          href={process.env.REACT_APP_HOST_LOCAL}
+          href={process.env.REACT_APP_HOST}
           //onClick={handleLogin}
         >
           Login Campus Net
