@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import bannerPlaceholder from "../../res/images/PlaceholderBanner.png"
 import Button from 'react-bootstrap/Button';
 import "../create-post/inputForm.css";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import { uploadPost } from '../../services/PostService'; 
 
 
@@ -76,10 +76,6 @@ const InputForm = () => {
             setValidated(false);
         }
     };
-
-    // useEffect(() => {
-    //     setCreatedPost([defaultObject])
-    // }, [])
 
 
 
