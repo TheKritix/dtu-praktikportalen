@@ -3,9 +3,12 @@ import authService from "../../../../services/auth-service";
 import "../profileSettings.css";
 import React, { useState } from "react";
 import employerService from "../../../../services/employer-service";
+import { profileStore } from "../../../../stores/profileStore";
+import { toJS } from "mobx";
 
 const EmployerSettings = () => {
-  const user = authService.getCurrentUser();
+  
+  const user = toJS(profileStore.User);
 
   const [position, setPosition] = useState()
 

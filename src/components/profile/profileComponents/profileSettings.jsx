@@ -18,11 +18,13 @@ import addImage from "../../../res/images/add-image.png";
 
 import EmployerSettings from "./settings/employerSettings";
 import StudentSettings from "./settings/studentSettings";
+import { profileStore } from "../../../stores/profileStore";
+import { useEffect } from "react";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const ProfileSettings = () => {
-  const user = authService.getCurrentUser();
+  const user = profileStore.User;
 
   const userType = user.companyName ? "Employer" : "Student";
 
@@ -45,9 +47,20 @@ const ProfileSettings = () => {
   const [backdropImage, setBackdropImage] = useState();
   const [profileImage, setProfileImage] = useState();
 
-  // employerService.getBackdropImage(user).then((response) => {
-  //   setBackdropImage(response);
-  // });
+  const getBackdropImage = () => {
+    profileStore.fetchBackdropImage().then(() => {
+      setBackdropImage(profileStore.BackdropImage)
+    });
+    profileStore.fetchProfileImage().then(() => {
+      setProfileImage(profileStore.ProfileImage)
+    });
+  }
+
+  useEffect(() => {
+    getBackdropImage();
+  }, [])
+
+
 
   const GetSettingsView = () => {
     let ViewComponent;
@@ -119,22 +132,21 @@ const ProfileSettings = () => {
   };
 
   const CompleteCrop = () => {
-    const image = returnCrop(
-      imgRef.current,
-      finishedImageRef.current,
-      finishedCrop
+    returnCrop(imgRef.current, finishedImageRef.current, finishedCrop).then(
+      (file) => {
+        const image = URL.createObjectURL(file);
+        console.log(image);
+        if (uploadState.type === "backdrop") {
+          setBackdropImage(image);
+          profileStore.uploadBackdropImage(file);
+        } else {
+          setProfileImage(image);
+          profileStore.uploadProfileImage(file);
+        }
+      }
     );
 
-    if (uploadState.type === "backdrop") {
-      setBackdropImage(image);
-      user.backdropImage = image;
-      employerService.updateBackdropImage(user);
-    } else {
-      setProfileImage(image);
-      user.profileImage = image;
-      employerService.updateProfileImage(user);
-    }
-    employerService.getEmployer(user);
+    //employerService.getEmployer(user);
     ClearPopup();
   };
 

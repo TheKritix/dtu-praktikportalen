@@ -1,9 +1,16 @@
+import { toJS } from "mobx";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import Form from "react-bootstrap/Form";
+import { profileStore } from "../../../stores/profileStore";
 
 const EmailSettings = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [email, setEmail] = useState("foo@boo.com");
+
+  const [email, setEmail] = useState();
+
+  useEffect(() => {
+    setEmail(toJS(profileStore.User.email))
+  }, [email])
 
   return (
     <div>
