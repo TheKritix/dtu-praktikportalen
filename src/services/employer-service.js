@@ -14,29 +14,50 @@ const updateEmployerPosition = (user) => {
   });
 };
 
-const updateBackdropImage = (user) => {
-  return axios.put(API_URL + "employersBackdropImg", {
-    headers: authHeader(),
-    user,
+const updateBackdropImage = (user, image) => {
+  var formData = new FormData();
+  formData.append(user.email, image);
+  console.log(formData);
+  return axios.put(API_URL + "employersBackdropImg", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": user.accessToken,
+    },
   });
 };
 
 const getBackdropImage = (user) => {
   return axios
-    .post(API_URL + "employersBackdropImg", {
+    .get(API_URL + `employersBackdropImg/${user.backdropImageID}`,  {
       headers: authHeader(),
-      user,
+      responseType: "blob"
     })
     .then((response) => {
-      return response.data;
+      return response
     });
 };
 
-const updateProfileImage = (user) => {
-  return axios.put(API_URL + "employersProfileImg", {
-    headers: authHeader(),
-    user,
+const updateProfileImage = (user, image) => {
+  var formData = new FormData();
+  formData.append(user.email, image);
+  console.log(formData);
+  return axios.put(API_URL + "employersProfileImg", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": user.accessToken,
+    },
   });
+};
+
+const getProfileImage = (user) => {
+  return axios
+    .get(API_URL + `employersProfileImg/${user.profileImageID}`,  {
+      headers: authHeader(),
+      responseType: "blob"
+    })
+    .then((response) => {
+      return response
+    });
 };
 
 const getEmployer = (user) => {
@@ -67,6 +88,7 @@ const employerService = {
   updateProfileImage,
   getEmployer,
   getEmployerContent,
+  getProfileImage
 };
 
 export default employerService;

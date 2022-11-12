@@ -1,21 +1,20 @@
 import Form from "react-bootstrap/Form";
-import authService from "../../../../services/auth-service";
 import studentService from "../../../../services/student-service";
 import "../profileSettings.css";
 import React, { useEffect, useState } from "react";
+import { profileStore } from "../../../../stores/profileStore";
+import { toJS } from "mobx";
 
 const StudentSettings = () => {
-  const user = authService.getCurrentUser();
-
-  let pdfUpload;
-
   const [pdfFileName, setPdfFileName] = useState();
 
-  const getPDFName = () => {
-    studentService.getStudentPDFName(user).then((response) => {
-      setPdfFileName(response);
-    });
-  };
+  profileStore.fetchPDFName().then(() => {
+    setPdfFileName(toJS(profileStore.PDFName));
+  });
+
+  const user = toJS(profileStore.User);
+
+  let pdfUpload;
 
   const handleCVUpload = (e) => {
     pdfUpload = e.target.files;
@@ -23,13 +22,12 @@ const StudentSettings = () => {
 
   const saveChange = () => {
     studentService.studentPDFUpload(pdfUpload, user);
-    setTimeout(getPDFName, 500);
+    setTimeout(() => {
+      profileStore.updatePDFName().then(() => {
+        setPdfFileName(toJS(profileStore.PDFName));
+      });
+    }, 500);
   };
-
-  useEffect(() => {
-    getPDFName();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const downloadPDF = () => {
     studentService.getStudentPDFDownload(pdfFileName);
