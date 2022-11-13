@@ -61,15 +61,12 @@ const getProfileImage = (user) => {
 };
 
 const getEmployer = (user) => {
-  const userRevised = {
-    email: user.email,
-    accessToken: user.accessToken,
-  };
-
   return axios
-    .put(API_URL + "employer", {
-      headers: authHeader(),
-      userRevised,
+    .get(API_URL + `employer/${user.email}`, {
+      headers: {
+        "x-access-token": user.accessToken,
+        "x-refresh-token": user.refreshToken
+      }
     })
     .then((response) => {
       localStorage.setItem("user", JSON.stringify(response.data));

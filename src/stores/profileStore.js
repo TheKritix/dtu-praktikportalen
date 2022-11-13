@@ -81,6 +81,15 @@ class ProfileStore {
     }
   }
 
+  async updateUserData() {
+    (console.log("----> Update User Data"))
+    if (this.user && this.user.companyName) {
+      await employerService.getEmployer(this.user).then(() => {
+        this.user = authService.getCurrentUser();
+      })
+    }
+  }
+
   get User() {
     return this.user;
   }
