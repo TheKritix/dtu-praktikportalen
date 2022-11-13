@@ -49,18 +49,16 @@ const ProfileSettings = () => {
 
   const getBackdropImage = () => {
     profileStore.fetchBackdropImage().then(() => {
-      setBackdropImage(profileStore.BackdropImage)
+      setBackdropImage(profileStore.BackdropImage);
     });
     profileStore.fetchProfileImage().then(() => {
-      setProfileImage(profileStore.ProfileImage)
+      setProfileImage(profileStore.ProfileImage);
     });
-  }
+  };
 
   useEffect(() => {
     getBackdropImage();
-  }, [])
-
-
+  }, []);
 
   const GetSettingsView = () => {
     let ViewComponent;
@@ -137,16 +135,23 @@ const ProfileSettings = () => {
         const image = URL.createObjectURL(file);
         console.log(image);
         if (uploadState.type === "backdrop") {
-          setBackdropImage(image);
-          profileStore.uploadBackdropImage(file);
+          profileStore.uploadBackdropImage(file).then(() => {
+            profileStore.updateUserData().then(() => {
+              profileStore.backdropImage = image;
+              setBackdropImage(profileStore.BackdropImage);
+            });
+          });
         } else {
-          setProfileImage(image);
-          profileStore.uploadProfileImage(file);
+          profileStore.uploadProfileImage(file).then(() => {
+            profileStore.updateUserData().then(() => {
+              profileStore.profileImage = image;
+              setProfileImage(profileStore.profileImage);
+            });
+          });
         }
       }
     );
 
-    //employerService.getEmployer(user);
     ClearPopup();
   };
 
