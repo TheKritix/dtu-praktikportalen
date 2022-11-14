@@ -4,13 +4,21 @@ const TestApi = "http://localhost:3000/api/post"
 // const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
 
+    // export const fetchPosts = () => {
+    //     axios.get(TestApi)
+    //     .then((response) => {
+    //         console.log(response.data)
+    //         return response.data
+    //     })     
+    // }
+    
     export const fetchPosts = () => {
-        axios.get(TestApi)
-        .then((response) => {
-            console.log(response.data)
-            return response.data
-        })     
-    } 
+        fetch(TestApi)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                return responseJson;
+            })
+    }
     
 
     //more values to be added
