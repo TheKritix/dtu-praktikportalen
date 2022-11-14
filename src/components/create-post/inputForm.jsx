@@ -22,15 +22,24 @@ const InputForm = () => {
   const [previewImage, setPreviewImage] = useState(bannerPlaceholder);
   const [validated, setValidated] = useState(false);
 
-  // const saveFile = (e) => {
-  //     const img = JSON.stringify(URL.createObjectURL(e.target.files[0]))
-  //     setCreatedPost({
-  //         ...createdPost,
-  //         bannerImg: img
-  //     })
-  //     // setBannerImage(imgObject);
-  //     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-  // }
+  const handleChangeImage = (e) => {
+    if (!e.target.files[0]) {
+      return;
+    } else {
+
+      const imgObject = new Image();
+
+      imgObject.src = URL.createObjectURL(e.target.files[0]);
+
+      setPreviewImage(imgObject.src);
+
+      //import crop module 
+      // imgObject.onload = () => {
+
+      // }
+
+    }
+  }
 
   const handleChangePost = (e) => {
     // if (e.target.name === "bannerImg") {
@@ -198,8 +207,8 @@ const InputForm = () => {
               name="bannerImg"
               type="file"
               accept="image/*"
-              disabled
-              onChange={handleChangePost}
+              // disabled
+              onChange={handleChangeImage}
             />
           </Form.Group>
         </div>

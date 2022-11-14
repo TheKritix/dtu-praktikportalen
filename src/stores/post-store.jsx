@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-//import {fetchPosts} from '../services/PostService'; 
+import postService, {fetchPosts} from '../services/PostService'; 
 
 //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
 
@@ -8,7 +8,8 @@ const TestApi = "http://localhost:3000/api/post"
 
 class PostStore {
 
-    //posts = [];
+    posts;
+    bannerImage; 
 
     constructor() {
         makeAutoObservable(this, {}, {autoBind: true})
@@ -35,6 +36,10 @@ class PostStore {
             .then((responseJson) => {
                 this.posts = responseJson;
             })
+    }
+
+    async uploadBannerImage(file) {
+        await postService.uploadBannerImage(this.post, file);
     }
 
     // getPostsAsync = async () => {
