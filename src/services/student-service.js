@@ -84,6 +84,18 @@ const getStudent = (user) => {
     });
 };
 
+const updateStudentName = (user) => {
+  return axios.put(API_URL + "studentName", user, {
+    headers: authHeader(),
+  });
+};
+
+const updateStudentDescription = (user) => {
+  return axios.put(API_URL + "studentDescription", user, {
+    headers: authHeader(),
+  });
+};
+
 const studentService = {
   studentPDFUpload,
   getStudentPDFName,
@@ -93,6 +105,8 @@ const studentService = {
   updateProfileImage,
   getProfileImage,
   getStudent,
+  updateStudentName,
+  updateStudentDescription,
 };
 
 export default studentService;
