@@ -30,6 +30,7 @@ const Header = () => {
     }
   }, []);
 
+  /*
   useEffect(() => {
     searchParam.get("ticket");
     if (searchParam.get("ticket") != null && currentUser == null) {
@@ -43,6 +44,7 @@ const Header = () => {
       );
     }
   }, [searchParam, currentUser]);
+  */
 
   return (
     <div>
