@@ -9,7 +9,6 @@ import { profileStore } from "../../stores/profileStore";
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const Profile = () => {
-
   //Initiating Store and User
   profileStore.fetchUserInformation();
 
@@ -74,6 +73,7 @@ const Profile = () => {
         <div className="profileMain">
           <GetView />
         </div>
+        <div className="flexLoad"/>
       </div>
     </div>
   );

@@ -156,32 +156,50 @@ const ProfileSettings = () => {
   };
 
   return (
-    <div>
-      <div className="profileBackdrop" onClick={handleClickBackdrop}>
-        <input
-          style={{ display: "none" }}
-          ref={inputRefBackdrop}
-          type="file"
-          onChange={(event) => handleFileChangeImage(event, "backdrop")}
-        />
-        {backdropImage && (
-          <img
-            src={backdropImage}
-            alt="profileBackDropImage"
-            className="backDropImage"
+    <div className="profileMainContainer">
+      <div className="profileIdentityContainer">
+        <div className="profileBackdrop" onClick={handleClickBackdrop}>
+          <input
+            style={{ display: "none" }}
+            ref={inputRefBackdrop}
+            type="file"
+            onChange={(event) => handleFileChangeImage(event, "backdrop")}
           />
-        )}
-        <img className="backDropImageAdd" alt="addImage icon" src={addImage} />
-      </div>
-      <div className="profilePicture" onClick={handleClickProfile}>
-        <input
-          style={{ display: "none" }}
-          ref={inputRefProfile}
-          type="file"
-          onChange={(event) => handleFileChangeImage(event, "profile")}
-        />
-        <img src={profileImage} className="image" alt="profilbillede" />
-        <img className="profileImageAdd" alt="addImage icon" src={addImage} />
+          {backdropImage && (
+            <img
+              src={backdropImage}
+              alt="profileBackDropImage"
+              className="backDropImage"
+            />
+          )}
+          <img
+            className="backDropImageAdd"
+            alt="addImage icon"
+            src={addImage}
+          />
+        </div>
+        <div className="profilePicture" onClick={handleClickProfile}>
+          <input
+            style={{ display: "none" }}
+            ref={inputRefProfile}
+            type="file"
+            onChange={(event) => handleFileChangeImage(event, "profile")}
+          />
+          <img src={profileImage} className="image" alt="profilbillede" />
+          <img className="profileImageAdd" alt="addImage icon" src={addImage} />
+        </div>
+        <div className="nameDesc">
+          <p className="name">
+            {user.companyName ? (
+              user.name
+            ) : (
+              <> {user.studentID ? user.name : user.studentID} </>
+            )}
+          </p>
+          <p className="description">
+            {user.companyName ? "Employer" : "Student"}
+          </p>
+        </div>
       </div>
 
       <GetSettingsView />
@@ -192,6 +210,7 @@ const ProfileSettings = () => {
           open={uploadState.boolean}
           position="right center"
           onClose={ClearPopup}
+          className="popupMainContainer"
         >
           <div className="popupContainer">
             <div className="popupImage">
@@ -204,13 +223,15 @@ const ProfileSettings = () => {
                 <img ref={imgRef} src={uploadBackdropImage} alt="nah" />
               </ReactCrop>
             </div>
-            <button className="popupButton" onClick={CompleteCrop}>
-              Gem
-            </button>
+            <div className="buttonContainer">
+              <button className="popupButton" onClick={CompleteCrop}>
+                Gem
+              </button>
 
-            <button className="popupButton" onClick={ClearPopup}>
-              Afbryd
-            </button>
+              <button className="popupButton" onClick={ClearPopup}>
+                Afbryd
+              </button>
+            </div>
             {finishedCrop && <canvas hidden ref={finishedImageRef} />}
           </div>
         </Popup>

@@ -60,10 +60,7 @@ const StudentSettings = () => {
   };
 
   return (
-    <div>
-      <p className="name">{user.studentID}</p>
-      <p className="description">{"Student"}</p>
-
+    <div className="profileSettingsContainer">
       <div className="namebox-container">
         <p className="textbox-name">Navn</p>
         <Form.Control

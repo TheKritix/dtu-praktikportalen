@@ -30,12 +30,7 @@ const EmployerSettings = () => {
   };
 
   return (
-    <div>
-      <p className="name">{user.name}</p>
-      <p className="description">
-        {user.companyName ? user.companyName : "Student"}
-      </p>
-
+    <div className="profileSettingsContainer">
       <div className="namebox-container">
         <p className="textbox-name">Stilling</p>
         <Form.Control
