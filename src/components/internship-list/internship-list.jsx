@@ -114,7 +114,6 @@ export const InternshipList = () => {
                             </Form>
 
                             <br/>
-                            <FilterOptions/>
 
                         </Col>
                         <Col className="col-1"/>
