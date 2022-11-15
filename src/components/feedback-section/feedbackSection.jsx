@@ -4,35 +4,47 @@ import { observer } from "mobx-react";
 import "./feedbackStyles.css";
 
 import FeedbackCard from "./feedbackCard";
-//import feedbackData from "./feedbackData";
 import { feedbackStore } from "./feedbackStore";
 import FeedbackInputSection from "./feedbackInputSection";
 
 //import FeedbackService from './feedbackService';
 
 const FeedbackSection = () => {
-  const TempInternshipId = "636a5d14775c2771061f0988";
+  const internshipId = "636a5d14775c2771061f0988";
 
-  const [feedbacks, setFeedbacks] = useState();
+  const [feedbacks, setFeedbacks] = useState([]);
 
-  const fs = feedbackStore;
+  
+  
 
   useEffect(() => {
+    const fs = feedbackStore;
     fs.fetchFeedback();
     setFeedbacks(fs.feedbacks);
-  }, [fs]);
+    //console.log(`fs.feedback: ${fs.feedbacks}`)
+    //console.log(`Feedbacks fetched: ${feedbacks}`);
+  }, []);
 
-  console.log(feedbacks);
+  
   //console.log(feedbackStore.res);
+
+  //console.log(`feedbacks length: ${feedbacks.length}`)
+  
+  const total = 0;
+  const avg = 0;
+
+  const relevant_feedbacks = feedbacks?.filter((feedbacks) => feedbacks.internshipId === internshipId);
+  //console.log(`Relevant feedbacks: ${relevant_feedbacks}`)
+
 
   return (
     <div className="">
       <h2 className="d-flex m-auto justify-content-center mx-2 mt-5 mb-4 pb-4 feedback-header">
         Feedback fra Tidligere Praktikanter
       </h2>
-      {<FeedbackInputSection internshipId={TempInternshipId} />}
+      {<FeedbackInputSection internshipId={internshipId} feedbacks={relevant_feedbacks} />}
       {feedbacks
-        ?.filter((feedbacks) => feedbacks.internshipId === TempInternshipId)
+        ?.filter((feedbacks) => feedbacks.internshipId === internshipId)
         .map((el) => (
           <FeedbackCard data={el} />
         ))}
