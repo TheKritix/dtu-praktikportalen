@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'
 import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
+import {useNavigate} from "react-router-dom";
 
 
 const locations = [
@@ -24,6 +25,8 @@ const socialBenefits = [
 
 export const InternshipList = () => {
 
+    const navigate = useNavigate()
+
     const [location, setLocation] = useState([])
     const [socialBenefit, setSocialBenefits] = useState([])
 
@@ -39,12 +42,16 @@ export const InternshipList = () => {
         setStaredInternships(temp)
     }
 
+    const gotoInternshipPost = (e) => {
+        navigate(`/post/${e}`)
+    }
+
     const liste = filteredInternships.map((d) => (
-        <Card key={d._id} className="mb-3" style={{ cursor: "pointer" }}>
-            <Card.Title>{staredInternships.includes(d._id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
-            <Card.Text>{d.description}</Card.Text>
-            <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
-            <p onClick={staredInternships.includes(d._id) ? () => removeFavorites(d._id) : () => addToFavorites(d._id)}>{staredInternships.includes(d._id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
+        <Card key={d._id} className="mb-3" >
+            <Card.Title style={{ cursor: "pointer" }} onClick={() => gotoInternshipPost(d._id)}> {staredInternships.includes(d._id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
+            <Card.Text style={{ cursor: "pointer" }} onClick={() => gotoInternshipPost(d._id)} >{d.description}</Card.Text>
+            <p style={{ cursor: "pointer" }} onClick={() => gotoInternshipPost(d._id)} >Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
+            <p style={{ cursor: "pointer" }} onClick={staredInternships.includes(d._id) ? () => removeFavorites(d._id) : () => addToFavorites(d._id)}>{staredInternships.includes(d._id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
         </Card>
     ))
 
