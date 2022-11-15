@@ -8,9 +8,8 @@ const getEmployerProfile = () => {
 };
 
 const updateEmployerPosition = (user) => {
-  return axios.put(API_URL + "employers", {
+  return axios.put(API_URL + "employers", user, {
     headers: authHeader(),
-    user: user,
   });
 };
 
@@ -77,6 +76,12 @@ const getEmployerContent = () => {
   return axios.get(API_URL + "test/user", { headers: authHeader() });
 };
 
+const updateEmployerDescription = (user) => {
+  return axios.put(API_URL + "employerDescription", user, {
+    headers: authHeader(),
+  });
+};
+
 const employerService = {
   getEmployerProfile,
   updateEmployerPosition,
@@ -85,7 +90,8 @@ const employerService = {
   updateProfileImage,
   getEmployer,
   getEmployerContent,
-  getProfileImage
+  getProfileImage,
+  updateEmployerDescription,
 };
 
 export default employerService;
