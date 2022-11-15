@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://api.praktikportal.diplomportal.dk/api/auth/";
+const API_URL = process.env.REACT_APP_API_AUTH;
 
 const studentSignup = (ticket) => {
   return axios.post(API_URL + "studentSignup", {
@@ -15,6 +15,7 @@ const studentUpdate = (ticket) => {
 };
 
 const studentLogin = (ticket) => {
+  console.log(API_URL);
   return axios
     .post(API_URL + "studentLogin", {
       ticket,

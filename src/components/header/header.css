@@ -38,7 +38,18 @@ body {
     justify-content: space-evenly;
   }
   
-  
+  @media screen and (max-width: 768px) {
+    .header-text h1 {
+        font-size: 20pt;
+    }
+
+    .header-text-p {
+      font-size: 14pt;
+  }
+    .dtutext{
+        display: none;
+    }
+}
   
   
   /* landing page sencond section */

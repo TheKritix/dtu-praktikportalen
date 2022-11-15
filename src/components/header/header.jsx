@@ -4,7 +4,6 @@ import "@fontsource/poppins";
 import authService from "../../services/auth-service";
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useSearchParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -19,7 +18,6 @@ const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
   const handleClose = () => setShowLogin(false);
   const handleShow = () => setShowLogin(true);
-  const [searchParam] = useSearchParams();
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -30,39 +28,50 @@ const Header = () => {
     }
   }, []);
 
+  /*
   useEffect(() => {
     searchParam.get("ticket");
-  }, [searchParam]);
+    if (searchParam.get("ticket") != null && currentUser == null) {
+      authService.studentLogin(searchParam.get("ticket")).then(
+        () => {
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }, [searchParam, currentUser]);
+  */
 
   return (
     <div>
       <Container className="pt-3 w-100 overflow-hidden" fluid="true">
         <Row className="overflow-hidden">
           <Col sm={5} className="mb-5">
-            <div className="mx-5">
+            <div className="header-text mx-5">
               <p className="pre-h-text">Find din drømme praktikplads</p>
               <h1 className="landingpage-header">
                 Skab kontakt til virksomheder
               </h1>
               {currentUser ? (
-                <p className="header-text">
+                <p className="header-text-p">
                   Start din søgning efter et praktikophold i dag!
                 </p>
               ) : (
-                <p className="header-text">
+                <p className="header-text-p">
                   Login med Campus Net og begyndt din søgen efter praktikophold
                   gennem vores brugervenlige portal
                 </p>
               )}
               {currentUser ? (
-                <p>Velkommen til, {currentUser.name}</p>
+                <p>Velkommen til, {currentUser.studentID}</p>
               ) : (
                 <div className="d-flex flex-row landingpage-buttons">
                   <button
-                    className="me-2 student"
+                    className="me-2 student px-4 py-2"
                     onClick={() =>
-                      (window.location.href =
-                        "https://auth.dtu.dk/dtu/?service=https://dtu.praktikportal.diplomportal.dk")
+                      (window.location.href = process.env.REACT_APP_HOST)
                     }
                   >
                     <img src={student} alt="student-logo" />
@@ -70,7 +79,7 @@ const Header = () => {
                   </button>
 
                   <button
-                    className="ms-5 employee"
+                    className="employee px-3 mx-2"
                     onClick={() => handleShow()}
                   >
                     <img src={employee} alt="employer-login" />

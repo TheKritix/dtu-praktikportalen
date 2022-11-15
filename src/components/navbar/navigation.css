@@ -1,0 +1,24 @@
+.dtulogo {
+    height: 100px;
+}
+
+.navbar-links-container {
+    float: right;
+    padding-right: 5%;
+}
+
+.navdrop {
+    float: right;
+}
+
+
+@media screen and (max-width: 768px) {
+    .dtulogo {
+        height: 50px;
+    }
+
+    .dtutext{
+        display: none;
+    }
+}
+    
