@@ -4,7 +4,6 @@ import "@fontsource/poppins";
 import authService from "../../services/auth-service";
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useSearchParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -19,7 +18,6 @@ const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
   const handleClose = () => setShowLogin(false);
   const handleShow = () => setShowLogin(true);
-  const [searchParam] = useSearchParams();
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = authService.getCurrentUser();
