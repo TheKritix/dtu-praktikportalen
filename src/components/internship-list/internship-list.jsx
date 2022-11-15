@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card'
 import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react";
 
 
 const locations = [
@@ -20,8 +21,6 @@ const socialBenefits = [
     {social: "Fredagsbar"},
     {social: "Frokostordning"}
 ]
-
-
 
 export const InternshipList = () => {
 
@@ -139,4 +138,4 @@ export const InternshipList = () => {
     );
 }
 
-export default InternshipList;
+export default observer(InternshipList);
