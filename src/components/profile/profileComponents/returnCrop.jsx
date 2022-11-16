@@ -47,29 +47,12 @@ export function returnCrop(image, canvas, crop) {
   return getImageFromCanvas(canvas);
 }
 
-// This is smart, but I am not, so duck this.
-// const getImageFromCanvas = async (canvas) => {
-//   const toBlobPromise = new Promise((resolve) => {
-//     canvas.toBlob(
-//       (blob) => {
-//         var formData = new FormData();
-//         formData.append("file", blob, "image.jpg");
-//         for (const pair of formData.entries()) {
-//           resolve(pair[1]);
-//         }
-//       },
-//       "image/jpeg",
-//       0.8
-//     );
-//   });
+// Version 3.0 of this.
+// Source for file stuff: https://developer.mozilla.org/en-US/docs/Web/API/File/File
+const getImageFromCanvas = async (canvas) => {
+  let blob = await new Promise((resolve) => {
+    canvas.toBlob(resolve, "image/jpeg");
+  });
 
-//   toBlobPromise.then((value) => {
-//     return value
-//   });
-// };
-
-//It works, but would much rather save it as a file object.
-const getImageFromCanvas = (canvas) => {
-  var imageData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-  return imageData;
+  return new File([blob], "croppedImage.jpg", { type: "image/jpeg" });
 };

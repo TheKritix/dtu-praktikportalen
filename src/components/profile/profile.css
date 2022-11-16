@@ -1,12 +1,20 @@
 /* Container */
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: "Poppins";
+  padding-bottom: 50px;
 }
 
 .profile-container {
   margin-right: 5rem;
   margin-left: 5rem;
-  /* DEBUG */height: 20000px;
+}
+
+.page-container {
+  display: flex;
 }
 
 /* Profile title */
@@ -25,28 +33,27 @@ body {
 
 .profile {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
 }
 
 .profileMenu {
   position: -webkit-sticky; /* Safari */
   position: sticky;
-  top: 0;
-  margin-top: 1rem;
-  height: 100%;
+  margin-top: 30px;
   align-self: stretch;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  height: 100%;
 }
 
 .profileButton {
-  height: 2rem;
-  width: 55%;
+  height: 40px;
   text-align: left;
-  font-size: 1.2rem;
+  font-size: 19px;
   background-color: transparent;
   border: none;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
   font-weight: lighter;
 }
 
@@ -55,62 +62,49 @@ body {
   border-radius: 3px;
 }
 
-.profileMenu {
-  width: 100%;
-  max-width: 25rem;
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-}
-
 .profileMain {
-  margin-top: -7rem;
-  margin-left: 15rem;
-  min-width: 90rem;
-  position: relative;
-    order: 0;
-  flex: 1 0 auto;
-  align-self: center;
+  flex: 10;
+  margin-left: 50px;
 }
 
-.main-textbox {
-  left: 300px;
-  max-width: 35rem;
-  top: -5px;
-  margin-bottom: 2rem;
+.flexLoad {
+  flex: 2;
 }
 
-
-.main-container {
-  position: relative;
-  max-width: 30rem;
-}
-
-.saveMain {
-  width: 100px;
-  height: 40px;
-  background-color:#ff3556;
-  border: none;
-  border-radius: 5px;
-}
-
-.saveMain:hover {
-  background-color:#ff9bab;
-  border-radius: 5px;
-}
-
-.profileDropdownMenu {
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-  .profileDropdownMenu {
-      display: flex;
-      margin-bottom: 100px;
+@media only screen and (max-width: 900px) {
+  .profileTitle {
+    display: none;
   }
 
-  .sidebar {
-      display: none;
+  .profile {
+    flex-direction: column;
   }
 
+  .profileMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .profileButton {
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+    min-width: 120px;
+    font-size: 16px;
+  }
+
+  .profile-container {
+    margin-right: 25px;
+    margin-left: 0px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .profileButton {
+    min-width: 80px;
+    width: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
 }

@@ -1,50 +1,74 @@
 import Form from "react-bootstrap/Form";
-import authService from "../../../../services/auth-service";
 import studentService from "../../../../services/student-service";
 import "../profileSettings.css";
 import React, { useEffect, useState } from "react";
+import { profileStore } from "../../../../stores/profileStore";
+import { toJS } from "mobx";
+import { useRef } from "react";
 
 const StudentSettings = () => {
-  const user = authService.getCurrentUser();
+  const [pdfFileName, setPdfFileName] = useState();
+  const nameRef = useRef();
+  const descriptionRef = useRef();
+
+  profileStore.fetchPDFName().then(() => {
+    setPdfFileName(toJS(profileStore.PDFName));
+  });
+
+  const user = toJS(profileStore.User);
 
   let pdfUpload;
-
-  const [pdfFileName, setPdfFileName] = useState();
-
-  const getPDFName = () => {
-    studentService.getStudentPDFName(user).then((response) => {
-      setPdfFileName(response);
-    });
-  };
 
   const handleCVUpload = (e) => {
     pdfUpload = e.target.files;
   };
 
-  const saveChange = () => {
+  const savePDFChange = () => {
     studentService.studentPDFUpload(pdfUpload, user);
-    setTimeout(getPDFName, 500);
+    setTimeout(() => {
+      profileStore.updatePDFName().then(() => {
+        setPdfFileName(toJS(profileStore.PDFName));
+      });
+    }, 500);
   };
-
-  useEffect(() => {
-    getPDFName();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const downloadPDF = () => {
     studentService.getStudentPDFDownload(pdfFileName);
   };
 
-  return (
-    <div>
-      <p className="name">{user.studentID}</p>
-      <p className="description">
-        {user.companyName ? user.companyName : "Student"}
-      </p>
+  const saveChange = () => {
+    if (nameRef.current.value !== user.name) {
+      user.name = nameRef.current.value;
+      studentService.updateStudentName(user).then(() => {
+        profileStore.updateUserData();
+      });
+    }
 
+    if (
+      descriptionRef.current.value !== user.description ||
+      !user.description
+    ) {
+      user.description = descriptionRef.current.value;
+      studentService.updateStudentDescription(user).then(() => {
+        profileStore.updateUserData();
+      });
+    }
+
+    if (pdfUpload) {
+      savePDFChange();
+    }
+  };
+
+  return (
+    <div className="profileSettingsContainer">
       <div className="namebox-container">
         <p className="textbox-name">Navn</p>
-        <Form.Control className="name-textbox" placeholder="Navn" />
+        <Form.Control
+          className="name-textbox"
+          placeholder="Navn"
+          ref={nameRef}
+          defaultValue={user.name}
+        />
       </div>
 
       <div className="cv-container">
@@ -68,6 +92,8 @@ const StudentSettings = () => {
           rows={5}
           className="description-textbox"
           placeholder="Beskrivelse"
+          ref={descriptionRef}
+          defaultValue={user.description}
         />
       </div>
 

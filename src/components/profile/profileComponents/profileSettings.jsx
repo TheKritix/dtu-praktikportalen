@@ -18,11 +18,13 @@ import addImage from "../../../res/images/add-image.png";
 
 import EmployerSettings from "./settings/employerSettings";
 import StudentSettings from "./settings/studentSettings";
+import { profileStore } from "../../../stores/profileStore";
+import { useEffect } from "react";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const ProfileSettings = () => {
-  const user = authService.getCurrentUser();
+  const user = profileStore.User;
 
   const userType = user.companyName ? "Employer" : "Student";
 
@@ -45,9 +47,18 @@ const ProfileSettings = () => {
   const [backdropImage, setBackdropImage] = useState();
   const [profileImage, setProfileImage] = useState();
 
-  // employerService.getBackdropImage(user).then((response) => {
-  //   setBackdropImage(response);
-  // });
+  const getBackdropImage = () => {
+    profileStore.fetchBackdropImage().then(() => {
+      setBackdropImage(profileStore.BackdropImage);
+    });
+    profileStore.fetchProfileImage().then(() => {
+      setProfileImage(profileStore.ProfileImage);
+    });
+  };
+
+  useEffect(() => {
+    getBackdropImage();
+  }, []);
 
   const GetSettingsView = () => {
     let ViewComponent;
@@ -119,52 +130,76 @@ const ProfileSettings = () => {
   };
 
   const CompleteCrop = () => {
-    const image = returnCrop(
-      imgRef.current,
-      finishedImageRef.current,
-      finishedCrop
+    returnCrop(imgRef.current, finishedImageRef.current, finishedCrop).then(
+      (file) => {
+        const image = URL.createObjectURL(file);
+        console.log(image);
+        if (uploadState.type === "backdrop") {
+          profileStore.uploadBackdropImage(file).then(() => {
+            profileStore.updateUserData().then(() => {
+              profileStore.backdropImage = image;
+              setBackdropImage(profileStore.BackdropImage);
+            });
+          });
+        } else {
+          profileStore.uploadProfileImage(file).then(() => {
+            profileStore.updateUserData().then(() => {
+              profileStore.profileImage = image;
+              setProfileImage(profileStore.profileImage);
+            });
+          });
+        }
+      }
     );
 
-    if (uploadState.type === "backdrop") {
-      setBackdropImage(image);
-      user.backdropImage = image;
-      employerService.updateBackdropImage(user);
-    } else {
-      setProfileImage(image);
-      user.profileImage = image;
-      employerService.updateProfileImage(user);
-    }
-    employerService.getEmployer(user);
     ClearPopup();
   };
 
   return (
-    <div>
-      <div className="profileBackdrop" onClick={handleClickBackdrop}>
-        <input
-          style={{ display: "none" }}
-          ref={inputRefBackdrop}
-          type="file"
-          onChange={(event) => handleFileChangeImage(event, "backdrop")}
-        />
-        {backdropImage && (
-          <img
-            src={backdropImage}
-            alt="profileBackDropImage"
-            className="backDropImage"
+    <div className="profileMainContainer">
+      <div className="profileIdentityContainer">
+        <div className="profileBackdrop" onClick={handleClickBackdrop}>
+          <input
+            style={{ display: "none" }}
+            ref={inputRefBackdrop}
+            type="file"
+            onChange={(event) => handleFileChangeImage(event, "backdrop")}
           />
-        )}
-        <img className="backDropImageAdd" alt="addImage icon" src={addImage} />
-      </div>
-      <div className="profilePicture" onClick={handleClickProfile}>
-        <input
-          style={{ display: "none" }}
-          ref={inputRefProfile}
-          type="file"
-          onChange={(event) => handleFileChangeImage(event, "profile")}
-        />
-        <img src={profileImage} className="image" alt="profilbillede" />
-        <img className="profileImageAdd" alt="addImage icon" src={addImage} />
+          {backdropImage && (
+            <img
+              src={backdropImage}
+              alt="profileBackDropImage"
+              className="backDropImage"
+            />
+          )}
+          <img
+            className="backDropImageAdd"
+            alt="addImage icon"
+            src={addImage}
+          />
+        </div>
+        <div className="profilePicture" onClick={handleClickProfile}>
+          <input
+            style={{ display: "none" }}
+            ref={inputRefProfile}
+            type="file"
+            onChange={(event) => handleFileChangeImage(event, "profile")}
+          />
+          <img src={profileImage} className="image" alt="profilbillede" />
+          <img className="profileImageAdd" alt="addImage icon" src={addImage} />
+        </div>
+        <div className="nameDesc">
+          <p className="name">
+            {user.companyName ? (
+              user.name
+            ) : (
+              <> {user.studentID ? user.name : user.studentID} </>
+            )}
+          </p>
+          <p className="description">
+            {user.companyName ? "Employer" : "Student"}
+          </p>
+        </div>
       </div>
 
       <GetSettingsView />
@@ -175,6 +210,7 @@ const ProfileSettings = () => {
           open={uploadState.boolean}
           position="right center"
           onClose={ClearPopup}
+          className="popupMainContainer"
         >
           <div className="popupContainer">
             <div className="popupImage">
@@ -187,13 +223,15 @@ const ProfileSettings = () => {
                 <img ref={imgRef} src={uploadBackdropImage} alt="nah" />
               </ReactCrop>
             </div>
-            <button className="popupButton" onClick={CompleteCrop}>
-              Gem
-            </button>
+            <div className="buttonContainer">
+              <button className="popupButton" onClick={CompleteCrop}>
+                Gem
+              </button>
 
-            <button className="popupButton" onClick={ClearPopup}>
-              Afbryd
-            </button>
+              <button className="popupButton" onClick={ClearPopup}>
+                Afbryd
+              </button>
+            </div>
             {finishedCrop && <canvas hidden ref={finishedImageRef} />}
           </div>
         </Popup>
