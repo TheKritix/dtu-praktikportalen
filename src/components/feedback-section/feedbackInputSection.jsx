@@ -6,12 +6,15 @@ import Button from "react-bootstrap/Button";
 
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect } from "react";
 
-const FeedbackInputSection = ({ internshipId }) => {
+const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
 
   console.log("INTERNSHIP ID:");
   console.log(internshipId);
+  console.log("RELEVANT FEEDBACKS")
+  console.log(feedbacks)
 
   //const internship = internshipId;
 
@@ -26,6 +29,7 @@ const FeedbackInputSection = ({ internshipId }) => {
 
   const [newFeedback, setNewFeedback] = useState(defaultFeedback);
   const [validated, setValidated] = useState(false);
+  const [avgRating, setAverageRating] = useState();
 
   const changeFeedback = (e) => {
     setNewFeedback({
@@ -53,6 +57,23 @@ const FeedbackInputSection = ({ internshipId }) => {
     }
   };
 
+  useEffect(() => {
+    var total = 0;
+    const amount = feedbacks.length;
+    console.log('LENGTH')
+    console.log(amount)
+    for (let i = 0; i < feedbacks.length; i++) {
+      console.log(feedbacks[i])
+      const rating = parseInt(feedbacks[i].ratingOutOfFive)
+      total = total + rating
+    };
+    const avg = total / amount;
+    console.log("AVERAGE RATING:");
+    console.log(avg);
+    setAverageRating(avg);
+  });
+
+
   return (
     <Form
       className="feedback-input-container"
@@ -62,7 +83,7 @@ const FeedbackInputSection = ({ internshipId }) => {
     >
       <div className="feedback-input-content">
         <Form.Group>
-          <h3 className="feedback-input-header">XX ud af XX anmeldelser</h3>
+          <h3 className="feedback-input-header">{avgRating}/5 stjerner baseret på {feedbacks.length} feedbacks</h3>
           <Form.Control
             className="text-input"
             placeholder="Giv feedback"

@@ -1,11 +1,10 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
 
 //const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:3000/":""; //Check if dev environment
+//const baseUrl = `https://api.praktikportal.diplomportal.dk/api/feedback`;
+const baseUrl = 'http://localhost:3000/api/feedback';
 
-const baseUrl = `https://api.praktikportal.diplomportal.dk/api/feedback`;
-//const baseUrl = 'http://localhost:3000/api/feedback';
-console.log(baseUrl);
 
 class FeedbackStore {
   constructor() {
@@ -14,13 +13,18 @@ class FeedbackStore {
       {},
       { autoBind: true } //For non-arrow-functions bind
     );
+    this.fetchFeedback();
+
   }
 
+  
   fetchFeedback = () => {
     fetch(baseUrl)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.feedbacks = responseJson;
+        runInAction(()=>this.feedbacks=responseJson)
+        //this.feedbacks = responseJson;
+        //console.log(`feedbackStore res: ${this.feedbacks}`)
       });
   };
 
@@ -34,8 +38,7 @@ class FeedbackStore {
       internshipId: feedback.internshipId,
     });
   };
+
 }
 
-//export default feedbackData;
-//export default new FeedbackStore();
 export const feedbackStore = new FeedbackStore();
