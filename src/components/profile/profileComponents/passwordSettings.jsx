@@ -3,22 +3,26 @@ import Form from "react-bootstrap/Form";
 
 const PasswordSettings = () => {
   return (
-    <div>
-      <div className="main-container">
-        <p className="textbox-main">Skift Password</p>
-        <Form.Control
-          className="main-textbox"
-          type="password"
-          placeholder="Ny Password"
-        />
-        <p className="textbox-main">Gentag Password</p>
-        <Form.Control
-          className="main-textbox"
-          type="password"
-          placeholder="Gentag Password"
-        />
+    <div className="mainContainer">
+      <div className="settingsContainer">
+        <div className="setting">
+          <p className="textbox-main">Skift Password</p>
+          <Form.Control
+            className="main-textbox"
+            type="password"
+            placeholder="Ny Password"
+          />
+        </div>
+        <div className="setting">
+          <p className="textbox-main">Gentag Password</p>
+          <Form.Control
+            className="main-textbox"
+            type="password"
+            placeholder="Gentag Password"
+          />
+        </div>
         <div className="saveButton">
-          <button className="saveMain">Gem</button>
+          <button className="save">Gem</button>
         </div>
       </div>
     </div>
