@@ -8,6 +8,8 @@ import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react";
+import {profileStore} from "../../stores/profileStore";
+import {favoriteStore} from "./favoritestore";
 
 
 const locations = [
@@ -34,6 +36,11 @@ export const InternshipList = () => {
     const [staredInternships, setStaredInternships] = useState([])
     const addToFavorites = id => {
         if (!staredInternships.includes(id)) setStaredInternships(staredInternships.concat(id))
+        favoriteStore.addFavorite(id)
+        console.log(
+            "UserID: ", profileStore.user.id,
+            "InternshipID: " + id
+        )
     }
     const removeFavorites = id => {
         let index = staredInternships.indexOf(id)
