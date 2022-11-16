@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import "../create-post/inputForm.css";
 import { useState } from "react";
 import { uploadPost } from "../../services/PostService";
+import Modal from "react-bootstrap/Modal";
+import PostContent from "../post-page/postContent"
+import PostContactInfo from "../post-page/postContactInfo";
 
 const InputForm = () => {
   const defaultObject = () => ({
@@ -16,21 +19,54 @@ const InputForm = () => {
     contact: "",
     applyToEmail: "",
     website: "",
-    //bannerImg: bannerImage,
+    bannerImg: bannerPlaceholder,
   });
   const [createdPost, setCreatedPost] = useState(defaultObject);
   const [previewImage, setPreviewImage] = useState(bannerPlaceholder);
   const [validated, setValidated] = useState(false);
+  const [previewShow, setPreviewShow] = useState(false);
 
-  // const saveFile = (e) => {
-  //     const img = JSON.stringify(URL.createObjectURL(e.target.files[0]))
-  //     setCreatedPost({
-  //         ...createdPost,
-  //         bannerImg: img
-  //     })
-  //     // setBannerImage(imgObject);
-  //     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-  // }
+  const handleShow = () => {
+    if (
+      createdPost.title !== "" ||
+      createdPost.type !== "" ||
+      createdPost.company !== "" ||
+      createdPost.location !== "" ||
+      createdPost.startdate !== "" ||
+      createdPost.description !== "" ||
+      createdPost.contact !== "" ||
+      createdPost.applyToEmail !== "" ||
+      createdPost.website !== ""
+    ) {
+      setPreviewShow(true);
+      setValidated(true);
+    } else {
+      window.alert("Du har ikke udfyldt nogen felter");
+    }
+  }
+
+  const handleClose = () => setPreviewShow(false);
+
+  const handleChangeImage = (e) => {
+    if (!e.target.files[0]) {
+      return;
+    } else {
+
+      const imgObject = new Image();
+
+      imgObject.src = URL.createObjectURL(e.target.files[0]);
+
+      setPreviewImage(imgObject.src);
+      setCreatedPost({...createdPost,
+        bannerImg: imgObject.src})
+
+      //import crop module 
+      // imgObject.onload = () => {
+
+      // }
+
+    }
+  }
 
   const handleChangePost = (e) => {
     // if (e.target.name === "bannerImg") {
@@ -71,10 +107,6 @@ const InputForm = () => {
       setValidated(false);
     }
   };
-
-  // useEffect(() => {
-  //     setCreatedPost([defaultObject])
-  // }, [])
 
   return (
     <Form
@@ -202,20 +234,32 @@ const InputForm = () => {
               name="bannerImg"
               type="file"
               accept="image/*"
-              disabled
-              onChange={handleChangePost}
+              // disabled
+              onChange={handleChangeImage}
             />
           </Form.Group>
         </div>
       </div>
       <div className="form-button-div">
-        <Button className="preview-button" size="lg" disabled>
+        <Button className="preview-button" size="lg" onClick={handleShow}>
           Preview opslag
         </Button>
         <Button className="form-submit-button" type="submit" size="lg">
           Opret stilling
         </Button>
       </div>
+      <Modal 
+        dialogClassName="preview-post" 
+        show={previewShow} 
+        onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Preview over dit praktikopslag</Modal.Title>
+          </Modal.Header>
+            <div className="modal-container">
+              <PostContent post={createdPost}/>
+              <PostContactInfo post={createdPost}/>
+            </div>
+        </Modal>
     </Form>
   );
 };

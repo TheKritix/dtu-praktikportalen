@@ -6,6 +6,10 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'
 import {Form} from "react-bootstrap";
 import {internshipListStore} from "./internship-list-store";
+import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react";
+import {profileStore} from "../../stores/profileStore";
+import {favoriteStore} from "./favoritestore";
 
 
 const locations = [
@@ -20,12 +24,11 @@ const socialBenefits = [
     {social: "Frokostordning"}
 ]
 
-
-
 export const InternshipList = () => {
 
+    const navigate = useNavigate()
+
     const [location, setLocation] = useState([])
-    // eslint-disable-next-line no-unused-vars
     const [socialBenefit, setSocialBenefits] = useState([])
 
     const [filteredInternships, setFilteredInternships] = useState([])
@@ -33,6 +36,11 @@ export const InternshipList = () => {
     const [staredInternships, setStaredInternships] = useState([])
     const addToFavorites = id => {
         if (!staredInternships.includes(id)) setStaredInternships(staredInternships.concat(id))
+        favoriteStore.addFavorite(id)
+        console.log(
+            "UserID: ", profileStore.user.id,
+            "InternshipID: " + id
+        )
     }
     const removeFavorites = id => {
         let index = staredInternships.indexOf(id)
@@ -40,12 +48,16 @@ export const InternshipList = () => {
         setStaredInternships(temp)
     }
 
+    const gotoInternshipPost = (e) => {
+        navigate(`/post/${e}`)
+    }
+
     const liste = filteredInternships.map((d) => (
-        <Card key={d._id} className="mb-3" style={{ cursor: "pointer" }}>
-            <Card.Title>{staredInternships.includes(d._id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
-            <Card.Text>{d.description}</Card.Text>
-            <p>Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
-            <p onClick={staredInternships.includes(d._id) ? () => removeFavorites(d._id) : () => addToFavorites(d._id)}>{staredInternships.includes(d._id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
+        <Card key={d._id} className="mb-3" >
+            <Card.Title style={{ cursor: "pointer" }} onClick={() => gotoInternshipPost(d._id)}> {staredInternships.includes(d._id) ? "⭐ • ": null}{d.hasApplied ? "ANSØGT • ": null}{d.title}</Card.Title>
+            <Card.Text style={{ cursor: "pointer" }} onClick={() => gotoInternshipPost(d._id)} >{d.description}</Card.Text>
+            <p style={{ cursor: "pointer" }} onClick={() => gotoInternshipPost(d._id)} >Startdato: {d.startDate} • Lokation: {d.location} • Afløning: {d.compensation}</p>
+            <p style={{ cursor: "pointer" }} onClick={staredInternships.includes(d._id) ? () => removeFavorites(d._id) : () => addToFavorites(d._id)}>{staredInternships.includes(d._id) ? "Fjern fra favoriter": "Tilføj til favoriter"}</p>
         </Card>
     ))
 
@@ -57,7 +69,25 @@ export const InternshipList = () => {
         }
     }
 
+    const updateFavoritesLocally = () => {
+        favoriteStore.favorites.forEach((d) => {
+            if (d.uid == profileStore.user.id) {
+                setStaredInternships(staredInternships.concat(d.favorite))
+                console.log("Add stars from DB")
+            }
+        })
+    }
+
     useEffect(() => {
+        console.log("useEffect() run on render")
+        updateFavoritesLocally()
+
+        /*setStaredInternships(
+            favoriteStore.favorites.filter(
+                d => d.uid == profileStore.user.id
+            ).map(filteredFavorites => (setStaredInternships(staredInternships.concat(filteredFavorites.favorite))))
+        )*/
+
         if (location.length === 0) {
             setFilteredInternships(internshipListStore.internships)
         } else {
@@ -114,6 +144,8 @@ export const InternshipList = () => {
                                 ))}
                             </Form>
 
+                            <br/>
+
                         </Col>
                         <Col className="col-1"/>
                         <Col className="opslag col-7">
@@ -131,4 +163,4 @@ export const InternshipList = () => {
     );
 }
 
-export default InternshipList;
+export default observer(InternshipList);

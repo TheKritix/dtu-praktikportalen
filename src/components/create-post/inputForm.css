@@ -70,3 +70,14 @@
     border-color: rgb(183, 0, 0) !important;
 }
 
+.preview-post {
+    min-width: 80%;
+}
+
+.modal-container {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+}
+

@@ -8,7 +8,7 @@
 
 .post-banner-div {
     height: 15rem;
-    width: 55rem;
+    width: 75rem;
     background: rgb(245, 245, 245);
     border-radius: 15px;
     max-width: 75rem;
@@ -23,6 +23,7 @@
 
 .post-banner {
     position: absolute;
+    width: 75rem;
 }
 
 .post-banner-text {
@@ -38,7 +39,7 @@
 }
 
 .post-divider {
-    width: 55rem;
+    width: 75rem;
     border: solid 1px black;
 }
 
