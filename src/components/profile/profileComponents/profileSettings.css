@@ -157,6 +157,7 @@
 .saveButton {
   display: flex;
   justify-content: flex-end;
+  position: relative;
 
 }
 
@@ -174,6 +175,13 @@
   background-color: #094cd1;
 }
 
+.confirmSave {
+  position: absolute;
+  color: #15d703;
+  right: 25%;
+  top: 20%;
+}
+
 .exist-cv {
   margin-top: 5px;
   cursor: pointer;
@@ -188,7 +196,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 500px;
 }
 
 .settingsContainer {
@@ -233,6 +240,10 @@
 
   .description-textbox {
     font-size: 14px;
+  }
+
+  .confirmSave {
+    right: 30%;
   }
 
   

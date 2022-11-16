@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { profileStore } from "../../../../stores/profileStore";
 import { toJS } from "mobx";
 import { useRef } from "react";
+import Typist from "react-typist-component";
 
 const StudentSettings = () => {
   const [pdfFileName, setPdfFileName] = useState();
@@ -23,6 +24,8 @@ const StudentSettings = () => {
     pdfUpload = e.target.files;
   };
 
+
+
   const savePDFChange = () => {
     studentService.studentPDFUpload(pdfUpload, user);
     setTimeout(() => {
@@ -36,11 +39,22 @@ const StudentSettings = () => {
     studentService.getStudentPDFDownload(pdfFileName);
   };
 
+  const [ApiState, setApiState] = useState(false);
+
+  const handleSaveInteraction = () => {
+    setApiState(true);
+    setTimeout(() => {
+      setApiState(false);
+    }, 3000);
+  };
+
   const saveChange = () => {
     if (nameRef.current.value !== user.name) {
       user.name = nameRef.current.value;
       studentService.updateStudentName(user).then(() => {
-        profileStore.updateUserData();
+        profileStore.updateUserData().then(() => {
+          handleSaveInteraction();
+        });
       });
     }
 
@@ -50,7 +64,9 @@ const StudentSettings = () => {
     ) {
       user.description = descriptionRef.current.value;
       studentService.updateStudentDescription(user).then(() => {
-        profileStore.updateUserData();
+        profileStore.updateUserData().then(() => {
+          handleSaveInteraction();
+        });
       });
     }
 
@@ -98,6 +114,13 @@ const StudentSettings = () => {
       </div>
 
       <div className="saveButton">
+        {ApiState && (
+          <div className="confirmSave">
+            <Typist typingDelay={50} restartKey={0}>
+              Ændringerne er blevet gemt ✓
+            </Typist>
+          </div>
+        )}
         <button onClick={saveChange} className="save">
           Gem
         </button>

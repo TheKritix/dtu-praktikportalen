@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import employerService from "../../../../services/employer-service";
 import { profileStore } from "../../../../stores/profileStore";
 import { toJS } from "mobx";
+import Typist from "react-typist-component";
 
 const EmployerSettings = () => {
   const user = toJS(profileStore.User);
@@ -11,11 +12,22 @@ const EmployerSettings = () => {
   const positionRef = useRef();
   const descriptionRef = useRef();
 
+  const [ApiState, setApiState] = useState(false);
+
+  const handleSaveInteraction = () => {
+    setApiState(true);
+    setTimeout(() => {
+      setApiState(false)
+    }, 2000)
+}
+
   const saveChange = () => {
     if (positionRef.current.value !== user.position) {
       user.position = positionRef.current.value;
       employerService.updateEmployerPosition(user).then(() => {
-        profileStore.updateUserData();
+        profileStore.updateUserData().then(() => {
+          handleSaveInteraction();
+        });
       });
     }
     if (
@@ -24,7 +36,9 @@ const EmployerSettings = () => {
     ) {
       user.description = descriptionRef.current.value;
       employerService.updateEmployerDescription(user).then(() => {
-        profileStore.updateUserData();
+        profileStore.updateUserData().then(() => {
+          handleSaveInteraction();
+        });;
       });
     }
   };
@@ -53,6 +67,13 @@ const EmployerSettings = () => {
       </div>
 
       <div className="saveButton">
+      {ApiState && (
+          <div className="confirmSave">
+            <Typist typingDelay={50} restartKey={0}>
+              Ændringerne er blevet gemt ✓
+            </Typist>
+          </div>
+        )}
         <button onClick={saveChange} className="save">
           Gem
         </button>
