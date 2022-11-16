@@ -26,7 +26,25 @@ const InputForm = () => {
   const [validated, setValidated] = useState(false);
   const [previewShow, setPreviewShow] = useState(false);
 
-  const handleShow = () => setPreviewShow(true);
+  const handleShow = () => {
+    if (
+      createdPost.title !== "" ||
+      createdPost.type !== "" ||
+      createdPost.company !== "" ||
+      createdPost.location !== "" ||
+      createdPost.startdate !== "" ||
+      createdPost.description !== "" ||
+      createdPost.contact !== "" ||
+      createdPost.applyToEmail !== "" ||
+      createdPost.website !== ""
+    ) {
+      setPreviewShow(true);
+      setValidated(true);
+    } else {
+      window.alert("Du har ikke udfyldt nogen felter");
+    }
+  }
+
   const handleClose = () => setPreviewShow(false);
 
   const handleChangeImage = (e) => {
