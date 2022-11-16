@@ -20,11 +20,13 @@ body {
 /* Profile title */
 .title {
   font-size: 1.8rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .profileTitle {
   border-bottom: 2px solid rgb(186, 186, 186);
+  margin-bottom: 1rem;
+
 }
 
 /* General Profile Stuff */
