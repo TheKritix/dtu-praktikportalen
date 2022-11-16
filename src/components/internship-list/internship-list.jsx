@@ -69,7 +69,25 @@ export const InternshipList = () => {
         }
     }
 
+    const updateFavoritesLocally = () => {
+        favoriteStore.favorites.forEach((d) => {
+            if (d.uid == profileStore.user.id) {
+                setStaredInternships(staredInternships.concat(d.favorite))
+                console.log("Add stars from DB")
+            }
+        })
+    }
+
     useEffect(() => {
+        console.log("useEffect() run on render")
+        updateFavoritesLocally()
+
+        /*setStaredInternships(
+            favoriteStore.favorites.filter(
+                d => d.uid == profileStore.user.id
+            ).map(filteredFavorites => (setStaredInternships(staredInternships.concat(filteredFavorites.favorite))))
+        )*/
+
         if (location.length === 0) {
             setFilteredInternships(internshipListStore.internships)
         } else {
