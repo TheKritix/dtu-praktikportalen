@@ -8,8 +8,8 @@ const PostContent = ({post}) => {
     return (
         <div className="post-left-column">
             <div className="post-banner-div">
-                <h1 className="post-banner-text">Placeholder Banner</h1>
-                <img className="post-banner" src={bannerPlaceholder} alt="postbanner"></img>    
+                {/* <h1 className="post-banner-text">Placeholder Banner</h1> */}
+                <img className="post-banner" src={post.bannerImg} alt="postbanner"></img>    
             </div>
             <div className="post-content">
                 <div>
