@@ -68,3 +68,41 @@ body {
 .flexLoad {
   flex: 2;
 }
+
+@media only screen and (max-width: 900px) {
+  .profileTitle {
+    display: none;
+  }
+
+  .profile {
+    flex-direction: column;
+  }
+
+  .profileMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .profileButton {
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+    min-width: 120px;
+    font-size: 16px;
+  }
+
+  .profile-container {
+    margin-right: 25px;
+    margin-left: 0px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .profileButton {
+    min-width: 80px;
+    width: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+}
