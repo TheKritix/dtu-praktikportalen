@@ -197,7 +197,7 @@ const ProfileSettings = () => {
             )}
           </p>
           <p className="description">
-            {user.companyName ? "Employer" : "Student"}
+            {user.companyName ? "Arbejdsgiver" : "Studerende"}
           </p>
         </div>
       </div>
@@ -220,7 +220,7 @@ const ProfileSettings = () => {
                 onComplete={(c) => setFinishedCrop(c)}
                 aspect={uploadState.type === "profile" ? 1 / 1 : 5 / 1}
               >
-                <img ref={imgRef} src={uploadBackdropImage} alt="nah" />
+                <img className="imageInPopup"ref={imgRef} src={uploadBackdropImage} alt="nah" />
               </ReactCrop>
             </div>
             <div className="buttonContainer">

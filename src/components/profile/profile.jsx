@@ -60,20 +60,22 @@ const Profile = () => {
           >
             Email
           </button>
-          <button
-            style={{
-              fontWeight: view === "password" ? "bold" : "normal",
-            }}
-            onClick={() => setView("password")}
-            className="profileButton"
-          >
-            Password
-          </button>
+          {profileStore.user.companyName && (
+            <button
+              style={{
+                fontWeight: view === "password" ? "bold" : "normal",
+              }}
+              onClick={() => setView("password")}
+              className="profileButton"
+            >
+              Password
+            </button>
+          )}
         </div>
         <div className="profileMain">
           <GetView />
         </div>
-        <div className="flexLoad"/>
+        <div className="flexLoad" />
       </div>
     </div>
   );

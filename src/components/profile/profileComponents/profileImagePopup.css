@@ -1,11 +1,16 @@
 .popupContainer {
     display: flex;
     flex-direction: column;
+    
 }
 
 .popupImage {
     margin-left: auto;
     margin-right: auto;
+}
+
+.imageInPopup {
+    height: 50%;
 }
 
 #popup-2 {

@@ -45,8 +45,7 @@ class ProfileStore {
       console.log("---> Uploading backdrop image");
       if (this.user.companyName) {
         await employerService.updateBackdropImage(this.user, file);
-      }
-      else if(this.user.studentID) {
+      } else if (this.user.studentID) {
         await studentService.updateBackdropImage(this.user, file);
       }
     }
@@ -57,13 +56,11 @@ class ProfileStore {
       console.log("---> Uploading backdrop image");
       if (this.user.companyName) {
         await employerService.updateProfileImage(this.user, file);
-      }
-      else if(this.user.studentID) {
+      } else if (this.user.studentID) {
         await studentService.updateProfileImage(this.user, file);
       }
     }
   }
-
 
   async fetchBackdropImage() {
     if (this.user && !this.backdropImage) {
@@ -72,8 +69,7 @@ class ProfileStore {
         await employerService.getBackdropImage(this.user).then((response) => {
           this.backdropImage = URL.createObjectURL(new Blob([response.data]));
         });
-      }
-      else if (this.user.studentID) {
+      } else if (this.user.studentID) {
         await studentService.getBackdropImage(this.user).then((response) => {
           this.backdropImage = URL.createObjectURL(new Blob([response.data]));
         });
@@ -88,8 +84,7 @@ class ProfileStore {
         await employerService.getProfileImage(this.user).then((response) => {
           this.profileImage = URL.createObjectURL(new Blob([response.data]));
         });
-      }
-      else if (this.user.studentID) {
+      } else if (this.user.studentID) {
         await studentService.getProfileImage(this.user).then((response) => {
           this.profileImage = URL.createObjectURL(new Blob([response.data]));
         });
@@ -98,16 +93,35 @@ class ProfileStore {
   }
 
   async updateUserData() {
-    (console.log("----> Update User Data"))
+    console.log("----> Update User Data");
     if (this.user && this.user.companyName) {
       await employerService.getEmployer(this.user).then(() => {
         this.user = authService.getCurrentUser();
-      })
-    }
-    else if (this.user && this.user.studentID) {
+      });
+    } else if (this.user && this.user.studentID) {
       await studentService.getStudent(this.user).then(() => {
         this.user = authService.getCurrentUser();
-      })
+      });
+    }
+  }
+
+  async updateEmail() {
+    if (this.user) {
+      console.log("---> Updating user email");
+      if (this.user.companyName) {
+        await employerService.updateEmployerEmail(this.user);
+      } else if (this.user.studentID) {
+        await studentService.updateStudentEmail(this.user);
+      }
+    }
+  }
+
+  async updateEmployerPassword() {
+    if (this.user) {
+      console.log("---> Updating user password");
+      if (this.user.companyName) {
+        await employerService.updateEmployerPassword(this.user);
+      }
     }
   }
 
