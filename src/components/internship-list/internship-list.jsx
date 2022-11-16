@@ -9,7 +9,7 @@ import {internshipListStore} from "./internship-list-store";
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react";
 import {profileStore} from "../../stores/profileStore";
-import {favoriteStore} from "./favoritestore";
+import {favoriteStore} from "../internship-list/favoritestore";
 
 
 const locations = [
