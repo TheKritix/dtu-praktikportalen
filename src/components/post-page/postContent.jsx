@@ -24,7 +24,15 @@ const PostContent = ({post}) => {
                 </div>
                 <div className="post-overview">
                     <h4>Overblik</h4>
-                    <h6 className="post-description">{post.description}</h6>
+                    {post.description.split("\n").map((text) => {
+                        return (
+                            <h6 className="post-description">
+                                {text}
+                                <br/>
+                            </h6>
+                        )
+                    })
+                    }
                 </div>
             </div>
         </div>
