@@ -82,7 +82,7 @@ export const InternshipList = () => {
 
     const updateFavoritesLocally = () => {
         const localStaredInternships = []
-        if (profileStore.user.id) {
+        if (profileStore?.user?.id) {
             favoriteStore.favorites.forEach((d) => {
                 if (d.uid == profileStore.user.id) {
                     localStaredInternships.push(d.favorite)
