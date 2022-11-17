@@ -50,8 +50,8 @@ const TestApi = "http://localhost:3000/api/post"
     // //todo: delete
 
 const postService = {
-    fetchPosts,
-    getPosts,
+    // fetchPosts,
+    // getPosts,
     uploadPost,
     uploadBannerImage
 };
