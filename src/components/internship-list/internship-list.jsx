@@ -69,6 +69,7 @@ export const InternshipList = () => {
         }
     }
 
+    /*
     const updateFavoritesLocally = () => {
         favoriteStore.favorites.forEach((d) => {
             if (d.uid == profileStore.user.id) {
@@ -77,16 +78,27 @@ export const InternshipList = () => {
             }
         })
     }
+    */
+
+    const updateFavoritesLocally = () => {
+        const localStaredInternships = []
+        if (profileStore.user.id) {
+            favoriteStore.favorites.forEach((d) => {
+                if (d.uid == profileStore.user.id) {
+                    localStaredInternships.push(d.favorite)
+                    console.log("Adding " + d.favorite + " to local list")
+                }
+            })
+        }
+
+        console.log("Local list: " + localStaredInternships)
+        setStaredInternships(localStaredInternships)
+        console.log("Local list set state")
+    }
 
     useEffect(() => {
         console.log("useEffect() run on render")
         updateFavoritesLocally()
-
-        /*setStaredInternships(
-            favoriteStore.favorites.filter(
-                d => d.uid == profileStore.user.id
-            ).map(filteredFavorites => (setStaredInternships(staredInternships.concat(filteredFavorites.favorite))))
-        )*/
 
         if (location.length === 0) {
             setFilteredInternships(internshipListStore.internships)
