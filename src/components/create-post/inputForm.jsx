@@ -3,7 +3,7 @@ import bannerPlaceholder from "../../res/images/PlaceholderBanner.png";
 import Button from "react-bootstrap/Button";
 import "../create-post/inputForm.css";
 import { useState } from "react";
-import { uploadPost } from "../../services/PostService";
+import { uploadPost } from "../../services/post-service";
 import Modal from "react-bootstrap/Modal";
 import PostContent from "../post-page/postContent"
 import PostContactInfo from "../post-page/postContactInfo";

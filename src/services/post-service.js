@@ -1,24 +1,21 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const TestApi = "http://localhost:3000/api/post"
 // const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
-
-    // export const fetchPosts = () => {
-    //     axios.get(TestApi)
-    //     .then((response) => {
-    //         console.log(response.data)
-    //         return response.data
-    //     })     
+    // const fetchPosts = async () => {
+    //     const response = await axios.get(TestApi, { headers: authHeader() });
+    //     return response;     
     // }
     
-    export const fetchPosts = () => {
-        fetch(TestApi)
-            .then((response) => response.json())
-            .then((responseJson) => {
-                return responseJson;
-            })
-    }
+    // export const getPosts = () => {
+    //     fetch(TestApi)
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             return responseJson;
+    //         })
+    // }
     
 
     //more values to be added
@@ -54,6 +51,7 @@ const TestApi = "http://localhost:3000/api/post"
 
 const postService = {
     fetchPosts,
+    getPosts,
     uploadPost,
     uploadBannerImage
 };

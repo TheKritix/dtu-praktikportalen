@@ -13,7 +13,7 @@ import { postStore } from "../stores/post-store";
 
 
 const PostPage = () => {
-
+    
     // const { _id } = useParams();
     // const postId = parseInt(_id); 
 
@@ -23,12 +23,23 @@ const PostPage = () => {
     const store = postStore;
 
     // eslint-disable-next-line no-unused-vars
-    const [fetchedPosts, setFetchedPosts] = useState([]);
+     const [fetchedPosts, setFetchedPosts] = useState([]);
     
-    useEffect(() => {
-        store.fetchPost();
-        setFetchedPosts(store.posts);
-    }, [])
+    // useEffect(() => {
+    //     store.fetchPost();
+    //     setFetchedPosts(store.posts);
+    // }, [])
+
+    const getPost = () => {
+        store.fetchPosts().then(() => {
+          setFetchedPosts(store.posts);
+        });
+        
+      };
+    
+      useEffect(() => {
+        getPost();
+      }, []);
     
     return (
         <div>
@@ -46,4 +57,4 @@ const PostPage = () => {
 
 }
 
-export default observer(PostPage);
+export default PostPage;
