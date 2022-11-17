@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import LoginEmployee from "../login/login";
 
 //XXXX IMAGES XXXX
@@ -100,8 +102,32 @@ const Header = () => {
       </Container>
 
       <div className="d-flex flex-column landingpage-content-h mt-5">
-        <p className="mx-auto mt-5">Se alle opslag</p>
+        <Button variant="outline-primary" size="sm" className="mx-auto mb-2">
+          <span>Se alle opslag</span>
+        </Button>
         <h2 className="mx-auto">Udvalgte Praktik Pladser</h2>
+
+        <Row xs={1} md={4} className="header-cards d-flex mx-auto mb-2 mt-5">
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <Col key={idx} className="d-flex mx-auto mb-4">
+              <Card style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>Card title</Card.Title>
+                  <Card.Text>
+                    This is a longer card with supporting text below as a
+                    natural lead-in to additional content. This content is a
+                    little bit longer.
+                  </Card.Text>
+                  <Card.Link href="#">Card Link</Card.Link>
+                  <Card.Link href="#">Another Link</Card.Link>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       </div>
       <LoginEmployee
         show={showLogin}

@@ -49,6 +49,13 @@ body {
     .dtutext{
         display: none;
     }
+
+    .header-cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
 }
   
   
