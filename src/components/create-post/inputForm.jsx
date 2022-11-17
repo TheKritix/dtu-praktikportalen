@@ -72,10 +72,6 @@ const InputForm = () => {
     }
   };
 
-  // useEffect(() => {
-  //     setCreatedPost([defaultObject])
-  // }, [])
-
   return (
     <Form
       className="form-container"
