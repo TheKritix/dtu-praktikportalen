@@ -68,6 +68,7 @@ const InputForm = () => {
     }
   }
 
+
   const handleChangePost = (e) => {
     // if (e.target.name === "bannerImg") {
     //     saveFile(e);
@@ -138,10 +139,10 @@ const InputForm = () => {
               onChange={handleChangePost}
             >
               <option value="">Vælg type</option>
-              <option value="elev">Elev</option>
-              <option value="praktik">Praktik</option>
-              <option value="fuldtid">Fuldtid</option>
-              <option value="deltid">Deltid</option>
+              <option value="Elev">Elev</option>
+              <option value="Praktik">Praktik</option>
+              <option value="Fuldtid">Fuldtid</option>
+              <option value="Deltid">Deltid</option>
             </Form.Select>
 
             <h3 className="form-titel-text">Firmanavn</h3>
