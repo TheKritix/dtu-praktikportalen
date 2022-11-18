@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 import "@fontsource/poppins";
 import authService from "../../services/auth-service";
+import { getAllPosts } from "../../services/post-service";
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -21,6 +22,7 @@ const Header = () => {
   const handleClose = () => setShowLogin(false);
   const handleShow = () => setShowLogin(true);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
@@ -28,8 +30,20 @@ const Header = () => {
     } else {
       setCurrentUser(undefined);
     }
+    fetchPosts();
+    console.log(posts);
   }, []);
 
+  const fetchPosts = () => {
+    getAllPosts()
+      .then((response) => {
+        setPosts(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   /*
   useEffect(() => {
     searchParam.get("ticket");
@@ -108,25 +122,28 @@ const Header = () => {
         <h2 className="mx-auto">Udvalgte Praktik Pladser</h2>
 
         <Row xs={1} md={4} className="header-cards d-flex mx-auto mb-2 mt-5">
-          {Array.from({ length: 4 }).map((_, idx) => (
-            <Col key={idx} className="d-flex mx-auto mb-4">
-              <Card style={{ width: "18rem" }}>
-                <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
-                  </Card.Text>
-                  <Card.Link href="#">Card Link</Card.Link>
-                  <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-              </Card>
-            </Col>
-          ))}
+          {posts &&
+            posts.map((post) => {
+              return (
+                <Col key={post} className="d-flex mx-auto mb-4">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Body>
+                      <Card.Title>{post.title}</Card.Title>
+                      <Card.Text>
+                        {post.description.substring(0, 200)}
+                      </Card.Text>
+                      <Card.Link href="#">Card Link</Card.Link>
+                      <Card.Link href="#">Another Link</Card.Link>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Last updated 3 mins ago
+                      </small>
+                    </Card.Footer>
+                  </Card>
+                </Col>
+              );
+            })}
         </Row>
       </div>
       <LoginEmployee

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const TestApi = "http://localhost:3000/api/post"
 // const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
-const API_URL = process.env.REACT_APP_API;
+const API_URL = process.env.REACT_APP_API_LOCAL;
 
 export const fetchPosts = () => {
   axios.get(API_URL + "post").then((response) => {
@@ -11,6 +11,9 @@ export const fetchPosts = () => {
   });
 };
 
+export const getAllPosts = (params) => {
+  return axios.get(API_URL + "post", { params });
+};
 //more values to be added
 export const uploadPost = (post) => {
   return axios.post(API_URL + "post", {
