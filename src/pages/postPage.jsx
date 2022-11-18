@@ -19,6 +19,7 @@ const PostPage = () => {
 
     //should take id from url with useParams
     const TempPostId = '63665d74b69993bfc623890a'
+    const TempPostId2 = '637765dfbda9c12623b36d0a'
 
     const store = postStore;
 
@@ -43,7 +44,7 @@ const PostPage = () => {
     
     return (
         <div>
-            {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post, i) => (
+            {fetchedPosts?.filter((posts) => posts._id === TempPostId2).map((post, i) => (
                 <div className="post-container">
                     <PostContent post={post}/>
                     <PostContactInfo post={post}/>

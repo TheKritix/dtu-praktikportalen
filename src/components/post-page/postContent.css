@@ -32,8 +32,7 @@
 
 .post-overview {
     margin-top: 5vh;
-    width: 55rem;
-    max-width: 100%;
+    width: 70rem;
     display: flex;
     flex-direction: column;
 }
