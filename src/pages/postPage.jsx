@@ -2,7 +2,6 @@ import PostContent from "../components/post-page/postContent";
 import PostContactInfo from "../components/post-page/postContactInfo";
 import "./postPage.css";
 import {useState, useEffect} from "react";
-import {observer} from 'mobx-react-lite';
 import FeedbackSection from '../components/feedback-section/feedbackSection';
 // import { useParams } from "react-router-dom";
 import { postStore } from "../stores/post-store";
@@ -18,8 +17,9 @@ const PostPage = () => {
     // const postId = parseInt(_id); 
 
     //should take id from url with useParams
+    // eslint-disable-next-line no-unused-vars
     const TempPostId = '63665d74b69993bfc623890a'
-    const TempPostId2 = '637765dfbda9c12623b36d0a'
+    const TempPostId2 = '637805eccc1e18b7cc68ecb2'
 
     const store = postStore;
 
@@ -35,18 +35,18 @@ const PostPage = () => {
         store.fetchPosts().then(() => {
           setFetchedPosts(store.posts);
         });
-        
-      };
+    };
     
-      useEffect(() => {
-        getPost();
-      }, []);
+    useEffect(() => {
+      getPost();
+      console.log(fetchedPosts)
+    }, []);
     
     return (
         <div>
             {fetchedPosts?.filter((posts) => posts._id === TempPostId2).map((post, i) => (
                 <div className="post-container">
-                    <PostContent post={post}/>
+                    <PostContent post={post} review={false}/>
                     <PostContactInfo post={post}/>
                 </div>
                 ))

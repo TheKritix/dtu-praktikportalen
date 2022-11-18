@@ -10,7 +10,9 @@ const TestApi = "http://localhost:3000/api/post"
 class PostStore {
 
     posts;
-    bannerImage; 
+    selectedPost;
+    postID;
+    bannerImageID; 
 
     constructor() {
         makeAutoObservable(this, {}, {autoBind: true})
@@ -32,9 +34,14 @@ class PostStore {
     }
 
 
-
     async uploadBannerImage(file) {
-        await postService.uploadBannerImage(this.post, file);
+        await postService.uploadBannerImage(this.postID, file);
+    }
+
+    async fetchBannerImage(post) {
+        await postService.getBannerImage(post).then((response) => {
+            this.bannerImage = URL.createObjectURL(new Blob([response.data]));
+        })
     }
 
     // //todo: post, put, delete async functions
