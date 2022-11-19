@@ -19,7 +19,7 @@ const PostPage = () => {
     //should take id from url with useParams
     // eslint-disable-next-line no-unused-vars
     const TempPostId = '63665d74b69993bfc623890a'
-    const TempPostId2 = '637805eccc1e18b7cc68ecb2'
+    const TempPostId2 = '6378b5b6c597bf8460702333'
 
     const store = postStore;
 
