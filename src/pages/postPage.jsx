@@ -24,18 +24,14 @@ const PostPage = () => {
     const store = postStore;
 
     // eslint-disable-next-line no-unused-vars
-     const [fetchedPosts, setFetchedPosts] = useState([]);
-    
-    // useEffect(() => {
-    //     store.fetchPost();
-    //     setFetchedPosts(store.posts);
-    // }, [])
+    const [fetchedPosts, setFetchedPosts] = useState([]);    
 
     const getPost = () => {
         store.fetchPosts().then(() => {
           setFetchedPosts(store.posts);
         });
     };
+
     
     useEffect(() => {
       getPost();
