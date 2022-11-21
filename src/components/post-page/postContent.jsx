@@ -61,4 +61,4 @@ const PostContent = ({post, review}) => {
     );
 }
 
-export default observer(PostContent); 
+export default PostContent; 

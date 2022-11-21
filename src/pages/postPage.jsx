@@ -3,7 +3,7 @@ import PostContactInfo from "../components/post-page/postContactInfo";
 import "./postPage.css";
 import {useState, useEffect} from "react";
 import FeedbackSection from '../components/feedback-section/feedbackSection';
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { postStore } from "../stores/post-store";
 // import { fetchPosts } from "../services/PostService"
 
@@ -13,9 +13,8 @@ import { postStore } from "../stores/post-store";
 
 const PostPage = () => {
     
-    // const { _id } = useParams();
-    // const postId = parseInt(_id); 
-
+    const postId = useParams();
+    console.log(postId.postId)
     //should take id from url with useParams
     // eslint-disable-next-line no-unused-vars
     const TempPostId = '63665d74b69993bfc623890a'
@@ -28,7 +27,7 @@ const PostPage = () => {
 
     const getPost = () => {
         store.fetchPosts().then(() => {
-          setFetchedPosts(store.posts);
+          setFetchedPosts(store.posts.filter((posts) => posts._id === postId.postId))
         });
     };
 
@@ -40,7 +39,7 @@ const PostPage = () => {
     
     return (
         <div>
-            {fetchedPosts?.filter((posts) => posts._id === TempPostId2).map((post, i) => (
+            {fetchedPosts?.map((post, i) => (
                 <div className="post-container">
                     <PostContent post={post} review={false}/>
                     <PostContactInfo post={post}/>

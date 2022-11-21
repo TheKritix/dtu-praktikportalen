@@ -29,7 +29,7 @@ function App() {
           }
         />
         <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/post" element={<PostPage />} />
+        <Route path="/post/:postId" element={<PostPage />} />
         <Route path="/internships" element={<InternshipList />} />
         <Route path="/employer" element={<EmployerContent />} />
         {/* <Route path="/dtu-praktikportalen" element={<Navigate to="/" />} /> */}
