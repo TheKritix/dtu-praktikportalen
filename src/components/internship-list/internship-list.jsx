@@ -11,25 +11,28 @@ import { profileStore } from "../../stores/profileStore";
 import { favoriteStore } from "./favoritestore";
 import {postStore} from "../../stores/post-store";
 
-const locations = [
-  { location: "Danmark" },
-  { location: "Sverige" },
-  { location: "Norge" },
-  { location: "Remote" },
+const types = [
+  { type: "Elev" },
+  { type: "Praktik" },
+  { type: "Deltid" },
+  { type: "Fuldtid" },
 ];
 
 const socialBenefits = [{ social: "Fredagsbar" }, { social: "Frokostordning" }];
 
 export const InternshipList = () => {
   const store = postStore
-  const getPosts = () => {
-    store.fetchPosts().then()
-
-  }
 
   const navigate = useNavigate()
 
-  const [location, setLocation] = useState([]);
+  const [type, setType] = useState([]);
+
+  /*const lowerCaseTypes = []
+
+  types.forEach(element => {
+    lowerCaseTypes.push(element.toLowerCase());
+  });*/
+
   const [socialBenefit, setSocialBenefits] = useState([]);
 
   const [filteredInternships, setFilteredInternships] = useState([]);
@@ -76,7 +79,7 @@ export const InternshipList = () => {
         style={{ cursor: "pointer" }}
         onClick={() => gotoInternshipPost(d._id)}
       >
-        Startdato: {d.startDate} • Lokation: {d.location}
+        Type: {d.type} • Startdato: {d.startDate} • Lokation: {d.location}
       </p>
       <p
         style={{ cursor: "pointer" }}
@@ -93,12 +96,13 @@ export const InternshipList = () => {
     </Card>
   ));
 
-  const handleLocationChange = (e) => {
+  const handleTypeFiltering = (e) => {
     if (e.target.checked) {
-      setLocation([...location, e.target.value]);
+      setType([...type, e.target.value]);
     } else {
-      setLocation(location.filter((id) => id !== e.target.value));
+      setType(type.filter((id) => id !== e.target.value));
     }
+    console.log(type)
   };
 
   const updateFavoritesLocally = () => {
@@ -122,21 +126,32 @@ export const InternshipList = () => {
   useEffect(() => {
     console.log("useEffect() run on render");
     updateFavoritesLocally();
+    console.log("Types: " + types)
+    //console.log("Lowercase Types: " + lowerCaseTypes)
 
-    if (location.length === 0) {
+    if (type.length === 0) {
       store.fetchPosts().then(() => {
         setFilteredInternships(store.posts);
       });
     } else {
       setFilteredInternships(
-        store.posts.filter((internship) =>
-          location.some((location) =>
-            [internship.location].flat().includes(location)
+          store.posts.filter((post) =>
+              type.some((type) =>
+                  [post.type].toString().toLowerCase().includes(type.toLowerCase())
+              )
+          )
+      );
+    }
+    /*{
+      setFilteredInternships(
+          store.posts.filter((post) =>
+          type.some((type) =>
+            [post.type].includes(type.toLowerCase())
           )
         )
       );
-    }
-  }, [location]);
+    }*/
+  }, [type]);
 
   return (
     <div>
@@ -151,14 +166,14 @@ export const InternshipList = () => {
               <h4 className="">Filtrér søgning:</h4>
 
               <Form>
-                <h6>Lokation</h6>
-                {locations.map((location) => (
-                  <React.Fragment key={location.location}>
+                <h6>Jobtype</h6>
+                {types.map((type) => (
+                  <React.Fragment key={type.type}>
                     <Form.Check
-                      onChange={handleLocationChange}
+                      onChange={handleTypeFiltering}
                       type="checkbox"
-                      label={location.location}
-                      value={location.location}
+                      label={type.type}
+                      value={type.type}
                     />
                   </React.Fragment>
                 ))}
@@ -171,7 +186,7 @@ export const InternshipList = () => {
                 {socialBenefits.map((benefit) => (
                   <React.Fragment key={benefit.social}>
                     <Form.Check
-                      onChange={handleLocationChange}
+                      onChange={handleTypeFiltering}
                       type="checkbox"
                       label={benefit.social}
                       value={benefit.social}
