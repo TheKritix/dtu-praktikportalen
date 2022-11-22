@@ -1,13 +1,18 @@
-import { render, screen } from "@testing-library/react";
-import { mount } from "enzyme";
+import { render } from "@testing-library/react";
+import { mount, shallow } from "enzyme";
 
 import { profileStore } from "../stores/profileStore";
 import Password from "../components/profile/profileComponents/passwordSettings";
 import Email from "../components/profile/profileComponents/emailSettings";
+import ProfileSettings from "../components/profile/profileComponents/profileSettings";
+import EmployerSettings from "../components/profile/profileComponents/settings/employerSettings";
+import StudentSettings from "../components/profile/profileComponents/settings/studentSettings";
+import Profile from "../components/profile/profile";
 
 import "../../enzymConfig";
 
 import App from "../App";
+
 
 //Source: https://github.com/axios/axios/issues/5101
 //Source: https://jestjs.io/docs/tutorial-react
@@ -27,13 +32,13 @@ const setLocalStorage = () => {
   window.localStorage.setItem("user", JSON.stringify(user));
 };
 
-test("render password", () => {
-  render(<Password />);
-});
-
 test("localstorage test", () => {
   setLocalStorage();
   expect(localStorage.getItem("user")).toEqual(JSON.stringify(user));
+});
+
+test("render password", () => {
+  render(<Password />);
 });
 
 test("render email", () => {
@@ -41,4 +46,32 @@ test("render email", () => {
   profileStore.fetchUserInformation().then(() => {
     render(<Email />);
   });
+});
+
+test("render profileSettings", () => {
+  setLocalStorage();
+  profileStore.fetchUserInformation().then(() => {
+    render(<ProfileSettings />);
+  });
+});
+
+test("render studentSettings", () => {
+  setLocalStorage();
+  profileStore.fetchUserInformation().then(() => {
+    render(<StudentSettings />);
+  });
+});
+
+test("render employerSettings", () => {
+  setLocalStorage();
+  profileStore.fetchUserInformation().then(() => {
+    render(<EmployerSettings />);
+  });
+});
+
+test("render profile", () => {
+    setLocalStorage();
+    profileStore.fetchUserInformation().then(() => {
+      render(<Profile />);
+    });
 });
