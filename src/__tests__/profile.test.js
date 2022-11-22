@@ -1,6 +1,8 @@
-import renderer from 'react-test-renderer';
-
+import { render, screen } from '@testing-library/react'
+import {jest} from '@jest/globals';
 import Password from "../components/profile/profileComponents/passwordSettings"
+
+jest.useFakeTimers();
 
 // const Profile = require("../components/profile/profile");
 // const ProfileSettings = require("../components/profile/profileComponents/profileSettings");
@@ -8,6 +10,7 @@ import Password from "../components/profile/profileComponents/passwordSettings"
 
 // const ProfileStore = require("../stores/profileStore");
 
-it('render profile', () => {
-    const component = renderer.create(<Password />)
+test('render profile', () => {
+    render(<Password />)
 })
+
