@@ -11,7 +11,6 @@ class FavoriteStore {
 
     constructor() {
         makeAutoObservable(this,{},{autoBind:true})
-        this.fetchFavorite()
     }
 
     addFavorite = (postID) => {
@@ -27,8 +26,8 @@ class FavoriteStore {
         })
     }
 
-    fetchFavorite (){
-        fetch(baseUrl + "api/favorite").then(
+    async fetchFavorite (){
+        await fetch(baseUrl + "api/favorite").then(
             (response)=> response.json().then(
                 (json)=> runInAction(()=>this.favorites=json)
             )

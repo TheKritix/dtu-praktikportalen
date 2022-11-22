@@ -8,19 +8,22 @@ class InternshipListStore {
 
     constructor() {
         makeAutoObservable(this,{},{autoBind:true})
-        this.fetchInternships()
     }
 
     addInternship = (internship)=> {
         this.internships.push(internship);
     }
 
-    fetchInternships (){
-        fetch(testApi).then(
+    async fetchInternships (){
+        await fetch(testApi).then(
             (response)=> response.json().then(
                 (json)=> runInAction(()=>this.internships=json)
             )
         )
+    }
+
+    get Internship() {
+        return this.internships;
     }
 
 }
