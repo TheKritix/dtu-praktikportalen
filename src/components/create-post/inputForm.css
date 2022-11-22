@@ -70,3 +70,35 @@
     border-color: rgb(183, 0, 0) !important;
 }
 
+@media only screen and (max-width: 900px) {
+    .form-container {
+        width: 100%;
+    }
+
+    .form-content {
+        display: flex-box;
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+    }
+
+    .form-titel-text {
+        font-size: 12px;
+    }
+
+    .form-input {
+        height: 2rem;
+        margin-bottom: 2.5vh;
+        background-color: rgb(245, 245, 245);
+        font-size: 10px;
+    }
+
+    .left-input-content {
+        width: 90%;
+    }
+    
+    .right-input-content {
+        width: 100%;
+    }
+  
+  }
