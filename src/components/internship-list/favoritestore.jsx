@@ -27,7 +27,7 @@ class FavoriteStore {
         })
     }
 
-    fetchFavorite (){
+    async fetchFavorite (){
         fetch(baseUrl + "api/favorite").then(
             (response)=> response.json().then(
                 (json)=> runInAction(()=>this.favorites=json)
