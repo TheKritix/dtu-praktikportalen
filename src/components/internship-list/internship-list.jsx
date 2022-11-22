@@ -64,14 +64,13 @@ export const InternshipList = () => {
         style={{ cursor: "pointer" }}
         onClick={() => gotoInternshipPost(d._id)}
       >
-        {d.description}
+        {d.description.split(".")[0] + "."}
       </Card.Text>
       <p
         style={{ cursor: "pointer" }}
         onClick={() => gotoInternshipPost(d._id)}
       >
-        Startdato: {d.startDate} • Lokation: {d.location} • Afløning:{" "}
-        {d.compensation}
+        Startdato: {d.startDate} • Lokation: {d.location}
       </p>
       <p
         style={{ cursor: "pointer" }}
