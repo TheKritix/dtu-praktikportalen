@@ -5,11 +5,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Form } from "react-bootstrap";
-import { internshipListStore } from "./internship-list-store";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react";
 import { profileStore } from "../../stores/profileStore";
 import { favoriteStore } from "./favoritestore";
+import {postStore} from "../../stores/post-store";
 
 const locations = [
   { location: "Danmark" },
@@ -21,7 +21,13 @@ const locations = [
 const socialBenefits = [{ social: "Fredagsbar" }, { social: "Frokostordning" }];
 
 export const InternshipList = () => {
-  const navigate = useNavigate();
+  const store = postStore
+  const getPosts = () => {
+    store.fetchPosts().then()
+
+  }
+
+  const navigate = useNavigate()
 
   const [location, setLocation] = useState([]);
   const [socialBenefit, setSocialBenefits] = useState([]);
@@ -118,13 +124,12 @@ export const InternshipList = () => {
     updateFavoritesLocally();
 
     if (location.length === 0) {
-      internshipListStore.fetchInternships().then(() => {
-        setFilteredInternships(internshipListStore.internships);
-        console.log(internshipListStore.Internship);
+      store.fetchPosts().then(() => {
+        setFilteredInternships(store.posts);
       });
     } else {
       setFilteredInternships(
-        internshipListStore.internships.filter((internship) =>
+        store.posts.filter((internship) =>
           location.some((location) =>
             [internship.location].flat().includes(location)
           )
