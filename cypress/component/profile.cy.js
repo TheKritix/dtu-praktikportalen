@@ -1,5 +1,4 @@
 import Password from "../../src/components/profile/profileComponents/passwordSettings"
-import Email from "../../src/components/profile/profileComponents/emailSettings"
 
 describe('Password Component Test', () => {
   it('Password Test', () => {
