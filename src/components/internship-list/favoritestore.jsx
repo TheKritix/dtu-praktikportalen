@@ -1,6 +1,7 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import axios from "axios";
 import {profileStore} from "../../stores/profileStore";
+import authHeader from "../../services/auth-header";
 
 //TODO("Ombyt")
 //const baseUrl = process.env.NODE_ENV === 'development' ?  "https://api.praktikportal.diplomportal.dk/":""; //Check if dev environment
@@ -14,10 +15,10 @@ class FavoriteStore {
     }
 
     addFavorite = (postID) => {
-        return axios.post(baseUrl +"api/favorite", {
+        return axios.post(baseUrl +"api/favorite",{
             uid: profileStore.user.id,
             favorite: postID
-        })
+        }, { headers: authHeader()})
     }
 
     deleteFavorite = (user, postID) => {
@@ -26,11 +27,11 @@ class FavoriteStore {
             favorite: postID
         }
         console.log("OMEGA SHIT")
-        return axios.put(baseUrl + "api/favorite", thingyIWantToSend)
+        return axios.put(baseUrl + "api/favorite", thingyIWantToSend, { headers: authHeader() })
     }
 
     async fetchFavorite (){
-        await axios.get(baseUrl + "api/favorite").then((response) => {
+        await axios.get(baseUrl + "api/favorite", { headers: authHeader() }).then((response) => {
             this.favorites = response.data;
         })
     }
