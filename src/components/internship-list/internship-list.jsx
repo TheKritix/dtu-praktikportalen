@@ -105,16 +105,11 @@ export const InternshipList = () => {
             console.log("Adding " + d.favorite + " to local list");
           }
         });
+        setStaredInternships(localStaredInternships)
       }
 
       console.log("Local list: " + localStaredInternships);
-      internshipListStore.fetchInternships();
-      favoriteStore.fetchFavorite().then(() => {
-        console.log("Local list set state");
-        setStaredInternships(localStaredInternships);
-      });
-
-      setFilteredInternships(internshipListStore.internships);
+      //setFilteredInternships(internshipListStore.internships);
     });
   };
 
