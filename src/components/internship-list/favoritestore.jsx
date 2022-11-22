@@ -22,12 +22,12 @@ class FavoriteStore {
     }
 
     deleteFavorite = (user, postID) => {
-        const thingyIWantToSend = {
+        const favorite = {
             uid: user.id,
             favorite: postID
         }
         console.log("OMEGA SHIT")
-        return axios.put(baseUrl + "api/favorite", thingyIWantToSend, { headers: authHeader() })
+        return axios.put(baseUrl + "api/favorite", favorite, { headers: authHeader() })
     }
 
     async fetchFavorite (){
