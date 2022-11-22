@@ -34,7 +34,6 @@ export const InternshipList = () => {
     const [filteredInternships, setFilteredInternships] = useState([])
 
     const [staredInternships, setStaredInternships] = useState([])
-
     const addToFavorites = id => {
         if (!staredInternships.includes(id)) setStaredInternships(staredInternships.concat(id))
         favoriteStore.addFavorite(id)
@@ -43,7 +42,6 @@ export const InternshipList = () => {
             "InternshipID: " + id
         )
     }
-    //TODO("Remove skal enten implementeres ordentligt, eller funktionen skal helt fjernes")
     const removeFavorites = id => {
         let index = staredInternships.indexOf(id)
         let temp = [...staredInternships.slice(0, index), ...staredInternships.slice(index + 1)]
@@ -71,18 +69,35 @@ export const InternshipList = () => {
         }
     }
 
+    /*
+    const updateFavoritesLocally = () => {
+        favoriteStore.favorites.forEach((d) => {
+            if (d.uid == profileStore.user.id) {
+                setStaredInternships(staredInternships.concat(d.favorite))
+                console.log("Add stars from DB")
+            }
+        })
+    }
+    */
+
     const updateFavoritesLocally = () => {
         const localStaredInternships = []
-        if (profileStore?.user?.id) {
+        if (profileStore.user.id) {
             favoriteStore.favorites.forEach((d) => {
                 if (d.uid == profileStore.user.id) {
                     localStaredInternships.push(d.favorite)
+                    console.log("Adding " + d.favorite + " to local list")
                 }
             })
         }
+
+        console.log("Local list: " + localStaredInternships)
+        setStaredInternships(localStaredInternships)
+        console.log("Local list set state")
     }
 
     useEffect(() => {
+        console.log("useEffect() run on render")
         updateFavoritesLocally()
 
         if (location.length === 0) {
