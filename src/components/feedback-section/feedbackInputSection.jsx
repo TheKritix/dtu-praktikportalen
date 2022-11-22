@@ -71,7 +71,7 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
     console.log("AVERAGE RATING:");
     console.log(avg);
     setAverageRating(avg);
-  }, []);
+  });
 
 
   return (
@@ -83,7 +83,7 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
     >
       <div className="feedback-input-content">
         <Form.Group>
-          <h3 className="feedback-input-header">{avgRating} stjerner baseret på {feedbacks.length} feedbacks</h3>
+          <h3 className="feedback-input-header"><span id="avgRating">{avgRating}</span>/5 stjerner baseret på {feedbacks.length} feedbacks</h3>
           <Form.Control
             className="text-input"
             placeholder="Giv feedback"
