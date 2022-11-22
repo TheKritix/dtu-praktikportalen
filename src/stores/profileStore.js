@@ -12,6 +12,7 @@ class ProfileStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.fetchUserInformation();
   }
 
   async fetchUserInformation() {

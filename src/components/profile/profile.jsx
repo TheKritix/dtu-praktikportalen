@@ -9,9 +9,6 @@ import { profileStore } from "../../stores/profileStore";
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const Profile = () => {
-  //Initiating Store and User
-  profileStore.fetchUserInformation();
-
   const [view, setView] = useState("profile");
 
   const GetView = () => {
