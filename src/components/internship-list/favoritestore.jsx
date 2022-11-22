@@ -20,18 +20,19 @@ class FavoriteStore {
         })
     }
 
-    deleteFavorite = (postID) => {
-        return axios.delete(baseUrl + "api/favorite/delete", {
-
-        })
+    deleteFavorite = (user, postID) => {
+        const thingyIWantToSend = {
+            uid: user.id,
+            favorite: postID
+        }
+        console.log("OMEGA SHIT")
+        return axios.put(baseUrl + "api/favorite", thingyIWantToSend)
     }
 
     async fetchFavorite (){
-        await fetch(baseUrl + "api/favorite").then(
-            (response)=> response.json().then(
-                (json)=> runInAction(()=>this.favorites=json)
-            )
-        )
+        await axios.get(baseUrl + "api/favorite").then((response) => {
+            this.favorites = response.data;
+        })
     }
 
 }

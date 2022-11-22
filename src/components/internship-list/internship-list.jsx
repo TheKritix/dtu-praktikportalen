@@ -42,6 +42,7 @@ export const InternshipList = () => {
       ...staredInternships.slice(index + 1),
     ];
     setStaredInternships(temp);
+    favoriteStore.deleteFavorite(profileStore.User, id)
   };
 
   const gotoInternshipPost = (e) => {
