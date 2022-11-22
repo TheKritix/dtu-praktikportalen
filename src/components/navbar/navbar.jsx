@@ -82,13 +82,13 @@ const Navbar = () => {
             >
               Profil(TEMP)
             </Link>
-            <Link
+            {/* <Link
               to="/post"
               style={{ textDecoration: "none", color: "black" }}
               className=" me-5 mt-1"
             >
               Post(TEMP)
-            </Link>
+            </Link> */}
             <Link
               to="/createpost"
               style={{ textDecoration: "none", color: "black" }}
