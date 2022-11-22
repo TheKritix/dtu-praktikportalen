@@ -33,9 +33,11 @@ export const InternshipList = () => {
     lowerCaseTypes.push(element.toLowerCase());
   });*/
 
-  const [socialBenefit, setSocialBenefits] = useState([]);
+  const [search, setSearch] = useState("");
 
   const [filteredInternships, setFilteredInternships] = useState([]);
+  const stagedFilteredInternships = []
+  let stagedSearch = []
 
   const [staredInternships, setStaredInternships] = useState([]);
   const addToFavorites = (id) => {
@@ -105,6 +107,18 @@ export const InternshipList = () => {
     console.log(type)
   };
 
+  const handleSearch = (e) => {
+    if (!e.target.value) {
+      setSearch("")
+    } else {
+      setSearch(e.target.value)
+    }
+    //setSearch(postStore.posts.filter(post => post.title.includes(e.target.value)))
+    //setSearch(stagedSearch)
+    //setSearch(e.target.value.toLowerCase())
+    console.log("search ændret: " + search)
+  }
+
   const updateFavoritesLocally = () => {
     const localStaredInternships = [];
     favoriteStore.fetchFavorite().then(() => {
@@ -129,18 +143,28 @@ export const InternshipList = () => {
     console.log("Types: " + types)
     //console.log("Lowercase Types: " + lowerCaseTypes)
 
-    if (type.length === 0) {
+      // Uden filtering
+    if (type.length === 0 && search === "") {
+      console.log("Nr. 1")
       store.fetchPosts().then(() => {
         setFilteredInternships(store.posts);
       });
-    } else {
+      // Filtering med type
+    } else if (type.length !== 0) {
+      console.log("Nr. 2")
       setFilteredInternships(
           store.posts.filter((post) =>
               type.some((type) =>
                   [post.type].toString().toLowerCase().includes(type.toLowerCase())
               )
-          )
-      );
+          ).filter(post => post.title.toLowerCase().includes(search.toLowerCase()) || post.description.toLowerCase().includes(search.toLowerCase()))
+      )
+      // Filtrering med tekst
+    } else if (type.length === 0 && search !== "") {
+      console.log("Nr. 3")
+      setFilteredInternships(
+          store.posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase()) || post.description.toLowerCase().includes(search.toLowerCase()))
+      )
     }
     /*{
       setFilteredInternships(
@@ -151,7 +175,7 @@ export const InternshipList = () => {
         )
       );
     }*/
-  }, [type]);
+  }, [type, search]);
 
   return (
     <div>
@@ -182,17 +206,15 @@ export const InternshipList = () => {
               <br />
 
               <Form>
-                <h6>Social</h6>
-                {socialBenefits.map((benefit) => (
-                  <React.Fragment key={benefit.social}>
-                    <Form.Check
-                      onChange={handleTypeFiltering}
-                      type="checkbox"
-                      label={benefit.social}
-                      value={benefit.social}
-                    />
-                  </React.Fragment>
-                ))}
+                <h6>Fritekstsøgning</h6>
+                <React.Fragment>
+                  <Form.Control
+                      type="search"
+                      placeholder="🔎"
+                      //value={query}
+                      onChange={handleSearch}
+                  />
+                </React.Fragment>
               </Form>
 
               <br />
