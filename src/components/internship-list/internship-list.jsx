@@ -11,6 +11,8 @@ import { profileStore } from "../../stores/profileStore";
 import { favoriteStore } from "./favoritestore";
 import {postStore} from "../../stores/post-store";
 
+//TODO: "Massive cleanup"
+
 const types = [
   { type: "Elev" },
   { type: "Praktik" },
