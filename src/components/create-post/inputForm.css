@@ -21,7 +21,7 @@
 .form-input {
     height: 3rem;
     margin-bottom: 2.5vh;
-    background-color: rgb(245, 245, 245);
+    /* background-color: rgb(245, 245, 245); */
 }
 
 .form-feedback {
@@ -30,7 +30,7 @@
 
 .form-description {
     margin-bottom: 2.5vh;
-    background-color: rgb(245, 245, 245);
+    /* background-color: rgb(245, 245, 245); */
 }
 
 .form-titel-text {
@@ -41,12 +41,12 @@
 .form-banner-image {
     width: 25rem;
     margin-bottom: 2.5vh;
-    background-color: rgb(245, 245, 245);
+    /* background-color: rgb(245, 245, 245); */
 }
 
 .form-banner-input {
     width: 25rem;
-    background-color: rgb(245, 245, 245);
+    /* background-color: rgb(245, 245, 245); */
 }
 
 .form-button-div {
@@ -89,16 +89,33 @@
     .form-input {
         height: 2rem;
         margin-bottom: 2.5vh;
-        background-color: rgb(245, 245, 245);
+        /* background-color: rgb(245, 245, 245); */
         font-size: 10px;
     }
 
     .left-input-content {
-        width: 90%;
+        width: 100%;
     }
     
     .right-input-content {
         width: 100%;
+    }
+
+    .form-description {
+        margin-bottom: 2.5vh;
+        font-size: 10px;
+        /* background-color: rgb(245, 245, 245); */
+    }
+
+    .form-banner-input {
+        font-size: 10px;
+        /* background-color: rgb(245, 245, 245); */
+        margin-bottom: 50px;
+    }
+
+    .form-button-div {
+        display: flex;
+        justify-content: space-around;
     }
   
   }
