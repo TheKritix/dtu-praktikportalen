@@ -27,6 +27,7 @@ const Header = () => {
     const user = authService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
+      console.log("navbar user");
     } else {
       setCurrentUser(undefined);
     }
@@ -66,7 +67,7 @@ const Header = () => {
                 </p>
               )}
               {currentUser ? (
-                <p>Velkommen til, {currentUser.studentID}</p>
+                <p>Velkommen til, {currentUser.name}</p>
               ) : (
                 <div className="d-flex flex-row landingpage-buttons">
                   <button
@@ -112,7 +113,7 @@ const Header = () => {
           {posts &&
             posts.map((post) => {
               return (
-                <Col key={post} className="d-flex mx-auto mb-4">
+                <Col key={post._id} className="d-flex mx-auto mb-4">
                   <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={placeholderImages} />
                     <Card.Body>
