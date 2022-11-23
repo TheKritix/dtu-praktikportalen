@@ -18,49 +18,38 @@ const types = [
   { type: "Praktik" },
   { type: "Deltid" },
   { type: "Fuldtid" },
-];
-
-const socialBenefits = [{ social: "Fredagsbar" }, { social: "Frokostordning" }];
+]
 
 export const InternshipList = () => {
   const store = postStore
 
   const navigate = useNavigate()
 
-  const [type, setType] = useState([]);
+  const [type, setType] = useState([])
 
-  /*const lowerCaseTypes = []
+  const [search, setSearch] = useState("")
 
-  types.forEach(element => {
-    lowerCaseTypes.push(element.toLowerCase());
-  });*/
+  const [filteredInternships, setFilteredInternships] = useState([])
 
-  const [search, setSearch] = useState("");
-
-  const [filteredInternships, setFilteredInternships] = useState([]);
-  const stagedFilteredInternships = []
-  let stagedSearch = []
-
-  const [staredInternships, setStaredInternships] = useState([]);
+  const [staredInternships, setStaredInternships] = useState([])
   const addToFavorites = (id) => {
     if (!staredInternships.includes(id))
-      setStaredInternships(staredInternships.concat(id));
-    favoriteStore.addFavorite(id);
-    console.log("UserID: ", profileStore.user.id, "InternshipID: " + id);
-  };
+      setStaredInternships(staredInternships.concat(id))
+    favoriteStore.addFavorite(id)
+  }
   const removeFavorites = (id) => {
-    let index = staredInternships.indexOf(id);
+    let index = staredInternships.indexOf(id)
     let temp = [
       ...staredInternships.slice(0, index),
       ...staredInternships.slice(index + 1),
-    ];
-    setStaredInternships(temp);
+    ]
+    setStaredInternships(temp)
     favoriteStore.deleteFavorite(profileStore.User, id)
-  };
+  }
 
   const gotoInternshipPost = (e) => {
-    navigate(`/post/${e}`);
-  };
+    navigate(`/post/${e}`)
+  }
 
   const liste = filteredInternships.map((d) => (
     <Card key={d._id} className="mb-3">
@@ -98,16 +87,15 @@ export const InternshipList = () => {
           : "Tilføj til favoriter"}
       </p>
     </Card>
-  ));
+  ))
 
   const handleTypeFiltering = (e) => {
     if (e.target.checked) {
-      setType([...type, e.target.value]);
+      setType([...type, e.target.value])
     } else {
-      setType(type.filter((id) => id !== e.target.value));
+      setType(type.filter((id) => id !== e.target.value))
     }
-    console.log(type)
-  };
+  }
 
   const handleSearch = (e) => {
     if (!e.target.value) {
@@ -115,45 +103,33 @@ export const InternshipList = () => {
     } else {
       setSearch(e.target.value)
     }
-    //setSearch(postStore.posts.filter(post => post.title.includes(e.target.value)))
-    //setSearch(stagedSearch)
-    //setSearch(e.target.value.toLowerCase())
-    console.log("search ændret: " + search)
   }
 
   const updateFavoritesLocally = () => {
-    const localStaredInternships = [];
+    const localStaredInternships = []
     favoriteStore.fetchFavorite().then(() => {
       if (profileStore.user.id) {
         favoriteStore.favorites.forEach((d) => {
           if (d.uid == profileStore.user.id) {
-            localStaredInternships.push(d.favorite);
-            console.log("Adding " + d.favorite + " to local list");
+            localStaredInternships.push(d.favorite)
           }
-        });
+        })
         setStaredInternships(localStaredInternships)
       }
-
-      console.log("Local list: " + localStaredInternships);
-      //setFilteredInternships(internshipListStore.internships);
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    console.log("useEffect() run on render");
-    updateFavoritesLocally();
-    console.log("Types: " + types)
-    //console.log("Lowercase Types: " + lowerCaseTypes)
+    updateFavoritesLocally()
+
 
       // Uden filtering
     if (type.length === 0 && search === "") {
-      console.log("Nr. 1")
       store.fetchPosts().then(() => {
-        setFilteredInternships(store.posts);
-      });
+        setFilteredInternships(store.posts)
+      })
       // Filtering med type
     } else if (type.length !== 0) {
-      console.log("Nr. 2")
       setFilteredInternships(
           store.posts.filter((post) =>
               type.some((type) =>
@@ -163,21 +139,11 @@ export const InternshipList = () => {
       )
       // Filtrering med tekst
     } else if (type.length === 0 && search !== "") {
-      console.log("Nr. 3")
       setFilteredInternships(
           store.posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase()) || post.description.toLowerCase().includes(search.toLowerCase()))
       )
     }
-    /*{
-      setFilteredInternships(
-          store.posts.filter((post) =>
-          type.some((type) =>
-            [post.type].includes(type.toLowerCase())
-          )
-        )
-      );
-    }*/
-  }, [type, search]);
+  }, [type, search])
 
   return (
     <div>
@@ -213,7 +179,6 @@ export const InternshipList = () => {
                   <Form.Control
                       type="search"
                       placeholder="🔎"
-                      //value={query}
                       onChange={handleSearch}
                   />
                 </React.Fragment>
@@ -238,7 +203,7 @@ export const InternshipList = () => {
         </Col>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default observer(InternshipList);
+export default observer(InternshipList)
