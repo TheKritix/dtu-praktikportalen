@@ -47,7 +47,7 @@ const ProfileSettings = () => {
   const [backdropImage, setBackdropImage] = useState();
   const [profileImage, setProfileImage] = useState();
 
-  const getBackdropImage = () => {
+  const getImages = () => {
     profileStore.fetchBackdropImage().then(() => {
       setBackdropImage(profileStore.BackdropImage);
     });
@@ -57,7 +57,7 @@ const ProfileSettings = () => {
   };
 
   useEffect(() => {
-    getBackdropImage();
+    getImages();
   }, []);
 
   const GetSettingsView = () => {

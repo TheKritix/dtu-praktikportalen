@@ -22,11 +22,15 @@ class ProfileStore {
     }
   }
 
+  pdfLoadProgress = false;
+
   async fetchPDFName() {
-    if (this.user && !this.pdf) {
+    if (this.user && !this.pdf && !this.pdfLoadProgress) {
       console.log("---> Fetched PDF name");
+      this.pdfLoadProgress = true;
       await studentService.getStudentPDFName(this.user).then((response) => {
         this.pdf = response;
+        this.pdfLoadProgress = false;
       });
     }
   }
@@ -63,31 +67,41 @@ class ProfileStore {
     }
   }
 
+  backdropLoadInProgress = false;
+
   async fetchBackdropImage() {
-    if (this.user && !this.backdropImage) {
+    if (this.user && !this.backdropImage && !this.backdropLoadInProgress) {
       console.log("---> Fetching backdrop image");
-      if (this.user.companyName) {
+      this.backdropLoadInProgress = true;
+      if (this.user.companyName && this.backdropLoadInProgress) {
         await employerService.getBackdropImage(this.user).then((response) => {
           this.backdropImage = URL.createObjectURL(new Blob([response.data]));
+          this.backdropLoadInProgress = false;
         });
-      } else if (this.user.studentID) {
+      } else if (this.user.studentID && this.backdropLoadInProgress) {
         await studentService.getBackdropImage(this.user).then((response) => {
           this.backdropImage = URL.createObjectURL(new Blob([response.data]));
+          this.backdropLoadInProgress = false;
         });
       }
     }
   }
 
+  profileLoadInProgress = false;
+
   async fetchProfileImage() {
-    if (this.user && !this.profileImage) {
+    if (this.user && !this.profileImage && !this.profileLoadInProgress) {
       console.log("---> Fetching profile image");
-      if (this.user.companyName) {
+      this.profileLoadInProgress = true;
+      if (this.user.companyName && this.profileLoadInProgress) {
         await employerService.getProfileImage(this.user).then((response) => {
           this.profileImage = URL.createObjectURL(new Blob([response.data]));
+          this.profileLoadInProgress = false;
         });
-      } else if (this.user.studentID) {
+      } else if (this.user.studentID && this.profileLoadInProgress) {
         await studentService.getProfileImage(this.user).then((response) => {
           this.profileImage = URL.createObjectURL(new Blob([response.data]));
+          this.profileLoadInProgress = false;
         });
       }
     }
