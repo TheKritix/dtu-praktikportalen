@@ -7,7 +7,7 @@ import {useState, useEffect} from "react"
 
 const PostContent = ({post, review}) => {
 
-    const [banner, setBanner] = useState();
+    const [banner, setBanner] = useState(bannerPlaceholder);
 
 
     const getBannerImage = () => {
