@@ -5,19 +5,19 @@ import axios from "axios";
 const API_URL = process.env.REACT_APP_API;
 
 export const fetchPosts = () => {
-  axios.get(TestApi).then((response) => {
+  axios.get(API_URL).then((response) => {
     console.log(response.data);
     return response.data;
   });
 };
 
 export const getAllPosts = (params) => {
-  return axios.get(TestApi, { params });
+  return axios.get(API_URL, { params });
 };
 
 //more values to be added
 export const uploadPost = (post) => {
-  return axios.post(TestApi, {
+  return axios.post(API_URL, {
     title: post.title,
     type: post.type,
     company: post.company,
