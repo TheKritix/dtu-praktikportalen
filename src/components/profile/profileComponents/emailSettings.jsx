@@ -1,7 +1,6 @@
 import { toJS } from "mobx";
 import React, { useState } from "react";
 import { useRef } from "react";
-import { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Typist from "react-typist-component";
 import { profileStore } from "../../../stores/profileStore";
@@ -23,17 +22,15 @@ const EmailSettings = () => {
 
   const saveChange = () => {
     if (!emailDupeCheck) {
-      profileStore.user.email = changeEmailRef.current.value
+      profileStore.user.email = changeEmailRef.current.value;
       profileStore.updateEmail().then(() => {
         profileStore.updateUserData().then(() => {
-          setEmail(profileStore.user.email)
+          setEmail(profileStore.user.email);
           handleSaveInteraction();
         });
       });
     }
   };
-
-
 
   const dupeCheck = () => {
     if (email === changeEmailRef.current.value) {

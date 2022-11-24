@@ -104,7 +104,7 @@ const Navigation = () => {
     } else {
       setCurrentUser(undefined);
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   useEffect(() => {
     searchParam.get("ticket");

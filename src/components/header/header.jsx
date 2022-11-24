@@ -9,7 +9,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 import LoginEmployee from "../login/login";
 //XXXX IMAGES XXXX
 import header_img from "../../res/images/landingpage_header.png";
@@ -33,7 +32,7 @@ const Header = () => {
     }
     fetchPosts();
     console.log(posts);
-  }, []);
+  }, [posts]);
 
   const fetchPosts = () => {
     getAllPosts()

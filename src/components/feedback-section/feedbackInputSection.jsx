@@ -13,8 +13,8 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
 
   console.log("INTERNSHIP ID:");
   console.log(internshipId);
-  console.log("RELEVANT FEEDBACKS")
-  console.log(feedbacks)
+  console.log("RELEVANT FEEDBACKS");
+  console.log(feedbacks);
 
   //const internship = internshipId;
 
@@ -60,19 +60,18 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   useEffect(() => {
     var total = 0;
     const amount = feedbacks.length;
-    console.log('LENGTH')
-    console.log(amount)
+    console.log("LENGTH");
+    console.log(amount);
     for (let i = 0; i < feedbacks.length; i++) {
-      console.log(feedbacks[i])
-      const rating = parseInt(feedbacks[i].ratingOutOfFive)
-      total = total + rating
-    };
+      console.log(feedbacks[i]);
+      const rating = parseInt(feedbacks[i].ratingOutOfFive);
+      total = total + rating;
+    }
     const avg = total / amount;
     console.log("AVERAGE RATING:");
     console.log(avg);
     setAverageRating(avg);
-  });
-
+  }, [feedbacks]);
 
   return (
     <Form
@@ -83,7 +82,9 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
     >
       <div className="feedback-input-content">
         <Form.Group>
-          <h3 className="feedback-input-header">{avgRating}/5 stjerner baseret på {feedbacks.length} feedbacks</h3>
+          <h3 className="feedback-input-header">
+            {avgRating}/5 stjerner baseret på {feedbacks.length} feedbacks
+          </h3>
           <Form.Control
             className="text-input"
             placeholder="Giv feedback"
