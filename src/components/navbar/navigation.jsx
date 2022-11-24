@@ -76,7 +76,7 @@ const Navigation = () => {
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-      setCurrentUser(user.studentID);
+      setCurrentUser(user);
       authService.checkToken().then(
         (response) => {
           console.log(response.data);
