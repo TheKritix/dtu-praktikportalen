@@ -30,12 +30,10 @@ const Header = () => {
     } else {
       setCurrentUser(undefined);
     }
-    fetchPosts();
-    console.log(posts);
-  }, [posts]);
+  }, []);
 
-  const fetchPosts = () => {
-    getAllPosts()
+  const fetchPosts = async () => {
+    await getAllPosts()
       .then((response) => {
         setPosts(response.data);
         console.log(response.data);
@@ -44,6 +42,10 @@ const Header = () => {
         console.log(e);
       });
   };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div>
