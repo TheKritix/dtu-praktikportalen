@@ -202,7 +202,7 @@ const InputForm = () => {
               name="bannerImg"
               type="file"
               accept="image/*"
-              disabled
+              // disabled
               onChange={handleChangePost}
             />
           </Form.Group>

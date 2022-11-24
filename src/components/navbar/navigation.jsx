@@ -77,6 +77,29 @@ const Navigation = () => {
     const user = authService.getCurrentUser();
     if (user) {
       setCurrentUser(user.studentID);
+      authService.checkToken().then(
+        (response) => {
+          console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+          if (error.response.status === 401) {
+            authService.refreshToken(user.refreshToken).then(
+              (response) => {
+                console.log(response.data);
+              },
+              (error) => {
+                console.log(error);
+                if (error.response.status === 403) {
+                  authService.logout();
+                  navigate("/");
+                  window.location.reload();
+                }
+              }
+            );
+          }
+        }
+      );
       console.log(currentUser);
     } else {
       setCurrentUser(undefined);
@@ -116,7 +139,7 @@ const Navigation = () => {
       ) : (
         <Button
           variant="outline-danger"
-          href={process.env.REACT_APP_HOST}
+          href={process.env.REACT_APP_DTU_AUTH_LOCAL}
           //onClick={handleLogin}
         >
           Login Campus Net

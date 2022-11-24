@@ -39,8 +39,31 @@
 
 .post-divider {
     width: 55rem;
-    border: solid 1px black;
 }
 
 .post-description {
+}
+
+@media screen and (max-width: 1080px) {
+
+    .post-content {
+        margin-top: 2.5vh;
+        width: 45rem;
+    }
+
+    .post-divider {
+        width: 100%;
+    }
+
+    .post-banner-div {
+        height: 10rem;
+        width: 45rem;
+        background: rgb(245, 245, 245);
+        border-radius: 15px;
+        max-width: 75rem;
+        min-width: 25rem;
+        display: flex;
+        margin: auto;
+    }
+
 }
