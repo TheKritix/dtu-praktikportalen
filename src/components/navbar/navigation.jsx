@@ -139,7 +139,7 @@ const Navigation = () => {
       ) : (
         <Button
           variant="outline-danger"
-          href={process.env.REACT_APP_DTU_AUTH_LOCAL}
+          href={process.env.REACT_APP_DTU_AUTH}
           //onClick={handleLogin}
         >
           Login Campus Net
