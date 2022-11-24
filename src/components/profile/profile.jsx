@@ -10,26 +10,22 @@ import { profileStore } from "../../stores/profileStore";
 
 const Profile = () => {
   const [view, setView] = useState("profile");
-  const [currentView, setCurrentView] = useState("");
+
   const GetView = () => {
     let ViewComponent;
 
     switch (view) {
       case "profile":
         ViewComponent = ProfileSettings();
-        setCurrentView("Profil");
         break;
       case "email":
         ViewComponent = EmailSettings();
-        setCurrentView("Email");
         break;
       case "password":
         ViewComponent = PasswordSettings();
-        setCurrentView("Password");
         break;
       default:
         ViewComponent = ProfileSettings();
-        setCurrentView("Profil");
         break;
     }
 
