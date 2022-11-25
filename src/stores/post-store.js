@@ -1,6 +1,5 @@
-import axios from "axios";
 import {makeAutoObservable} from "mobx";
-import postService, {getPosts, fetchPosts} from '../services/post-service'; 
+import postService from '../services/post-service'; 
 
 //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
 

@@ -1,6 +1,5 @@
 import "./postContent.css";
 import bannerPlaceholder from "../../res/images/PlaceholderBanner.png"
-import {observer} from 'mobx-react-lite';
 import {postStore} from '../../stores/post-store'
 import {useState, useEffect} from "react"
 
