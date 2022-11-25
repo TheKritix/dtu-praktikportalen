@@ -29,7 +29,7 @@ function App() {
           }
         />
         <Route path="/createpost" element={
-          authService.getCurrentUser() != null ? (
+          authService.getCurrentUser()?.companyName != null ? (
               <CreatePost />
             ) : (
               <Navigate replace to={"/"} />
