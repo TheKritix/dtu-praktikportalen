@@ -8,10 +8,8 @@ import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react";
 import { profileStore } from "../../stores/profileStore";
-import { favoriteStore } from "./favoritestore";
+import { favoriteStore } from "../../stores/favoritestore";
 import {postStore} from "../../stores/post-store";
-
-//TODO: "Massive cleanup"
 
 const types = [
   { type: "Elev" },

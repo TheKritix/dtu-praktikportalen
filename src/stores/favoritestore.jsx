@@ -1,11 +1,11 @@
-import {makeAutoObservable, runInAction} from "mobx";
+import {makeAutoObservable} from "mobx";
 import axios from "axios";
-import {profileStore} from "../../stores/profileStore";
-import authHeader from "../../services/auth-header";
+import {profileStore} from "./profileStore";
+import authHeader from "../services/auth-header";
 
 //TODO("Ombyt")
-//const baseUrl = process.env.NODE_ENV === 'development' ?  "https://api.praktikportal.diplomportal.dk/":""; //Check if dev environment
-const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:3000/":""; //Check if dev environment
+const baseUrl = process.env.NODE_ENV === 'development' ?  "https://api.praktikportal.diplomportal.dk/":""; //Check if dev environment
+//const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:3000/":""; //Check if dev environment
 
 class FavoriteStore {
     favorites = []
