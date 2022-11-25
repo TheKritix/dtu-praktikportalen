@@ -6,18 +6,18 @@ const TestApi = "http://localhost:3000/api/post"
 const BannerApi = "http://localhost:3000/api/bannerImage"
 // const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
-    // const fetchPosts = async () => {
-    //     const response = await axios.get(TestApi, { headers: authHeader() });
-    //     return response;     
-    // }
-    
-    // export const getPosts = () => {
-    //     fetch(TestApi)
-    //         .then((response) => response.json())
-    //         .then((responseJson) => {
-    //             return responseJson;
-    //         })
-    // }
+const API_URL = process.env.REACT_APP_API_LOCAL;
+
+    export const fetchPosts = () => {
+    axios.get(API_URL + "post").then((response) => {
+            console.log(response.data);
+            return response.data;
+        });
+    };
+
+    export const getAllPosts = (params) => {
+        return axios.get(API_URL + "post", { params });
+    };
     
 
     //more values to be added
