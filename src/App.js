@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import authService from "./services/auth-service";
 
-// XXXX COMPONENTS XXXX
+// XXXX COMPONENTS XXXX 
 import Header from "./components/header/header.jsx";
 import Profile from "./pages/profile";
 import CreatePost from "./pages/createPost";
