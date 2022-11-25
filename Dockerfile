@@ -10,4 +10,4 @@ RUN npm run build
 ENV NODE_ENV production
 ENV PORT 80
 EXPOSE 80
-CMD ["serve", "build", "-p", "80"]
+CMD ["serve", "-s", "build", "-p", "80"]
