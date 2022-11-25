@@ -64,7 +64,7 @@ const Menu = ({currentUser}) => (
       style={{ textDecoration: "none", color: "black" }}
       className=" me-5 mt-1"
     >
-      Create a Post
+      Create Post
     </NavLink>
     )}
   </>
