@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 import "@fontsource/poppins";
 import authService from "../../services/auth-service";
-import { getAllPosts } from "../../services/PostService";
+import { getAllPosts } from "../../services/post-service";
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
