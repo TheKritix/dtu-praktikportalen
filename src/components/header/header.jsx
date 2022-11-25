@@ -9,7 +9,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 import LoginEmployee from "../login/login";
 //XXXX IMAGES XXXX
 import header_img from "../../res/images/landingpage_header.png";
@@ -31,12 +30,10 @@ const Header = () => {
     } else {
       setCurrentUser(undefined);
     }
-    fetchPosts();
-    console.log(posts);
   }, []);
 
-  const fetchPosts = () => {
-    getAllPosts()
+  const fetchPosts = async () => {
+    await getAllPosts()
       .then((response) => {
         setPosts(response.data);
         console.log(response.data);
@@ -45,6 +42,10 @@ const Header = () => {
         console.log(e);
       });
   };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div>

@@ -76,7 +76,15 @@ const Navigation = () => {
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-      setCurrentUser(user.studentID);
+      setCurrentUser(user);
+      console.log("navbar user");
+    } else {
+      setCurrentUser(undefined);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentUser) {
       authService.checkToken().then(
         (response) => {
           console.log(response.data);
@@ -84,7 +92,7 @@ const Navigation = () => {
         (error) => {
           console.log(error);
           if (error.response.status === 401) {
-            authService.refreshToken(user.refreshToken).then(
+            authService.refreshToken(currentUser.refreshToken).then(
               (response) => {
                 console.log(response.data);
               },
@@ -100,11 +108,10 @@ const Navigation = () => {
           }
         }
       );
-      console.log(currentUser);
     } else {
-      setCurrentUser(undefined);
+      console.log("not logged in");
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   useEffect(() => {
     searchParam.get("ticket");
