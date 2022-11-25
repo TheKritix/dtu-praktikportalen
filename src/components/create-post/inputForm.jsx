@@ -101,9 +101,6 @@ const InputForm = () => {
     } else if (window.confirm("Vil du oprette dette opslag?")) {
       //skal fikses til bedre identifier
       postStore.postID = createdPost.title;
-      // postService.uploadPost(createdPost).then(() => {
-      //   postStore.uploadBannerImage(uploadImage);
-      // })
       postService.uploadPost(createdPost)
       postStore.uploadBannerImage(uploadImage);
       
