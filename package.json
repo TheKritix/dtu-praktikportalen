@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "proxy": "http://localhost:3000",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@fontsource/poppins": "^4.5.9",
     "@sentry/react": "^7.20.1",
