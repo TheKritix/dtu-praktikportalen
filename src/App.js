@@ -14,7 +14,7 @@ import Navigation from "./components/navbar/navigation.jsx";
 function App() {
   document.title = "DTU Praktikportalen";
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter /*basename={process.env.PUBLIC_URL}*/>
       <Navigation />
       <Routes>
         <Route path="/" element={<Header />} />
