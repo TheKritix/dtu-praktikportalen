@@ -3,7 +3,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 const baseUrl =
   process.env.NODE_ENV === "development" ? "http://localhost:3000/" : ""; //Check if dev environment
 
-const API_URL = process.env.REACT_APP_API;
+const API_URL = process.env.REACT_APP_API_LOCAL;
 class InternshipListStore {
   internships = [];
 
