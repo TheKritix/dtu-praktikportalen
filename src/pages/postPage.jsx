@@ -2,10 +2,9 @@ import PostContent from "../components/post-page/postContent";
 import PostContactInfo from "../components/post-page/postContactInfo";
 import "./postPage.css";
 import {useState, useEffect} from "react";
-import {observer} from 'mobx-react-lite';
 import FeedbackSection from '../components/feedback-section/feedbackSection';
-// import { useParams } from "react-router-dom";
-// import { postStore } from "../stores/post-store";
+import { useParams } from "react-router-dom";
+import { postStore } from "../stores/post-store";
 // import { fetchPosts } from "../services/PostService"
 
 
@@ -13,39 +12,36 @@ import FeedbackSection from '../components/feedback-section/feedbackSection';
 
 
 const PostPage = () => {
-
-    // const { _id } = useParams();
-    // const postId = parseInt(_id); 
-
+    
+    const postId = useParams();
+    console.log(postId.postId)
     //should take id from url with useParams
+    // eslint-disable-next-line no-unused-vars
     const TempPostId = '63665d74b69993bfc623890a'
+    const TempPostId2 = '6378b5b6c597bf8460702333'
+
+    const store = postStore;
 
     // eslint-disable-next-line no-unused-vars
-    const [fetchedPosts, setFetchedPosts] = useState([]);
+    const [fetchedPosts, setFetchedPosts] = useState([]);    
 
-    //Should fetch from services and store in poststore. 
-    //delete eventually - use for now
-    //const baseUrl = `https://api.praktikportal.diplomportal.dk/api/post`
-    const baseUrl = 'http://localhost:3000/api/post';
-    const fetchPosts = () => {
-        fetch(baseUrl)
-        .then((response) => response.json())
-        .then((responseJson) =>  {
-            setFetchedPosts(responseJson);
-        }) 
-    }
-    
+    const getPost = () => {
+        store.fetchPosts().then(() => {
+          setFetchedPosts(store.posts.filter((posts) => posts._id === postId.postId))
+        });
+    };
+
     
     useEffect(() => {
-        fetchPosts()
-        // setFetchedPosts(postStore.posts);
-    }, [])
+      getPost();
+      console.log(fetchedPosts)
+    }, []);
     
     return (
         <div>
-            {fetchedPosts?.filter((posts) => posts._id === TempPostId).map((post, i) => (
+            {fetchedPosts?.map((post, i) => (
                 <div className="post-container">
-                    <PostContent post={post}/>
+                    <PostContent post={post} review={false}/>
                     <PostContactInfo post={post}/>
                 </div>
                 ))
@@ -57,4 +53,4 @@ const PostPage = () => {
 
 }
 
-export default observer(PostPage);
+export default PostPage;

@@ -1,15 +1,42 @@
 import "./postContent.css";
 import bannerPlaceholder from "../../res/images/PlaceholderBanner.png"
 import {observer} from 'mobx-react-lite';
+import {postStore} from '../../stores/post-store'
+import {useState, useEffect} from "react"
 
 
-const PostContent = ({post}) => {
+const PostContent = ({post, review}) => {
+
+    const [banner, setBanner] = useState(bannerPlaceholder);
+
+
+    const getBannerImage = () => {
+    
+        if (review === false) {
+            postStore.fetchBannerImage(post).then(() => {
+                setBanner(postStore.bannerImage);
+                console.log(banner)
+              });
+        } else {
+            setBanner(post.bannerImg);
+        }
+    };
+
+    useEffect(() => {
+        getBannerImage()
+    }, [])
 
     return (
         <div className="post-left-column">
             <div className="post-banner-div">
-                <h1 className="post-banner-text">Placeholder Banner</h1>
-                <img className="post-banner" src={bannerPlaceholder} alt="postbanner"></img>    
+                {/* <h1 className="post-banner-text">Placeholder Banner</h1> */}
+                <img className="post-banner" src={banner} alt="postbanner"></img>  
+                {/* {post.bannerImg != null ? (
+                    <img className="post-banner" src={banner} alt="postbanner"></img>    
+                    ) : (
+                    <img className="post-banner" src={banner} alt="postbanner"></img>  
+                    ) }
+                 */}
             </div>
             <div className="post-content">
                 <div>
@@ -19,11 +46,19 @@ const PostContent = ({post}) => {
                 </div>
                 <div className="post-overview">
                     <h4>Overblik</h4>
-                    <h6 className="post-description">{post.description}</h6>
+                    {post.description.split("\n").map((text) => {
+                        return (
+                            <h6 className="post-description">
+                                {text}
+                                <br/>
+                            </h6>
+                        )
+                    })
+                    }
                 </div>
             </div>
         </div>
     );
 }
 
-export default observer(PostContent); 
+export default PostContent; 
