@@ -18,7 +18,7 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 
-const Menu = () => (
+const Menu = ({currentUser}) => (
   <>
     <NavLink
       eventKey={1}
@@ -47,7 +47,7 @@ const Menu = () => (
     >
       Profil(TEMP)
     </NavLink>
-    <NavLink
+    {/* <NavLink
       eventKey={4}
       as={Link}
       to="/post"
@@ -55,16 +55,18 @@ const Menu = () => (
       className=" me-5 mt-1"
     >
       Post(TEMP)
-    </NavLink>
-    <NavLink
+    </NavLink> */}
+    {currentUser && currentUser.hasOwnProperty('companyName') && (
+      <NavLink
       eventKey={5}
       as={Link}
       to="/createpost"
       style={{ textDecoration: "none", color: "black" }}
       className=" me-5 mt-1"
     >
-      CreatePost(TEMP)
+      Create a Post
     </NavLink>
+    )}
   </>
 );
 
@@ -185,7 +187,7 @@ const Navigation = () => {
               />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ms-auto">
-                  <Menu />
+                  <Menu currentUser={currentUser}/>
                   <LoginMenu />
                 </Nav>
               </Navbar.Collapse>
