@@ -38,15 +38,16 @@ const Menu = ({currentUser}) => (
     >
       Info
     </NavLink>
-    <NavLink
+    {currentUser && <NavLink
       eventKey={3}
       as={Link}
       to="/profile"
       style={{ textDecoration: "none", color: "black" }}
       className=" me-5 mt-1"
     >
-      Profil(TEMP)
-    </NavLink>
+      Profil
+    </NavLink>}
+
     {/* <NavLink
       eventKey={4}
       as={Link}

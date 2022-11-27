@@ -1,7 +1,6 @@
 import { toJS } from "mobx";
 import React, { useState } from "react";
 import { useRef } from "react";
-import { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Typist from "react-typist-component";
 import { profileStore } from "../../../stores/profileStore";
