@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./profileSettings.css";
 import "./profileImagePopup.css";
-import authService from "../../../services/auth-service";
-import employerService from "../../../services/employer-service";
 // Source: https://www.npmjs.com/package/react-image-crop
 // Source: https://www.npmjs.com/package/reactjs-popup
 import ReactCrop, { makeAspectCrop } from "react-image-crop";
@@ -185,8 +183,11 @@ const ProfileSettings = () => {
             type="file"
             onChange={(event) => handleFileChangeImage(event, "profile")}
           />
-          <img src={profileImage} className="image" alt="profilbillede" />
-          <img className="profileImageAdd" alt="addImage icon" src={addImage} />
+          {profileImage /* eslint-disable-next-line jsx-a11y/alt-text */ && (
+            <img src={profileImage} className="image" />
+          )}
+
+          <img className="profileImageAdd" alt="profileImage" src={addImage} />
         </div>
         <div className="nameDesc">
           <p className="name">
@@ -220,7 +221,12 @@ const ProfileSettings = () => {
                 onComplete={(c) => setFinishedCrop(c)}
                 aspect={uploadState.type === "profile" ? 1 / 1 : 5 / 1}
               >
-                <img className="imageInPopup"ref={imgRef} src={uploadBackdropImage} alt="nah" />
+                <img
+                  className="imageInPopup"
+                  ref={imgRef}
+                  src={uploadBackdropImage}
+                  alt="nah"
+                />
               </ReactCrop>
             </div>
             <div className="buttonContainer">
