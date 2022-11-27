@@ -21,7 +21,7 @@ const InputForm = () => {
     contact: "",
     applyToEmail: "",
     website: "",
-    bannerImg: "",
+    bannerImg: bannerPlaceholder,
   });
   const [createdPost, setCreatedPost] = useState(defaultObject);
   const [previewImage, setPreviewImage] = useState(bannerPlaceholder);
