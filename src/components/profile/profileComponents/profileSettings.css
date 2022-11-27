@@ -72,9 +72,9 @@
 
   background: linear-gradient(
     90.01deg,
-    #cc65ff 0.01%,
-    rgb(179, 106, 205) 48.96%,
-    rgba(0, 85, 255, 0.41) 99.99%
+    #2d8fd5 0.01%,
+    rgb(138, 54, 169) 99.96%,
+    rgba(255, 0, 0, 0.41) 99.99%
   );
   border-radius: 25px;
 
@@ -92,10 +92,17 @@
   border-radius: 25px;
 }
 
-.image:hover {
+.profilePicture:hover {
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
   cursor: pointer;
+}
+
+.profilePicture:hover > .profileImageAdd {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  filter: brightness(0) invert(1);
 }
 
 .profileImageAdd {

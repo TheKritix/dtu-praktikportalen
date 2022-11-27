@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import studentService from "../../../../services/student-service";
 import "../profileSettings.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { profileStore } from "../../../../stores/profileStore";
 import { toJS } from "mobx";
 import { useRef } from "react";
