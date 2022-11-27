@@ -11,9 +11,6 @@ import Profile from "../components/profile/profile";
 
 import "../../enzymConfig";
 
-import App from "../App";
-
-
 //Source: https://github.com/axios/axios/issues/5101
 //Source: https://jestjs.io/docs/tutorial-react
 //Source: https://robertmarshall.dev/blog/how-to-mock-local-storage-in-jest-tests/
@@ -75,3 +72,4 @@ test("render profile", () => {
       render(<Profile />);
     });
 });
+
