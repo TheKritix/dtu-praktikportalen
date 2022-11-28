@@ -13,6 +13,9 @@ import {profileStore} from "../../stores/profileStore";
 
 const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
+  const ps = profileStore;
+  //profileStore.fetchUserInformation
+
 
   console.log("PROFILE STORE")
   console.log(profileStore)
