@@ -10,7 +10,6 @@ import { postStore } from "../stores/post-store";
 const PostPage = () => {
     
     const postId = useParams();
-    console.log(postId.postId)
     const store = postStore;
 
     // eslint-disable-next-line no-unused-vars
@@ -25,7 +24,6 @@ const PostPage = () => {
     
     useEffect(() => {
       getPost();
-      console.log(fetchedPosts)
     }, []);
     
     return (
