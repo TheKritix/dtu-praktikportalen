@@ -9,8 +9,8 @@ body {
 }
 
 .profile-container {
-  margin-right: 5rem;
-  margin-left: 5rem;
+  margin-right: 25px;
+  margin-left: 25px;
 }
 
 .page-container {
@@ -64,7 +64,7 @@ body {
 
 .profileMain {
   flex: 10;
-  margin-left: 50px;
+  margin-left: 25px;
 }
 
 .flexLoad {
@@ -84,6 +84,8 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-left: 25px;
+    border-bottom: 1.8px solid rgb(186, 186, 186);
   }
 
   .profileButton {
@@ -95,7 +97,7 @@ body {
   }
 
   .profile-container {
-    margin-right: 25px;
+    margin-right: 25;
     margin-left: 0px;
   }
 }

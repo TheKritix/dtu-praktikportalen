@@ -96,6 +96,12 @@ const updateStudentDescription = (user) => {
   });
 };
 
+const updateStudentEmail = (user) => {
+  return axios.put(API_URL + "studentUpdateEmail", user, {
+    headers: authHeader(),
+  });
+};
+
 const studentService = {
   studentPDFUpload,
   getStudentPDFName,
@@ -107,6 +113,7 @@ const studentService = {
   getStudent,
   updateStudentName,
   updateStudentDescription,
+  updateStudentEmail,
 };
 
 export default studentService;

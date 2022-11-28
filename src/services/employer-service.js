@@ -82,6 +82,18 @@ const updateEmployerDescription = (user) => {
   });
 };
 
+const updateEmployerEmail = (user) => {
+  return axios.put(API_URL + "employerUpdateEmail", user, {
+    headers: authHeader(),
+  });
+};
+
+const updateEmployerPassword = (user) => {
+  return axios.put(API_URL + "employerUpdatePassword", user, {
+    headers: authHeader(),
+  });
+};
+
 const employerService = {
   getEmployerProfile,
   updateEmployerPosition,
@@ -92,6 +104,8 @@ const employerService = {
   getEmployerContent,
   getProfileImage,
   updateEmployerDescription,
+  updateEmployerEmail,
+  updateEmployerPassword
 };
 
 export default employerService;

@@ -12,13 +12,13 @@ const PostContactInfo = ({post}) => {
                 
             </div>
             <div className="comp-info">
-                <h4 style={{marginBottom: '50px', fontWeight: "bold"}}>{post.company}</h4>
-                <h6 style={{fontWeight: "bold"}}>Kontakt:</h6>
-                <h5 style={{marginBottom: '30px'}}>{post.contact}</h5>
-                <h6 style={{fontWeight: "bold"}}>Email:</h6>
-                <h5 style={{marginBottom: '30px'}}>{post.applyToEmail}</h5> 
-                <h6 style={{fontWeight: "bold"}}>Hjemmeside:</h6>
-                <h5 style={{marginBottom: '30px'}}>{post.website}</h5>
+                <h4 className="info-title">{post.company}</h4>
+                <h6 className="info-subtitle">Kontakt:</h6>
+                <h5 className="info-value">{post.contact}</h5>
+                <h6 className="info-subtitle">Email:</h6>
+                <h5 className="info-value">{post.applyToEmail}</h5> 
+                <h6 className="info-subtitle">Hjemmeside:</h6>
+                <h5 className="info-value">{post.website}</h5>
                 <img className="contact-img" src={face} alt="contactImg"></img>
             </div>
         </div>

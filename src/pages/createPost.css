@@ -23,3 +23,24 @@
   display: flex;
   justify-content: center;
 }
+
+@media only screen and (max-width: 900px) {
+  .create-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .create-content {
+    width: 90%;
+  }
+  
+  .create-top {
+    width: 90%;
+    height: 5rem;
+  }
+
+  .create-top-text {
+    font-size: 25px;
+  }
+
+}

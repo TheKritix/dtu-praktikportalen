@@ -28,8 +28,15 @@ function App() {
             )
           }
         />
-        <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/post" element={<PostPage />} />
+        <Route path="/createpost" element={
+          authService.getCurrentUser()?.companyName != null ? (
+              <CreatePost />
+            ) : (
+              <Navigate replace to={"/"} />
+            )
+          }
+        />
+        <Route path="/post/:postId" element={<PostPage />} />
         <Route path="/internships" element={<InternshipList />} />
         <Route path="/employer" element={<EmployerContent />} />
         {/* <Route path="/dtu-praktikportalen" element={<Navigate to="/" />} /> */}
