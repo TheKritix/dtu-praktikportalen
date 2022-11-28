@@ -1,12 +1,12 @@
 describe("employer login", () => {
   it("passes", () => {
-    cy.visit("http://localhost:3001/dtu-praktikportalen");
+    cy.visit("http://localhost:3001/");
   });
 
   /* ==== Test Created with Cypress Studio ==== */
   it("employerlogin", function () {
     /* ==== Generated with Cypress Studio ==== */
-    //cy.visit('http://localhost:3001/dtu-praktikportalen');
+    //cy.visit('http://localhost:3001/');
     /* ==== End Cypress Studio ==== */
     /* ==== Generated with Cypress Studio ==== */
     cy.get(".employee").click();

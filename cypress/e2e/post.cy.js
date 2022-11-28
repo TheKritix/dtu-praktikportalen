@@ -6,9 +6,9 @@ describe("empty spec", () => {
     cy.visit("http://localhost:3001/dtu-praktikportalen/");
     cy.get(".employee > img").click();
     cy.get("#formUsername").clear();
-    cy.get("#formUsername").type("Oliver");
+    cy.get("#formUsername").type("Test");
     cy.get("#formPassword").clear("1");
-    cy.get("#formPassword").type("123456789");
+    cy.get("#formPassword").type("TestTest");
     cy.get(".btn > span").click();
     cy.wait(1500);
     cy.get(".posts > span").click();
