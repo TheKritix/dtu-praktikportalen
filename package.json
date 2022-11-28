@@ -40,6 +40,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "testQ": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --coverage --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
@@ -47,6 +48,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios))"
     ]
   },
   "browserslist": {
@@ -70,7 +76,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.2.3",
     "babel-jest": "^29.3.1",
-    "cypress": "^11.1.0",
+    "cypress": "^11.2.0",
     "eslint-plugin-cypress": "^2.12.1",
     "jest": "^27.5.1",
     "jest-environment-jsdom": "^29.3.1",

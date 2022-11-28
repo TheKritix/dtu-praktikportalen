@@ -32,43 +32,49 @@ const Profile = () => {
     return ViewComponent;
   };
 
+  const ProfileMenu = () => {
+    return (
+      <div className="profileMenu">
+        <button
+          style={{
+            fontWeight: view === "profile" ? "bold" : "normal",
+          }}
+          onClick={() => setView("profile")}
+          className="profileButton"
+        >
+          Profil
+        </button>
+        <button
+          style={{
+            fontWeight: view === "email" ? "bold" : "normal",
+          }}
+          onClick={() => setView("email")}
+          className="profileButton"
+        >
+          Email
+        </button>
+        {profileStore.user.companyName && (
+          <button
+            style={{
+              fontWeight: view === "password" ? "bold" : "normal",
+            }}
+            onClick={() => setView("password")}
+            className="profileButton"
+          >
+            Password
+          </button>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="profile-container">
       <div className="profileTitle">
         <p className="title">Profilindstillinger</p>
       </div>
       <div className="profile">
-        <div className="profileMenu">
-          <button
-            style={{
-              fontWeight: view === "profile" ? "bold" : "normal",
-            }}
-            onClick={() => setView("profile")}
-            className="profileButton"
-          >
-            Profil
-          </button>
-          <button
-            style={{
-              fontWeight: view === "email" ? "bold" : "normal",
-            }}
-            onClick={() => setView("email")}
-            className="profileButton"
-          >
-            Email
-          </button>
-          {profileStore.user.companyName && (
-            <button
-              style={{
-                fontWeight: view === "password" ? "bold" : "normal",
-              }}
-              onClick={() => setView("password")}
-              className="profileButton"
-            >
-              Password
-            </button>
-          )}
-        </div>
+        <ProfileMenu />
         <div className="profileMain">
           <GetView />
         </div>

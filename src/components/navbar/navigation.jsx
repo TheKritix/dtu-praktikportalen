@@ -18,16 +18,16 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 
-const Menu = () => (
+const Menu = ({ currentUser }) => (
   <>
     <NavLink
       eventKey={1}
       as={Link}
       to="/internships"
       style={{ textDecoration: "none", color: "black" }}
-      className=" me-5 mt-1"
+      className="posts me-5 mt-1"
     >
-      Praktikpladser
+      <span>Praktikpladser</span>
     </NavLink>
     <NavLink
       eventKey={2}
@@ -38,16 +38,19 @@ const Menu = () => (
     >
       Info
     </NavLink>
-    <NavLink
-      eventKey={3}
-      as={Link}
-      to="/profile"
-      style={{ textDecoration: "none", color: "black" }}
-      className=" me-5 mt-1"
-    >
-      Profil(TEMP)
-    </NavLink>
-    <NavLink
+    {currentUser && (
+      <NavLink
+        eventKey={3}
+        as={Link}
+        to="/profile"
+        style={{ textDecoration: "none", color: "black" }}
+        className=" me-5 mt-1"
+      >
+        Profil
+      </NavLink>
+    )}
+
+    {/* <NavLink
       eventKey={4}
       as={Link}
       to="/post"
@@ -55,16 +58,18 @@ const Menu = () => (
       className=" me-5 mt-1"
     >
       Post(TEMP)
-    </NavLink>
-    <NavLink
-      eventKey={5}
-      as={Link}
-      to="/createpost"
-      style={{ textDecoration: "none", color: "black" }}
-      className=" me-5 mt-1"
-    >
-      CreatePost(TEMP)
-    </NavLink>
+    </NavLink> */}
+    {currentUser && currentUser.hasOwnProperty("companyName") && (
+      <NavLink
+        eventKey={5}
+        as={Link}
+        to="/createpost"
+        style={{ textDecoration: "none", color: "black" }}
+        className=" me-5 mt-1"
+      >
+        Create Post
+      </NavLink>
+    )}
   </>
 );
 
@@ -140,11 +145,16 @@ const Navigation = () => {
   const LoginMenu = () => (
     <>
       {currentUser ? (
-        <Button variant="outline-danger" onClick={handleLogout}>
+        <Button
+          className="logout"
+          variant="outline-danger"
+          onClick={handleLogout}
+        >
           Logout
         </Button>
       ) : (
         <Button
+          className="student-login"
           variant="outline-danger"
           href={process.env.REACT_APP_DTU_AUTH}
           //onClick={handleLogin}
@@ -185,7 +195,7 @@ const Navigation = () => {
               />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ms-auto">
-                  <Menu />
+                  <Menu currentUser={currentUser} />
                   <LoginMenu />
                 </Nav>
               </Navbar.Collapse>

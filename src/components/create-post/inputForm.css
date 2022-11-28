@@ -70,6 +70,18 @@
     border-color: rgb(183, 0, 0) !important;
 }
 
+.preview-post {
+    min-width: 90%;
+}
+
+.modal-container {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+
 @media only screen and (max-width: 900px) {
     .form-container {
         width: 100%;

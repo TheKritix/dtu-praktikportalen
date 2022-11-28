@@ -37,6 +37,11 @@ body {
   .row {
     justify-content: space-evenly;
   }
+
+  .card-image{
+    height: 40%;
+
+  }
   
   @media screen and (max-width: 768px) {
     .header-text h1 {

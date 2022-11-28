@@ -7,6 +7,7 @@ import Header from "./components/header/header.jsx";
 import Profile from "./pages/profile";
 import CreatePost from "./pages/createPost";
 import PostPage from "./pages/postPage";
+//import FeedbackSection from ".components/feedback-section/FeedbackSection.jsx"
 import InternshipList from "./components/internship-list/internship-list.jsx";
 import EmployerContent from "./components/user-page/usercontent";
 import Navigation from "./components/navbar/navigation.jsx";
@@ -28,8 +29,15 @@ function App() {
             )
           }
         />
-        <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/post" element={<PostPage />} />
+        <Route path="/createpost" element={
+          authService.getCurrentUser()?.companyName != null ? (
+              <CreatePost />
+            ) : (
+              <Navigate replace to={"/"} />
+            )
+          }
+        />
+        <Route path="/post/:postId" element={<PostPage />} />
         <Route path="/internships" element={<InternshipList />} />
         <Route path="/employer" element={<EmployerContent />} />
         {/* <Route path="/dtu-praktikportalen" element={<Navigate to="/" />} /> */}

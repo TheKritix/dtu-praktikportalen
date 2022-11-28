@@ -183,8 +183,11 @@ const ProfileSettings = () => {
             type="file"
             onChange={(event) => handleFileChangeImage(event, "profile")}
           />
-          <img src={profileImage} className="image" alt="profilbillede" />
-          <img className="profileImageAdd" alt="addImage icon" src={addImage} />
+          {profileImage /* eslint-disable-next-line jsx-a11y/alt-text */ && (
+            <img src={profileImage} className="image" />
+          )}
+
+          <img className="profileImageAdd" alt="profileImage" src={addImage} />
         </div>
         <div className="nameDesc">
           <p className="name">

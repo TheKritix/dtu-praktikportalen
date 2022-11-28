@@ -1,27 +1,40 @@
 import "./feedbackStyles.css";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
-import { feedbackStore } from "./feedbackStore";
+import { feedbackStore } from "../../stores/feedbackStore";
 import Button from "react-bootstrap/Button";
 
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect } from "react";
 
+import { profileStore } from "../../stores/profileStore";
+
 const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
 
-  console.log("INTERNSHIP ID:");
-  console.log(internshipId);
-  console.log("RELEVANT FEEDBACKS");
-  console.log(feedbacks);
+  const name_arr = profileStore.user.name.split(" ");
+  const firstName = name_arr[0];
+  const lastName = profileStore.user.name.replace(firstName, "");
+  var currentdate = new Date();
+  var datetime =
+    currentdate.getDate() +
+    "/" +
+    (currentdate.getMonth() + 1) +
+    "/" +
+    currentdate.getFullYear() +
+    " @ " +
+    currentdate.getHours() +
+    ":" +
+    currentdate.getMinutes();
 
-  //const internship = internshipId;
+  console.log("TEST INPUT SECTION");
+  console.log(datetime);
 
   const defaultFeedback = () => ({
-    firstName: "testName",
-    lastName: "testSurname",
-    postedAt: "2022-01-01",
+    firstName: firstName,
+    lastName: lastName,
+    postedAt: datetime,
     text: "",
     ratingOutOfFive: "",
     internshipId: internshipId,
@@ -71,7 +84,7 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
     console.log("AVERAGE RATING:");
     console.log(avg);
     setAverageRating(avg);
-  }, [feedbacks]);
+  }, [avgRating, feedbacks]);
 
   return (
     <Form
@@ -83,7 +96,8 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
       <div className="feedback-input-content">
         <Form.Group>
           <h3 className="feedback-input-header">
-            {avgRating}/5 stjerner baseret på {feedbacks.length} feedbacks
+            <span id="avgRating">{avgRating}</span>/5 stjerner baseret på{" "}
+            {feedbacks.length} feedbacks
           </h3>
           <Form.Control
             className="text-input"

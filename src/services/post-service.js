@@ -1,7 +1,11 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
+// const Api = "http://localhost:3000/api/"
 // const TestApi = "http://localhost:3000/api/post"
+// const BannerApi = "http://localhost:3000/api/bannerImage"
 // const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
+
 const API_URL = process.env.REACT_APP_API;
 
 export const fetchPosts = () => {
@@ -31,13 +35,40 @@ export const uploadPost = (post) => {
   });
 };
 
+//(post, image)
+//formData.append(post._id, image);
+export const uploadBannerImage = (post, image) => {
+  var formData = new FormData();
+  formData.append(post, image);
+  console.log(formData);
+  return axios.put(API_URL + "bannerImage", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const getBannerImage = (post) => {
+  return axios
+    .get(API_URL + `bannerImage/${post.bannerImageID}`, {
+      header: authHeader(),
+      responseType: "blob",
+    })
+    .then((response) => {
+      return response;
+    });
+};
+
 // //todo: put
 
 // //todo: delete
 
 const postService = {
-  fetchPosts,
+  // fetchPosts,
+  // getPosts,
   uploadPost,
+  uploadBannerImage,
+  getBannerImage,
 };
 
 export default postService;
