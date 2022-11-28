@@ -15,6 +15,7 @@ const studentUpdate = (ticket) => {
 };
 
 const studentLogin = (ticket) => {
+  console.log(API_URL);
   return axios
     .post(API_URL + "studentLogin", {
       ticket,
@@ -87,7 +88,6 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-  console.log(localStorage.getItem("user"))
   return JSON.parse(localStorage.getItem("user"));
 };
 

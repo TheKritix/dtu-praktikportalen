@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { flow, makeAutoObservable, runInAction } from "mobx";
 import authService from "../services/auth-service";
 import studentService from "../services/student-service";
 import employerService from "../services/employer-service";
@@ -15,18 +15,18 @@ class ProfileStore {
     this.fetchUserInformation();
   }
 
-  async fetchUserInformation() {
+  fetchUserInformation = flow(function* () {
     if (!this.user) {
-      console.log("---> Fetched user information");
-      this.user = authService.getCurrentUser();
+      yield runInAction(() => {
+        this.user = authService.getCurrentUser();
+      });
     }
-  }
+  });
 
   pdfLoadProgress = false;
 
   async fetchPDFName() {
     if (this.user && !this.pdf && !this.pdfLoadProgress) {
-      console.log("---> Fetched PDF name");
       this.pdfLoadProgress = true;
       await studentService.getStudentPDFName(this.user).then((response) => {
         this.pdf = response;
@@ -38,7 +38,6 @@ class ProfileStore {
   //Used for updating the PDF name on the page after the user has saved a new PDF.
   async updatePDFName() {
     if (this.user && this.pdf) {
-      console.log("---> Updated PDF name");
       await studentService.getStudentPDFName(this.user).then((response) => {
         this.pdf = response;
       });
@@ -47,7 +46,6 @@ class ProfileStore {
 
   async uploadBackdropImage(file) {
     if (this.user) {
-      console.log("---> Uploading backdrop image");
       if (this.user.companyName) {
         await employerService.updateBackdropImage(this.user, file);
       } else if (this.user.studentID) {
@@ -58,7 +56,6 @@ class ProfileStore {
 
   async uploadProfileImage(file) {
     if (this.user) {
-      console.log("---> Uploading backdrop image");
       if (this.user.companyName) {
         await employerService.updateProfileImage(this.user, file);
       } else if (this.user.studentID) {
@@ -70,8 +67,11 @@ class ProfileStore {
   backdropLoadInProgress = false;
 
   async fetchBackdropImage() {
-    if (this.user && !this.backdropImage && !this.backdropLoadInProgress) {
-      console.log("---> Fetching backdrop image");
+    if (
+      this.user.backdropImageID &&
+      !this.backdropImage &&
+      !this.backdropLoadInProgress
+    ) {
       this.backdropLoadInProgress = true;
       if (this.user.companyName && this.backdropLoadInProgress) {
         await employerService.getBackdropImage(this.user).then((response) => {
@@ -90,8 +90,11 @@ class ProfileStore {
   profileLoadInProgress = false;
 
   async fetchProfileImage() {
-    if (this.user && !this.profileImage && !this.profileLoadInProgress) {
-      console.log("---> Fetching profile image");
+    if (
+      this.user.profileImageID &&
+      !this.profileImage &&
+      !this.profileLoadInProgress
+    ) {
       this.profileLoadInProgress = true;
       if (this.user.companyName && this.profileLoadInProgress) {
         await employerService.getProfileImage(this.user).then((response) => {
@@ -108,7 +111,6 @@ class ProfileStore {
   }
 
   async updateUserData() {
-    console.log("----> Update User Data");
     if (this.user && this.user.companyName) {
       await employerService.getEmployer(this.user).then(() => {
         this.user = authService.getCurrentUser();
@@ -122,7 +124,6 @@ class ProfileStore {
 
   async updateEmail() {
     if (this.user) {
-      console.log("---> Updating user email");
       if (this.user.companyName) {
         await employerService.updateEmployerEmail(this.user);
       } else if (this.user.studentID) {
@@ -133,7 +134,6 @@ class ProfileStore {
 
   async updateEmployerPassword() {
     if (this.user) {
-      console.log("---> Updating user password");
       if (this.user.companyName) {
         await employerService.updateEmployerPassword(this.user);
       }

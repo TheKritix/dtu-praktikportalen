@@ -3,6 +3,8 @@ import "./header.css";
 import "@fontsource/poppins";
 import authService from "../../services/auth-service";
 import { getAllPosts } from "../../services/post-service";
+import {postStore} from "../../stores/post-store";
+import { observer } from "mobx-react";
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -22,6 +24,7 @@ const Header = () => {
   const handleShow = () => setShowLogin(true);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [posts, setPosts] = useState([]);
+  const [banners, setBanners] = useState([]);
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
@@ -37,11 +40,18 @@ const Header = () => {
       .then((response) => {
         setPosts(response.data);
         console.log(response.data);
+        if (postStore.bannerImageList.length === 0) {
+          response.data.filter(({bannerImageID}) => bannerImageID).forEach((post) => {
+            postStore.fetchAllBannerImages(post)
+          });
+        };
+        setBanners(postStore.bannerImageList)
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
 
   useEffect(() => {
     fetchPosts();
@@ -115,8 +125,16 @@ const Header = () => {
             posts.map((post) => {
               return (
                 <Col key={post._id} className="d-flex mx-auto mb-4">
-                  <Card style={{ width: "18rem" }}>
-                    <Card.Img variant="top" src={placeholderImages} />
+                  <Card style={{ width: "18rem", height: "25rem" }}>
+                    {post.bannerImageID ? (
+                      <Card.Img variant="top" className="card-image"
+                      src={banners?.[banners.indexOf(post.bannerImageID) + 1]}
+                        />
+                    ) :
+                      <Card.Img variant="top" className="card-image"
+                      src={placeholderImages}
+                        />
+                    }
                     <Card.Body>
                       <Card.Title>{post.title}</Card.Title>
                       <Card.Text>
@@ -143,4 +161,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default observer(Header);

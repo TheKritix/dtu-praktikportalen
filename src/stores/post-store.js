@@ -12,12 +12,15 @@ class PostStore {
     selectedPost;
     postID;
     bannerImageID; 
+    bannerImage;
+    bannerImageListIDs = [];
+    bannerImageList = [];
 
     constructor() {
         makeAutoObservable(this, {}, {autoBind: true})
     }
 
-    //burde bruge den her, men virker ikke helt
+       //burde bruge den her, men virker ikke helt
     // async fetchPost() {
     //     await postService.fetchPosts().then((response) => {
     //         this.posts = response;
@@ -40,6 +43,13 @@ class PostStore {
     async fetchBannerImage(post) {
         await postService.getBannerImage(post).then((response) => {
             this.bannerImage = URL.createObjectURL(new Blob([response.data]));
+        })
+    }
+
+    async fetchAllBannerImages(post) {
+        await postService.getBannerImage(post).then((response) => {
+            this.bannerImageList.push(post.bannerImageID)
+            this.bannerImageList.push(URL.createObjectURL(new Blob([response.data])));
         })
     }
 

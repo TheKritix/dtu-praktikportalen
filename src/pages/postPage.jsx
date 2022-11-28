@@ -7,10 +7,6 @@ import { useParams } from "react-router-dom";
 import { postStore } from "../stores/post-store";
 // import { fetchPosts } from "../services/PostService"
 
-
-
-
-
 const PostPage = () => {
     
     const postId = useParams();
@@ -41,11 +37,11 @@ const PostPage = () => {
                 </div>
                 ))
             }
-            <div><FeedbackSection/></div>
+            <div><FeedbackSection internshipId={postId.postId}/></div>
             
         </div>
     );
 
-}
+};
 
 export default PostPage;

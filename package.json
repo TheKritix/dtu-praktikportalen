@@ -2,7 +2,6 @@
   "name": "dtu-praktikportalen",
   "version": "0.1.0",
   "proxy": "http://localhost:3000",
-  "homepage": "https://thekritix.github.io/dtu-praktikportalen",
   "private": true,
   "dependencies": {
     "@fontsource/poppins": "^4.5.9",
@@ -21,6 +20,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.6.0",
     "react-image-crop": "^10.0.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
