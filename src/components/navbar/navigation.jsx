@@ -18,7 +18,7 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 
-const Menu = () => (
+const Menu = ({currentUser}) => (
   <>
     <NavLink
       eventKey={1}
@@ -38,16 +38,17 @@ const Menu = () => (
     >
       Info
     </NavLink>
-    <NavLink
+    {currentUser && <NavLink
       eventKey={3}
       as={Link}
       to="/profile"
       style={{ textDecoration: "none", color: "black" }}
       className=" me-5 mt-1"
     >
-      Profil(TEMP)
-    </NavLink>
-    <NavLink
+      Profil
+    </NavLink>}
+
+    {/* <NavLink
       eventKey={4}
       as={Link}
       to="/post"
@@ -55,16 +56,18 @@ const Menu = () => (
       className=" me-5 mt-1"
     >
       Post(TEMP)
-    </NavLink>
-    <NavLink
+    </NavLink> */}
+    {currentUser && currentUser.hasOwnProperty('companyName') && (
+      <NavLink
       eventKey={5}
       as={Link}
       to="/createpost"
       style={{ textDecoration: "none", color: "black" }}
       className=" me-5 mt-1"
     >
-      CreatePost(TEMP)
+      Create Post
     </NavLink>
+    )}
   </>
 );
 
@@ -76,12 +79,42 @@ const Navigation = () => {
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-      setCurrentUser(user.studentID);
-      console.log(currentUser);
+      setCurrentUser(user);
+      console.log("navbar user");
     } else {
       setCurrentUser(undefined);
     }
-  }, [currentUser]);
+  }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      authService.checkToken().then(
+        (response) => {
+          console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+          if (error.response.status === 401) {
+            authService.refreshToken(currentUser.refreshToken).then(
+              (response) => {
+                console.log(response.data);
+              },
+              (error) => {
+                console.log(error);
+                if (error.response.status === 403) {
+                  authService.logout();
+                  navigate("/");
+                  window.location.reload();
+                }
+              }
+            );
+          }
+        }
+      );
+    } else {
+      console.log("not logged in");
+    }
+  }, [currentUser, navigate]);
 
   useEffect(() => {
     searchParam.get("ticket");
@@ -116,7 +149,7 @@ const Navigation = () => {
       ) : (
         <Button
           variant="outline-danger"
-          href={process.env.REACT_APP_HOST}
+          href={process.env.REACT_APP_DTU_AUTH_LOCAL}
           //onClick={handleLogin}
         >
           Login Campus Net
@@ -155,7 +188,7 @@ const Navigation = () => {
               />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ms-auto">
-                  <Menu />
+                  <Menu currentUser={currentUser}/>
                   <LoginMenu />
                 </Nav>
               </Navbar.Collapse>

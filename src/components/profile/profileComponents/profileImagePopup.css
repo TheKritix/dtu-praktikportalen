@@ -1,17 +1,43 @@
 .popupContainer {
-    min-height: 40rem;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .popupImage {
-    max-width: 50rem;
-    max-height: 50rem;
-    margin-right: auto;
     margin-left: auto;
-    margin-top: 20px;
+    margin-right: auto;
+}
+
+.imageInPopup {
+    height: 50%;
+}
+
+#popup-2 {
+    border: 0;
+    padding: 0;
+    background: none;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .popupButton {
-    margin-right: auto;
-    margin-left: auto;
-}
+    width: 10%;
+    background-color: #0a59f7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    min-height: 40px;
+    min-width: 120px;
+  }
+
+  .popupButton:hover {
+    background-color: #094cd1;
+  }
+
 

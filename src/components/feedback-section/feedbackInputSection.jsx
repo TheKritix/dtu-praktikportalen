@@ -8,8 +8,14 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect } from "react";
 
+import {profileStore} from "../../stores/profileStore";
+
+
 const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
+
+  console.log("PROFILE STORE")
+  console.log(profileStore)
 
   console.log("INTERNSHIP ID:");
   console.log(internshipId);

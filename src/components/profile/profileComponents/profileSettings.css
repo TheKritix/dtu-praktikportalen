@@ -1,18 +1,30 @@
+.profileMainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.profileIdentityContainer {
+  margin-top: 50px;
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+}
+
 .profileBackdrop {
-  position: absolute;
-  height: 15rem;
   background: linear-gradient(
     90.01deg,
     #6574ff 0.01%,
-    rgba(179, 106, 205, 0.53) 48.96%,
+    rgb(138, 54, 169) 48.96%,
     rgba(255, 0, 0, 0.41) 99.99%
   );
   border-radius: 25px;
-  max-width: 75rem;
-  margin-left: auto;
-  margin-right: 5rem;
-  min-width: 25rem;
+
+  aspect-ratio: 5/1;
+
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,32 +48,35 @@
 }
 
 .backDropImageAdd {
-  width: 60px;
-  height: 60px;
+  width: 5%;
+  aspect-ratio: 1/1;
   display: none;
 }
 
 .backDropImage {
   width: 100%;
-  height: 100%;
   object-fit: cover;
   border-radius: 25px;
+  aspect-ratio: 5/1;
 }
 
 .profilePicture {
+  top: 60%;
+  left: 6%;
+
   position: absolute;
-  height: 208px;
-  width: 208px;
+
+  max-width: 17.5%;
+  aspect-ratio: 1/1;
+  width: 100%;
+
   background: linear-gradient(
     90.01deg,
-    #cc65ff 0.01%,
-    rgba(179, 106, 205, 0.53) 48.96%,
-    rgba(0, 85, 255, 0.41) 99.99%
+    #2d8fd5 0.01%,
+    rgb(138, 54, 169) 99.96%,
+    rgba(255, 0, 0, 0.41) 99.99%
   );
   border-radius: 25px;
-
-  top: 150px;
-  left: 60px;
 
   display: flex;
   justify-content: center;
@@ -69,19 +84,25 @@
 }
 
 .image {
-  height: 200px;
-  width: 200px;
+  max-width: 96%;
+  aspect-ratio: 1/1;
+  width: 100%;
+
   object-fit: cover;
   border-radius: 25px;
-  margin-left: 1px;
-  margin-top: 1px;
-  z-index: 1;
 }
 
-.image:hover {
+.profilePicture:hover {
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
   cursor: pointer;
+}
+
+.profilePicture:hover > .profileImageAdd {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  filter: brightness(0) invert(1);
 }
 
 .profileImageAdd {
@@ -98,94 +119,140 @@
 
 .name {
   position: absolute;
-  left: 290px;
-  top: 250px;
-  font-size: 20px;
+  left: 24.5%;
+  top: 105%;
 }
 
 .description {
   position: absolute;
-  left: 290px;
-  top: 280px;
+  left: 24.5%;
+  top: 118%;
 }
 
-.name-textbox {
-  position: absolute;
-  left: 300px;
-  max-width: 35rem;
-  top: -5px;
+@media only screen and (max-width: 1200px) {
+  .name {
+    font-size: 14px;
+   
+  }
+  
+  .description {
+    font-size: 12px;
+    top: 125%;
+  }
 }
 
-.textbox-name {
-  position: absolute;
+.profileSettingsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+  width: 100%;
+  max-width: 900px;
 }
 
 .namebox-container {
+  margin-bottom: 50px;
+}
+
+.cv-container {
+  margin-bottom: 50px;
+}
+
+.description-container {
+  margin-bottom: 50px;
+}
+
+.saveButton {
+  display: flex;
+  justify-content: flex-end;
   position: relative;
-  top: 500px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5rem;
-  max-width: 75rem;
+
 }
 
-.cv-textbox {
-  position: absolute;
-  left: 300px;
-  max-width: 35rem;
-  top: -5px;
+.save {
+  width: 20%;
+  background-color: #0a59f7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  min-height: 40px;
+  min-width: 100px;
 }
 
-.textbox-cv {
+.save:hover {
+  background-color: #094cd1;
+}
+
+.confirmSave {
   position: absolute;
+  color: #15d703;
+  right: 25%;
+  top: 20%;
 }
 
 .exist-cv {
-  position: absolute;
-  margin-top: 50px;
+  margin-top: 5px;
   cursor: pointer;
-  color:rgba(0, 85, 255, 0.41);
+  color:rgb(39, 107, 244);
 }
 
 .exist-cv:hover {
   color:rgb(10, 46, 119)
 }
 
-.cv-container {
-  position: relative;
-  top: 550px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5rem;
-  max-width: 75rem;
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.description-container {
-  position: relative;
-  top: 610px;
-  max-width: 75rem;
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
 }
 
-.textbox-description {
-  position: absolute;
+.setting {
+  margin-bottom: 50px;
 }
 
-.description-textbox {
-  position: absolute;
-  left: 300px;
-  max-width: 35rem;
-  top: -5px;
+@media only screen and (max-width: 900px) {
+  .namebox-container {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .cv-container {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .description-container {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .profileSettingsContainer {
+    margin-top: 80px;
+  }
+
+  .name-textbox {
+    font-size: 14px;
+  }
+
+  .cv-textbox {
+    font-size: 14px;
+  }
+
+  .description-textbox {
+    font-size: 14px;
+  }
+
+  .confirmSave {
+    right: 30%;
+  }
+
+  
 }
 
-.save {
-  position: absolute;
-  top: 1000px;
-  width: 100px;
-  height: 40px;
-  background-color: #ff3556;
-  border: none;
-  border-radius: 5px;
-}
-
-.save:hover {
-  background-color: #ff9bab;
-  border-radius: 5px;
-}

@@ -1,54 +1,71 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = process.env.REACT_APP_API;
+const API_URL = "http://localhost:3000/api/";
 
 const getEmployerProfile = () => {
   return axios.get(API_URL + "profile", { headers: authHeader() });
 };
 
 const updateEmployerPosition = (user) => {
-  return axios.put(API_URL + "employers", {
+  return axios.put(API_URL + "employers", user, {
     headers: authHeader(),
-    user: user,
   });
 };
 
-const updateBackdropImage = (user) => {
-  return axios.put(API_URL + "employersBackdropImg", {
-    headers: authHeader(),
-    user,
+const updateBackdropImage = (user, image) => {
+  var formData = new FormData();
+  formData.append(user.email, image);
+  console.log(formData);
+  return axios.put(API_URL + "employersBackdropImg", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": user.accessToken,
+    },
   });
 };
 
 const getBackdropImage = (user) => {
   return axios
-    .post(API_URL + "employersBackdropImg", {
+    .get(API_URL + `employersBackdropImg/${user.backdropImageID}`,  {
       headers: authHeader(),
-      user,
+      responseType: "blob"
     })
     .then((response) => {
-      return response.data;
+      return response
     });
 };
 
-const updateProfileImage = (user) => {
-  return axios.put(API_URL + "employersProfileImg", {
-    headers: authHeader(),
-    user,
+const updateProfileImage = (user, image) => {
+  var formData = new FormData();
+  formData.append(user.email, image);
+  console.log(formData);
+  return axios.put(API_URL + "employersProfileImg", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": user.accessToken,
+    },
   });
 };
 
-const getEmployer = (user) => {
-  const userRevised = {
-    email: user.email,
-    accessToken: user.accessToken,
-  };
-
+const getProfileImage = (user) => {
   return axios
-    .put(API_URL + "employer", {
+    .get(API_URL + `employersProfileImg/${user.profileImageID}`,  {
       headers: authHeader(),
-      userRevised,
+      responseType: "blob"
+    })
+    .then((response) => {
+      return response
+    });
+};
+
+const getEmployer = (user) => {
+  return axios
+    .get(API_URL + `employer/${user.email}`, {
+      headers: {
+        "x-access-token": user.accessToken,
+        "x-refresh-token": user.refreshToken
+      }
     })
     .then((response) => {
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -59,6 +76,24 @@ const getEmployerContent = () => {
   return axios.get(API_URL + "test/user", { headers: authHeader() });
 };
 
+const updateEmployerDescription = (user) => {
+  return axios.put(API_URL + "employerDescription", user, {
+    headers: authHeader(),
+  });
+};
+
+const updateEmployerEmail = (user) => {
+  return axios.put(API_URL + "employerUpdateEmail", user, {
+    headers: authHeader(),
+  });
+};
+
+const updateEmployerPassword = (user) => {
+  return axios.put(API_URL + "employerUpdatePassword", user, {
+    headers: authHeader(),
+  });
+};
+
 const employerService = {
   getEmployerProfile,
   updateEmployerPosition,
@@ -67,6 +102,10 @@ const employerService = {
   updateProfileImage,
   getEmployer,
   getEmployerContent,
+  getProfileImage,
+  updateEmployerDescription,
+  updateEmployerEmail,
+  updateEmployerPassword
 };
 
 export default employerService;

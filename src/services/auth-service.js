@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const API_URL = process.env.REACT_APP_API_AUTH;
+import authHeader from "./auth-header";
+const API_URL = "http://localhost:3000/api/auth/";
 
 const studentSignup = (ticket) => {
   return axios.post(API_URL + "studentSignup", {
@@ -57,15 +57,28 @@ const employerLogin = (username, password) => {
     });
 };
 
-const dtuCasLogin = (ticket) => {
+const checkToken = () => {
   return axios
-    .get("https://auth.dtu.dk/dtu/servicevalidate", {
-      params: {
-        service: "https://dtu.praktikportal.diplomportal.dk/",
-        ticket: ticket,
-      },
+    .get(API_URL + "checkToken", { headers: authHeader() })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    });
+};
+
+const refreshToken = (refreshToken) => {
+  return axios
+    .post(API_URL + "refreshtoken", {
+      refreshToken,
     })
     .then((response) => {
+      console.log(response);
+      if (response.data.accessToken) {
+        const user = JSON.parse(localStorage.getItem("user"));
+        user.accessToken = response.data.accessToken;
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
       return response.data;
     });
 };
@@ -86,6 +99,7 @@ const authService = {
   employerLogin,
   logout,
   getCurrentUser,
-  dtuCasLogin,
+  checkToken,
+  refreshToken,
 };
 export default authService;
