@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:3000/api/";
+const API_URL = process.env.REACT_APP_API;
 
 const getEmployerProfile = () => {
   return axios.get(API_URL + "profile", { headers: authHeader() });
@@ -27,12 +27,12 @@ const updateBackdropImage = (user, image) => {
 
 const getBackdropImage = (user) => {
   return axios
-    .get(API_URL + `employersBackdropImg/${user.backdropImageID}`,  {
+    .get(API_URL + `employersBackdropImg/${user.backdropImageID}`, {
       headers: authHeader(),
-      responseType: "blob"
+      responseType: "blob",
     })
     .then((response) => {
-      return response
+      return response;
     });
 };
 
@@ -50,12 +50,12 @@ const updateProfileImage = (user, image) => {
 
 const getProfileImage = (user) => {
   return axios
-    .get(API_URL + `employersProfileImg/${user.profileImageID}`,  {
+    .get(API_URL + `employersProfileImg/${user.profileImageID}`, {
       headers: authHeader(),
-      responseType: "blob"
+      responseType: "blob",
     })
     .then((response) => {
-      return response
+      return response;
     });
 };
 
@@ -64,8 +64,8 @@ const getEmployer = (user) => {
     .get(API_URL + `employer/${user.email}`, {
       headers: {
         "x-access-token": user.accessToken,
-        "x-refresh-token": user.refreshToken
-      }
+        "x-refresh-token": user.refreshToken,
+      },
     })
     .then((response) => {
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -105,7 +105,7 @@ const employerService = {
   getProfileImage,
   updateEmployerDescription,
   updateEmployerEmail,
-  updateEmployerPassword
+  updateEmployerPassword,
 };
 
 export default employerService;

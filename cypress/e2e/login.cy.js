@@ -1,6 +1,6 @@
 describe("LoginTest", () => {
   it("loads successfully", () => {
-    cy.visit("http://localhost:3001/");
+    cy.visit("https://dtu.praktikportal.diplomportal.dk/");
 
     cy.get("div.landingpage-buttons")
       .should("be.visible")

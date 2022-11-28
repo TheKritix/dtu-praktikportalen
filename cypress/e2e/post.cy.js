@@ -3,7 +3,7 @@ describe("empty spec", () => {
   it("getPost", function () {
     /* ==== Generated with Cypress Studio ==== */
     /* cy.wait are delays for API's to get fetched */
-    cy.visit("http://localhost:3001/dtu-praktikportalen/");
+    cy.visit("https://dtu.praktikportal.diplomportal.dk/");
     cy.get(".employee > img").click();
     cy.get("#formUsername").clear();
     cy.get("#formUsername").type("Test");

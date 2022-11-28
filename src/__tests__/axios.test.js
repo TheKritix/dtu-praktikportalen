@@ -6,6 +6,8 @@ import axios from "axios";
 import authService from "../services/auth-service";
 import postService from "../services/post-service";
 
+const API_URL = process.env.REACT_APP_API;
+
 //Source: https://www.naftalimurgor.com/introduction-to-mocking-axios/
 jest.mock("axios");
 
@@ -50,7 +52,7 @@ describe("posts api", () => {
       data: mockFakePosts,
     };
     axios.get.mockResolvedValue(response);
-    const result = await axios.get("http://localhost:3000/api/post");
+    const result = await axios.get(API_URL + "post");
     expect(result).toEqual(response);
     expect(axios.get).toHaveBeenCalledTimes(1);
   });

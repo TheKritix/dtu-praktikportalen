@@ -1,6 +1,6 @@
 describe("employer login", () => {
   it("passes", () => {
-    cy.visit("http://localhost:3001/");
+    cy.visit("https://dtu.praktikportal.diplomportal.dk/");
   });
 
   /* ==== Test Created with Cypress Studio ==== */

@@ -5,7 +5,7 @@ describe("LoginProfil", () => {
   it("tests LoginProfil", () => {
     cy.viewport(1018, 1041);
 
-    cy.visit("http://localhost:3001/dtu-praktikportalen/");
+    cy.visit("https://dtu.praktikportal.diplomportal.dk/");
 
     cy.contains("Employer").click();
 

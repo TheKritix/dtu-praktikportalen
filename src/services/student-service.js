@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:3000/api/";
+const API_URL = process.env.REACT_APP_API;
 
 const studentPDFUpload = (pdf, user) => {
   var formData = new FormData();
@@ -39,12 +39,12 @@ const updateBackdropImage = (user, image) => {
 
 const getBackdropImage = (user) => {
   return axios
-    .get(API_URL + `studentBackdropImg/${user.backdropImageID}`,  {
+    .get(API_URL + `studentBackdropImg/${user.backdropImageID}`, {
       headers: authHeader(),
-      responseType: "blob"
+      responseType: "blob",
     })
     .then((response) => {
-      return response
+      return response;
     });
 };
 
@@ -62,12 +62,12 @@ const updateProfileImage = (user, image) => {
 
 const getProfileImage = (user) => {
   return axios
-    .get(API_URL + `studentProfileImg/${user.profileImageID}`,  {
+    .get(API_URL + `studentProfileImg/${user.profileImageID}`, {
       headers: authHeader(),
-      responseType: "blob"
+      responseType: "blob",
     })
     .then((response) => {
-      return response
+      return response;
     });
 };
 
@@ -76,8 +76,8 @@ const getStudent = (user) => {
     .get(API_URL + `student/${user.studentID}`, {
       headers: {
         "x-access-token": user.accessToken,
-        "x-refresh-token": user.refreshToken
-      }
+        "x-refresh-token": user.refreshToken,
+      },
     })
     .then((response) => {
       localStorage.setItem("user", JSON.stringify(response.data));
