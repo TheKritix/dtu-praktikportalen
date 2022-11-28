@@ -18,27 +18,35 @@ const FeedbackSection = (internshipId) => {
 
 
   //const baseUrl = `https://api.praktikportal.diplomportal.dk/api/feedback`;
-  const baseUrl = 'http://localhost:3000/api/feedback';
-
-  useEffect(() => {
+  //const baseUrl = 'http://localhost:3000/api/feedback';
+  const fs = feedbackStore;
+  const getFeedback = () => {
+    fs.fetchFeedback().then(() => {
+      setFeedbacks(fs.feedbacks.filter((feedbacks) => feedbacks.internshipId === internshipId.internshipId))
+    })
+  }
+  /*useEffect(() => {
     fetch(baseUrl)
       .then((response) => response.json())
       .then((responseJson) => {
         setFeedbacks(responseJson);
       });
     // setFetchedPosts(postStore.posts);
-  }, [baseUrl]);
+  }, []);*/
+  useEffect(() =>{
+    getFeedback();
+  }, []);
 
 
-  const relevant_feedbacks = feedbacks?.filter((feedbacks) => feedbacks.internshipId === internshipId.internshipId);
-  console.log(relevant_feedbacks);
+  //const relevant_feedbacks = feedbacks?.filter((feedbacks) => feedbacks.internshipId === internshipId.internshipId);
+  //console.log(relevant_feedbacks);
   return (
     <div className="">
       <h2 className="d-flex m-auto justify-content-center mx-2 mt-5 mb-4 pb-4 feedback-header">
         Feedback fra Tidligere Praktikanter
       </h2>
-      {<FeedbackInputSection internshipId={internshipId.internshipId} feedbacks={relevant_feedbacks}/>}
-      {relevant_feedbacks.map((el) => (
+      {<FeedbackInputSection internshipId={internshipId.internshipId} feedbacks={feedbacks}/>}
+      {feedbacks.map((el) => (
           <FeedbackCard data={el} />
         ))}
     </div>

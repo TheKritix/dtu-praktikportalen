@@ -13,18 +13,17 @@ class FeedbackStore {
     makeAutoObservable(
       this,
       {},
-      { autoBind: true } //For non-arrow-functions bind
+      { autoBind: true }
     );
   }
 
   
-  fetchFeedback = () => {
-    fetch(baseUrl)
+  async fetchFeedback() {
+    await fetch(baseUrl)
       .then((response) => response.json())
       .then((responseJson) => {
-        runInAction(()=>this.feedbacks=responseJson)
-        //this.feedbacks = responseJson;
-        //console.log(`feedbackStore res: ${this.feedbacks}`)
+        this.feedbacks=responseJson;
+
       });
   };
 
