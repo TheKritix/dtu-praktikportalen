@@ -126,7 +126,7 @@ const Header = () => {
               return (
                 <Col key={post._id} className="d-flex mx-auto mb-4">
                   <Card style={{ width: "18rem", height: "25rem" }}>
-                    {post.bannerImageID ? (
+                    {(post.bannerImageID && postStore.bannerImageList.length !== 0) ?  (
                       <Card.Img
                         variant="top"
                         className="card-image"
