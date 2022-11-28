@@ -4,7 +4,8 @@ import postService from '../services/post-service';
 //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
 
 // const baseUrl = process.env.NODE_ENV === 'development' ? "http://localhost:3000/":"";
-const TestApi = "http://localhost:3000/api/post"
+// const TestApi = "http://localhost:3000/api/post"
+const API_URL = process.env.REACT_APP_API_LOCAL;
 
 class PostStore {
 
@@ -20,15 +21,8 @@ class PostStore {
         makeAutoObservable(this, {}, {autoBind: true})
     }
 
-       //burde bruge den her, men virker ikke helt
-    // async fetchPost() {
-    //     await postService.fetchPosts().then((response) => {
-    //         this.posts = response;
-    //     })
-    // }
-
     async fetchPosts() {
-        await fetch(TestApi)
+        await fetch(API_URL + "post")
                 .then((response) => response.json())
                 .then((responseJson) => {
                 this.posts = responseJson;
@@ -53,7 +47,7 @@ class PostStore {
         })
     }
 
-    // //todo: post, put, delete async functions
+    // //todo: put, delete async functions
 }
 
 export const postStore = new PostStore(); 
