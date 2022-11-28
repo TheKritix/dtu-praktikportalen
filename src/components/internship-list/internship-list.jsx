@@ -90,7 +90,7 @@ export const InternshipList = () => {
         favoriteStore.fetchFavorite().then(() => {
             if (profileStore.user.id) {
                 favoriteStore.favorites.forEach((d) => {
-                    if (d.uid == profileStore.user.id) {
+                    if (d.uid === profileStore.user.id) {
                         localStaredInternships.push(d.favorite)
                     }
                 })
@@ -123,7 +123,7 @@ export const InternshipList = () => {
                 store.posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase()) || post.description.toLowerCase().includes(search.toLowerCase()))
             )
         }
-    }, [type, search])
+    }, [type, search, store])
 
     return (
         <div>

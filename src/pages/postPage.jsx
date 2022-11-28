@@ -24,7 +24,7 @@ const PostPage = () => {
     
     useEffect(() => {
       getPost();
-    }, []);
+    });
     
     return (
         <div>

@@ -23,7 +23,7 @@ const PostContent = ({post, review}) => {
 
     useEffect(() => {
         getBannerImage()
-    }, [])
+    })
 
     return (
         <div className="post-left-column">

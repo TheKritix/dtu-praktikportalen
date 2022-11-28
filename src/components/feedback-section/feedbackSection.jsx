@@ -35,7 +35,7 @@ const FeedbackSection = (internshipId) => {
   }, []);*/
   useEffect(() =>{
     getFeedback();
-  }, []);
+  });
 
 
   //const relevant_feedbacks = feedbacks?.filter((feedbacks) => feedbacks.internshipId === internshipId.internshipId);

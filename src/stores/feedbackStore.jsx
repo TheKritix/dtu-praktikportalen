@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import authHeader from "../services/auth-header";
 
