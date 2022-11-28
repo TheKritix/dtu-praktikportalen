@@ -8,9 +8,7 @@ const PostContent = ({post, review}) => {
 
     const [banner, setBanner] = useState(bannerPlaceholder);
 
-
     const getBannerImage = () => {
-    
         if (review === false) {
             postStore.fetchBannerImage(post).then(() => {
                 setBanner(postStore.bannerImage);
@@ -20,10 +18,11 @@ const PostContent = ({post, review}) => {
             setBanner(post.bannerImg);
         }
     };
-
+    
     useEffect(() => {
         getBannerImage()
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="post-left-column">
