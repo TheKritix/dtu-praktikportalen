@@ -38,6 +38,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "testQ": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --coverage --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
@@ -45,6 +46,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios))"
     ]
   },
   "browserslist": {

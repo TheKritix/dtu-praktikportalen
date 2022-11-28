@@ -15,7 +15,7 @@ import "../../enzymConfig";
 //Source: https://jestjs.io/docs/tutorial-react
 //Source: https://robertmarshall.dev/blog/how-to-mock-local-storage-in-jest-tests/
 
-const user = {
+const mockUser = {
   id: "63738f408a4b2c4c8d6e1aa0",
   username: "Test",
   email: "test@test.dk",
@@ -26,12 +26,12 @@ const user = {
 };
 
 const setLocalStorage = () => {
-  window.localStorage.setItem("user", JSON.stringify(user));
+  window.localStorage.setItem("user", JSON.stringify(mockUser));
 };
 
 test("localstorage test", () => {
   setLocalStorage();
-  expect(localStorage.getItem("user")).toEqual(JSON.stringify(user));
+  expect(localStorage.getItem("user")).toEqual(JSON.stringify(mockUser));
 });
 
 test("render password", () => {
@@ -45,13 +45,13 @@ test("render email", () => {
   });
 });
 
-// Resultere i en underlig Jest Axios fejl - Skal undersøges
-// test("render profileSettings", () => {
-//   setLocalStorage();
-//   profileStore.fetchUserInformation().then(() => {
-//     render(<ProfileSettings />);
-//   });
-// });
+// Resultere i en underlig Jest Axios fejl men kun ved en test på Github Actions - Skal undersøges
+test("render profileSettings", () => {
+  setLocalStorage();
+  profileStore.fetchUserInformation().then(() => {
+    render(<ProfileSettings />);
+  });
+});
 
 test("render studentSettings", () => {
   setLocalStorage();
