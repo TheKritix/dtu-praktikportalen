@@ -42,21 +42,6 @@ const PostPage = () => {
         </div>
     );
 
-  return (
-    <div>
-      {fetchedPosts
-        ?.filter((posts) => posts._id === TempPostId)
-        .map((post, i) => (
-          <div className="post-container">
-            <PostContent post={post} />
-            <PostContactInfo post={post} />
-          </div>
-        ))}
-      <div>
-        <FeedbackSection />
-      </div>
-    </div>
-  );
 };
 
 export default PostPage;
