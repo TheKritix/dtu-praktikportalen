@@ -12,7 +12,7 @@ describe('CreatePost', () => {
     //createpost
     cy.contains('Create Post').click();
 
-    //const p = '';
+    const p = 'cypress/fixtures/TEST-BANNER.jpg';
 
     cy.get('input[name=title]').type('CypressTestTitle')
     cy.get('select[name=type]').select('Praktik')
@@ -23,7 +23,7 @@ describe('CreatePost', () => {
     cy.get('input[name=contact]').type('CypressTestContact')
     cy.get('input[name=applyToEmail]').type('CypressTestEmail')
     cy.get('input[name=website]').type('CypressTestWebsite')
-    //cy.get('input[name=bannerImg]').selectFile(p);
+    cy.get('input[name=bannerImg]').selectFile(p);
     cy.contains('Opret stilling').click();
 
   })
