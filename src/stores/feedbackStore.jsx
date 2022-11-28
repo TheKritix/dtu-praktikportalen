@@ -1,5 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
+import authHeader from "../services/auth-header";
+
 
 //const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:3000/":""; //Check if dev environment
 //const baseUrl = `https://api.praktikportal.diplomportal.dk/api/feedback`;
@@ -13,8 +15,6 @@ class FeedbackStore {
       {},
       { autoBind: true } //For non-arrow-functions bind
     );
-    this.fetchFeedback();
-
   }
 
   
@@ -36,7 +36,7 @@ class FeedbackStore {
       text: feedback.text,
       ratingOutOfFive: feedback.ratingOutOfFive,
       internshipId: feedback.internshipId,
-    });
+    }, { headers: authHeader()});
   };
 
 }

@@ -1,7 +1,7 @@
 import "./feedbackStyles.css";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
-import { feedbackStore } from "./feedbackStore";
+import { feedbackStore } from "../../stores/feedbackStore";
 import Button from "react-bootstrap/Button";
 
 //XXXX Bootstrap XXXX
@@ -13,24 +13,25 @@ import {profileStore} from "../../stores/profileStore";
 
 const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
-  const ps = profileStore;
-  //profileStore.fetchUserInformation
 
+  const name_arr = profileStore.user.name.split(' ');
+  const firstName = name_arr[0];
+  const lastName = profileStore.user.name.replace(firstName, '');
+  var currentdate = new Date(); 
+  var datetime = currentdate.getDate() + "/"
+                  + (currentdate.getMonth()+1)  + "/" 
+                  + currentdate.getFullYear() + " @ "  
+                  + currentdate.getHours() + ":"  
+                  + currentdate.getMinutes()
 
-  console.log("PROFILE STORE")
-  console.log(profileStore)
+  console.log("TEST INPUT SECTION")
+  console.log(datetime)
 
-  console.log("INTERNSHIP ID:");
-  console.log(internshipId);
-  console.log("RELEVANT FEEDBACKS")
-  console.log(feedbacks)
-
-  //const internship = internshipId;
 
   const defaultFeedback = () => ({
-    firstName: "testName",
-    lastName: "testSurname",
-    postedAt: "2022-01-01",
+    firstName: firstName,
+    lastName: lastName,
+    postedAt: datetime,
     text: "",
     ratingOutOfFive: "",
     internshipId: internshipId,

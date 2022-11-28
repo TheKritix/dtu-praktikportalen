@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import "./feedbackStyles.css";
 
 import FeedbackCard from "./feedbackCard";
-import { feedbackStore } from "./feedbackStore";
+import { feedbackStore } from "../../stores/feedbackStore";
 import FeedbackInputSection from "./feedbackInputSection";
 
 
