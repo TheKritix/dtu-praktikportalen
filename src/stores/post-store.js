@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {action, makeAutoObservable, runInAction} from "mobx";
 import postService from '../services/post-service'; 
 
 //source: https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
@@ -18,7 +18,9 @@ class PostStore {
     bannerImageList = [];
 
     constructor() {
-        makeAutoObservable(this, {}, {autoBind: true})
+        makeAutoObservable(this, {
+            fetchAllBannerImages: action
+        }, {autoBind: true})
     }
 
     async fetchPosts() {
@@ -42,8 +44,10 @@ class PostStore {
 
     async fetchAllBannerImages(post) {
         await postService.getBannerImage(post).then((response) => {
-            this.bannerImageList.push(post.bannerImageID)
-            this.bannerImageList.push(URL.createObjectURL(new Blob([response.data])));
+            runInAction(() => {
+                this.bannerImageList.push(post.bannerImageID)
+                this.bannerImageList.push(URL.createObjectURL(new Blob([response.data])));
+              })
         })
     }
 
