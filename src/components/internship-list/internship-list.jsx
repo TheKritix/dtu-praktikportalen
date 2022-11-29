@@ -16,142 +16,140 @@ const types = [
   { type: "Praktik" },
   { type: "Deltid" },
   { type: "Fuldtid" },
-];
+]
 
 export const InternshipList = () => {
-  const store = postStore;
+  const store = postStore
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [type, setType] = useState([]);
-  const [search, setSearch] = useState("");
+  const [type, setType] = useState([])
+  const [search, setSearch] = useState("")
 
-  const [filteredInternships, setFilteredInternships] = useState([]);
-  const [staredInternships, setStaredInternships] = useState([]);
+  const [filteredInternships, setFilteredInternships] = useState([])
+
+  const [staredInternships, setStaredInternships] = useState([])
+
+
+  const gotoInternshipPost = (e) => {
+    navigate(`/post/${e}`)
+  }
+
 
   const addToFavorites = (id) => {
-    if (!staredInternships.includes(id))
-      setStaredInternships(staredInternships.concat(id));
-    favoriteStore.addFavorite(id);
-  };
-  const removeFavorites = (id) => {
-    let index = staredInternships.indexOf(id);
+    setStaredInternships(staredInternships.concat(id))
+    favoriteStore.addFavorite(id)
+  }
+  const removeFromFavorites = (id) => {
+    let index = staredInternships.indexOf(id)
     let temp = [
       ...staredInternships.slice(0, index),
       ...staredInternships.slice(index + 1),
-    ];
-    setStaredInternships(temp);
-    favoriteStore.deleteFavorite(profileStore.User, id);
-  };
-
-  const gotoInternshipPost = (e) => {
-    navigate(`/post/${e}`);
-  };
-
-  const internshipCards = filteredInternships.map((d) => (
-    <Card key={d._id} className="mb-3" id="internship-card">
-      <Card.Title
-        style={{ cursor: "pointer" }}
-        onClick={() => gotoInternshipPost(d._id)}
-      >
-        {staredInternships.includes(d._id) ? "⭐ • " : null}
-        {d.hasApplied ? "ANSØGT • " : null}
-        {d.title}
-      </Card.Title>
-      <Card.Text
-        style={{ cursor: "pointer" }}
-        onClick={() => gotoInternshipPost(d._id)}
-      >
-        {d.description.split(".")[0] + "."}
-      </Card.Text>
-      <p
-        style={{ cursor: "pointer" }}
-        onClick={() => gotoInternshipPost(d._id)}
-      >
-        Type: {d.type} • Startdato: {d.startDate} • Lokation: {d.location}
-      </p>
-      { /* Tilladt cypress-brugeren at tilføje favoritter til tests, da vi ikke kan oprette student accounts*/ }
-      {profileStore.User && (profileStore.user.studentID || (profileStore.User.username === "cypress") ) ? (
-        <p
-          style={{ cursor: "pointer" }}
-          onClick={
-            staredInternships.includes(d._id)
-              ? () => removeFavorites(d._id)
-              : () => addToFavorites(d._id)
-          }
-        >
-          {staredInternships.includes(d._id)
-            ? "Fjern fra favoritter"
-            : "Tilføj til favoritter"}
-        </p>
-      ) : null}
-    </Card>
-  ));
-
-  const handleTypeFiltering = (e) => {
-    if (e.target.checked) {
-      setType([...type, e.target.value]);
-    } else {
-      setType(type.filter((id) => id !== e.target.value));
-    }
-  };
-
-  const handleSearch = (e) => {
-    if (!e.target.value) {
-      setSearch("");
-    } else {
-      setSearch(e.target.value);
-    }
-  };
+    ]
+    setStaredInternships(temp)
+    favoriteStore.deleteFavorite(profileStore.User, id)
+  }
 
   const updateFavoritesLocally = () => {
-    const localStaredInternships = [];
+    const localStaredInternships = []
     if (profileStore.user) {
       favoriteStore.fetchFavorite().then(() => {
         Array.from(favoriteStore.favorites).forEach((d) => {
           if (d.uid === profileStore.user.id) {
-            localStaredInternships.push(d.favorite);
+            localStaredInternships.push(d.favorite)
           }
-        });
-        setStaredInternships(localStaredInternships);
-      });
+        })
+        setStaredInternships(localStaredInternships)
+      })
     }
-  };
+  }
+
+
+  const handleTypeFiltering = (e) => {
+    if (e.target.checked) {
+      setType([...type, e.target.value])
+    } else {
+      setType(type.filter((id) => id !== e.target.value))
+    }
+  }
+
+
+  const handleSearch = (e) => {
+    if (!e.target.value) {
+      setSearch("")
+    } else {
+      setSearch(e.target.value)
+    }
+  }
+
 
   useEffect(() => {
-    updateFavoritesLocally();
-
+    updateFavoritesLocally()
     // Uden filtering
     if (type.length === 0 && search === "") {
       store.fetchPosts().then(() => {
-        setFilteredInternships(store.posts);
-      });
+        setFilteredInternships(store.posts)
+      })
       // Filtering med type
     } else if (type.length !== 0) {
-      setFilteredInternships(
-        store.posts
+      setFilteredInternships(store.posts
           .filter((post) =>
             type.some((type) =>
               [post.type].toString().toLowerCase().includes(type.toLowerCase())
-            )
-          )
-          .filter(
-            (post) =>
+            ))
+          .filter((post) =>
               post.title.toLowerCase().includes(search.toLowerCase()) ||
               post.description.toLowerCase().includes(search.toLowerCase())
-          )
-      );
+          ))
       // Filtrering med tekst
     } else if (type.length === 0 && search !== "") {
-      setFilteredInternships(
-        store.posts.filter(
-          (post) =>
+      setFilteredInternships(store.posts.filter((post) =>
             post.title.toLowerCase().includes(search.toLowerCase()) ||
             post.description.toLowerCase().includes(search.toLowerCase())
-        )
-      );
+        ))
     }
-  }, [type, search, store]);
+  }, [type, search, store])
+
+
+  const internshipCards = filteredInternships.map((d) => (
+      <Card key={d._id} className="mb-3" id="internship-card">
+        <Card.Title
+            style={{ cursor: "pointer" }}
+            onClick={() => gotoInternshipPost(d._id)}
+        >
+          {staredInternships.includes(d._id) ? "⭐ • " : null}
+          {d.hasApplied ? "ANSØGT • " : null}
+          {d.title}
+        </Card.Title>
+        <Card.Text
+            style={{ cursor: "pointer" }}
+            onClick={() => gotoInternshipPost(d._id)}
+        >
+          {d.description.split(".")[0] + "."}
+        </Card.Text>
+        <p
+            style={{ cursor: "pointer" }}
+            onClick={() => gotoInternshipPost(d._id)}
+        >
+          Type: {d.type} • Startdato: {d.startDate} • Lokation: {d.location}
+        </p>
+        { /* Tilladt cypress-brugeren at tilføje favoritter til tests, da vi ikke kan oprette student accounts*/ }
+        {profileStore.User && (profileStore.user.studentID || (profileStore.User.username === "cypress") ) ? (
+            <p
+                style={{ cursor: "pointer" }}
+                onClick={
+                  staredInternships.includes(d._id)
+                      ? () => removeFromFavorites(d._id)
+                      : () => addToFavorites(d._id)
+                }
+            >
+              {staredInternships.includes(d._id)
+                  ? "Fjern fra favoritter"
+                  : "Tilføj til favoritter"}
+            </p>
+        ) : null}
+      </Card>
+  ))
 
   return (
     <div>
@@ -191,9 +189,10 @@ export const InternshipList = () => {
                   />
                 </React.Fragment>
               </Form>
-
-              <br />
             </Col>
+
+            <br />
+
             <Col className="col-1" />
             <Col className="opslag col-7">
               <Row className="">
@@ -211,7 +210,7 @@ export const InternshipList = () => {
         </Col>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default observer(InternshipList);
+export default observer(InternshipList)
