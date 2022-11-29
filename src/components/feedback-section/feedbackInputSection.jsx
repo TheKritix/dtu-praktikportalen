@@ -14,20 +14,6 @@ import {profileStore} from "../../stores/profileStore";
 const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
 
-  //const name_arr = profileStore.user.name.split(' ');
-  //const firstName = name_arr[0];
-  //const lastName = profileStore.user.name.replace(firstName, '');
-  //var currentdate = new Date(); 
-  //var datetime = currentdate.getDate() + "/"
-                  //+ (currentdate.getMonth()+1)  + "/" 
-                 //+ currentdate.getFullYear() + " @ "  
-                  //+ currentdate.getHours() + ":"  
-                 // + currentdate.getMinutes()
-
-  //console.log("TEST INPUT SECTION")
-  console.log(profileStore)
-
-
   const defaultFeedback = () => ({
     firstName: "",
     lastName: "",
