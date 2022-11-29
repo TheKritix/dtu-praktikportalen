@@ -43,6 +43,10 @@ class FavoriteStore {
       .get(baseUrl + "api/favorite", { headers: authHeader() })
       .then((response) => {
         this.favorites = response.data;
+        
+      }, (error) => {
+        console.log("favorites fetched");
+        console.log(error);
       });
   }
 }
