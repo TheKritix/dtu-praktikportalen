@@ -9,6 +9,7 @@ import PostContactInfo from "../post-page/postContactInfo";
 import { postStore } from "../../stores/post-store";
 import postService from "../../services/post-service"
 
+//Source: https://react-bootstrap.github.io/forms/overview/
 
 const InputForm = () => {
   const defaultObject = () => ({
@@ -57,16 +58,16 @@ const InputForm = () => {
     } else {
 
       const imgObject = new Image();
-
       imgObject.src = URL.createObjectURL(e.target.files[0]);
       
       setPreviewImage(imgObject.src);
+      //til preview post
       setCreatedPost({...createdPost,
         bannerImg: imgObject.src})
+      //fil til upload
       setUploadImage(e.target.files[0])
       console.log(createdPost.bannerImg)
     }
-    
   };
 
   const handleChangePost = (e) => {

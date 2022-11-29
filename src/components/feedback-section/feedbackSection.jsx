@@ -35,6 +35,7 @@ const FeedbackSection = (internshipId) => {
   }, []);*/
   useEffect(() =>{
     getFeedback();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

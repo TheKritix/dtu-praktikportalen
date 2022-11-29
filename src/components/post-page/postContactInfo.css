@@ -34,14 +34,17 @@
 .info-title {
     margin-bottom: 50px;
     font-weight: bold;
+    font-size: 100%;
 }
 
 .info-subtitle {
     font-weight: bold;
+    font-size: 100%;
 }
 
 .info-value {
     margin-bottom: 30px;
+    font-size: 100%;
 }
 
 
@@ -83,19 +86,19 @@
     }
 
     .info-title {
-        font-size: 15px;
         font-weight: bold;
         margin-bottom: 30px;
+        font-size: 60%;
     }
     
     .info-subtitle {
-        font-size: 10px;
         font-weight: bold;
+        font-size: 60%;
     }
     
     .info-value {
-        font-size: 10px;
         margin-bottom: 20px;
+        font-size: 60%;
     }
 
 }

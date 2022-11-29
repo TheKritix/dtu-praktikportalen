@@ -85,7 +85,7 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
     console.log("AVERAGE RATING:");
     console.log(avg);
     setAverageRating(avg_fixed);
-  });
+  },[avgRating, feedbacks]);
 
 
   return (

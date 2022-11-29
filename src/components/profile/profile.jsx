@@ -5,32 +5,27 @@ import ProfileSettings from "./profileComponents/profileSettings.jsx";
 import EmailSettings from "./profileComponents/emailSettings.jsx";
 import PasswordSettings from "./profileComponents/passwordSettings.jsx";
 import { profileStore } from "../../stores/profileStore";
-import { Dropdown, Container, Col, Row } from "react-bootstrap";
 
 // Textbox Source: https://react-bootstrap.github.io/forms/form-control/
 
 const Profile = () => {
   const [view, setView] = useState("profile");
-  const [currentView, setCurrentView] = useState("");
+
   const GetView = () => {
     let ViewComponent;
 
     switch (view) {
       case "profile":
         ViewComponent = ProfileSettings();
-        setCurrentView("Profil");
         break;
       case "email":
         ViewComponent = EmailSettings();
-        setCurrentView("Email");
         break;
       case "password":
         ViewComponent = PasswordSettings();
-        setCurrentView("Password");
         break;
       default:
         ViewComponent = ProfileSettings();
-        setCurrentView("Profil");
         break;
     }
 

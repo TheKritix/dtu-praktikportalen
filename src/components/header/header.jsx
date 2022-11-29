@@ -3,7 +3,7 @@ import "./header.css";
 import "@fontsource/poppins";
 import authService from "../../services/auth-service";
 import { getAllPosts } from "../../services/post-service";
-import {postStore} from "../../stores/post-store";
+import { postStore } from "../../stores/post-store";
 import { observer } from "mobx-react";
 //XXXX Bootstrap XXXX
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,7 +11,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import LoginEmployee from "../login/login";
+import LoginEmployer from "../login/login";
 //XXXX IMAGES XXXX
 import header_img from "../../res/images/landingpage_header.png";
 import student from "../../res/images/student.png";
@@ -41,17 +41,18 @@ const Header = () => {
         setPosts(response.data);
         console.log(response.data);
         if (postStore.bannerImageList.length === 0) {
-          response.data.filter(({bannerImageID}) => bannerImageID).forEach((post) => {
-            postStore.fetchAllBannerImages(post)
-          });
-        };
-        setBanners(postStore.bannerImageList)
+          response.data
+            .filter(({ bannerImageID }) => bannerImageID)
+            .forEach((post) => {
+              postStore.fetchAllBannerImages(post);
+            });
+        }
+        setBanners(postStore.bannerImageList);
       })
       .catch((e) => {
         console.log(e);
       });
   };
-
 
   useEffect(() => {
     fetchPosts();
@@ -84,8 +85,7 @@ const Header = () => {
                   <button
                     className="me-2 student px-4 py-2"
                     onClick={() =>
-                      (window.location.href =
-                        process.env.REACT_APP_DTU_AUTH_LOCAL)
+                      (window.location.href = process.env.REACT_APP_DTU_AUTH)
                     }
                   >
                     <img src={student} alt="student-logo" />
@@ -126,15 +126,19 @@ const Header = () => {
               return (
                 <Col key={post._id} className="d-flex mx-auto mb-4">
                   <Card style={{ width: "18rem", height: "25rem" }}>
-                    {post.bannerImageID ? (
-                      <Card.Img variant="top" className="card-image"
-                      src={banners?.[banners.indexOf(post.bannerImageID) + 1]}
-                        />
-                    ) :
-                      <Card.Img variant="top" className="card-image"
-                      src={placeholderImages}
-                        />
-                    }
+                    {(post.bannerImageID && postStore.bannerImageList.length !== 0) ?  (
+                      <Card.Img
+                        variant="top"
+                        className="card-image"
+                        src={banners?.[banners.indexOf(post.bannerImageID) + 1]}
+                      />
+                    ) : (
+                      <Card.Img
+                        variant="top"
+                        className="card-image"
+                        src={placeholderImages}
+                      />
+                    )}
                     <Card.Body>
                       <Card.Title>{post.title}</Card.Title>
                       <Card.Text>
@@ -152,7 +156,7 @@ const Header = () => {
             })}
         </Row>
       </div>
-      <LoginEmployee
+      <LoginEmployer
         show={showLogin}
         handleClose={handleClose}
         handleShow={handleShow}
