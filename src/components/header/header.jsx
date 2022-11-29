@@ -13,6 +13,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import LoginEmployer from "../login/login";
 //XXXX IMAGES XXXX
+import { useNavigate } from "react-router-dom";
 import header_img from "../../res/images/landingpage_header.png";
 import student from "../../res/images/student.png";
 import employee from "../../res/images/employee.png";
@@ -25,6 +26,7 @@ const Header = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [posts, setPosts] = useState([]);
   const [banners, setBanners] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
@@ -52,6 +54,10 @@ const Header = () => {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const goToInternshipPost = (id) => {
+    navigate(`/post/${id}`);
   };
 
   useEffect(() => {
@@ -85,7 +91,8 @@ const Header = () => {
                   <button
                     className="me-2 student px-4 py-2"
                     onClick={() =>
-                      (window.location.href = process.env.REACT_APP_DTU_AUTH_LOCAL)
+                      (window.location.href =
+                        process.env.REACT_APP_DTU_AUTH_LOCAL)
                     }
                   >
                     <img src={student} alt="student-logo" />
@@ -125,8 +132,16 @@ const Header = () => {
             posts.map((post) => {
               return (
                 <Col key={post._id} className="d-flex mx-auto mb-4">
-                  <Card style={{ width: "18rem", height: "25rem" }}>
-                    {(post.bannerImageID && postStore.bannerImageList.length !== 0) ?  (
+                  <Card
+                    onClick={() => goToInternshipPost(post._id)}
+                    style={{
+                      width: "18rem",
+                      height: "25rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {post.bannerImageID &&
+                    postStore.bannerImageList.length !== 0 ? (
                       <Card.Img
                         variant="top"
                         className="card-image"

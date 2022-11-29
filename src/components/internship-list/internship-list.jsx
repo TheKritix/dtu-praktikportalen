@@ -48,8 +48,8 @@ export const InternshipList = () => {
     navigate(`/post/${e}`);
   };
 
-  const list = filteredInternships.map((d) => (
-    <Card key={d._id} className="mb-3">
+  const internshipCards = filteredInternships.map((d) => (
+    <Card key={d._id} className="mb-3" id="internship-card">
       <Card.Title
         style={{ cursor: "pointer" }}
         onClick={() => gotoInternshipPost(d._id)}
@@ -70,7 +70,8 @@ export const InternshipList = () => {
       >
         Type: {d.type} • Startdato: {d.startDate} • Lokation: {d.location}
       </p>
-      {profileStore.User && profileStore.user.studentID ? (
+      { /* Tilladt cypress-brugeren at tilføje favoritter til tests, da vi ikke kan oprette student accounts*/ }
+      {profileStore.User && (profileStore.user.studentID || (profileStore.User.username === "cypress") ) ? (
         <p
           style={{ cursor: "pointer" }}
           onClick={
@@ -80,8 +81,8 @@ export const InternshipList = () => {
           }
         >
           {staredInternships.includes(d._id)
-            ? "Fjern fra favoriter"
-            : "Tilføj til favoriter"}
+            ? "Fjern fra favoritter"
+            : "Tilføj til favoritter"}
         </p>
       ) : null}
     </Card>
@@ -107,7 +108,7 @@ export const InternshipList = () => {
     const localStaredInternships = [];
     if (profileStore.user) {
       favoriteStore.fetchFavorite().then(() => {
-        favoriteStore.favorites.forEach((d) => {
+        Array.from(favoriteStore.favorites).forEach((d) => {
           if (d.uid === profileStore.user.id) {
             localStaredInternships.push(d.favorite);
           }
@@ -164,7 +165,7 @@ export const InternshipList = () => {
             <Col className="filterstuff col-3">
               <h4 className="">Filtrér søgning:</h4>
 
-              <Form>
+              <Form id="form-type-search">
                 <h6>Jobtype</h6>
                 {types.map((type) => (
                   <React.Fragment key={type.type}>
@@ -180,7 +181,7 @@ export const InternshipList = () => {
 
               <br />
 
-              <Form>
+              <Form id="field-text-search">
                 <h6>Fritekstsøgning</h6>
                 <React.Fragment>
                   <Form.Control
@@ -196,8 +197,8 @@ export const InternshipList = () => {
             <Col className="col-1" />
             <Col className="opslag col-7">
               <Row className="">
-                {list.length ? (
-                  list
+                {internshipCards.length ? (
+                  internshipCards
                 ) : (
                   <p className="d-flex justify-content-center">
                     Ingen praktikopslag matcher dine søgekriterier

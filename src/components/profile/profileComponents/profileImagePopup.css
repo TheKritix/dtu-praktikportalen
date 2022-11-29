@@ -1,7 +1,6 @@
 .popupContainer {
     display: flex;
     flex-direction: column;
-    
 }
 
 .popupImage {
@@ -14,6 +13,12 @@
 }
 
 #popup-2 {
+    border: 0;
+    padding: 0;
+    background: none;
+}
+
+#popup-1 {
     border: 0;
     padding: 0;
     background: none;
