@@ -1,7 +1,6 @@
 .popupContainer {
     display: flex;
     flex-direction: column;
-    
 }
 
 .popupImage {
