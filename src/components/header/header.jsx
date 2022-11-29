@@ -13,6 +13,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import LoginEmployer from "../login/login";
 //XXXX IMAGES XXXX
+import { useNavigate } from "react-router-dom";
 import header_img from "../../res/images/landingpage_header.png";
 import student from "../../res/images/student.png";
 import employee from "../../res/images/employee.png";
@@ -25,6 +26,7 @@ const Header = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [posts, setPosts] = useState([]);
   const [banners, setBanners] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
@@ -52,6 +54,10 @@ const Header = () => {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const goToInternshipPost = (id) => {
+    navigate(`/post/${id}`);
   };
 
   useEffect(() => {
@@ -125,7 +131,14 @@ const Header = () => {
             posts.map((post) => {
               return (
                 <Col key={post._id} className="d-flex mx-auto mb-4">
-                  <Card style={{ width: "18rem", height: "25rem" }}>
+                  <Card
+                    onClick={() => goToInternshipPost(post._id)}
+                    style={{
+                      width: "18rem",
+                      height: "25rem",
+                      cursor: "pointer",
+                    }}
+                  >
                     {post.bannerImageID &&
                     postStore.bannerImageList.length !== 0 ? (
                       <Card.Img
