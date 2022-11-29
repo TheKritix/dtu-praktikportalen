@@ -107,7 +107,7 @@ export const InternshipList = () => {
     const localStaredInternships = [];
     if (profileStore.user) {
       favoriteStore.fetchFavorite().then(() => {
-        favoriteStore.favorites.forEach((d) => {
+        Array.from(favoriteStore.favorites).forEach((d) => {
           if (d.uid === profileStore.user.id) {
             localStaredInternships.push(d.favorite);
           }
