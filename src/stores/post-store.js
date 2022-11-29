@@ -5,7 +5,7 @@ import postService from "../services/post-service";
 
 // const baseUrl = process.env.NODE_ENV === 'development' ? "http://localhost:3000/":"";
 // const TestApi = "http://localhost:3000/api/post"
-const API_URL = process.env.REACT_APP_API;
+const API_URL = process.env.REACT_APP_API_LOCAL;
 
 class PostStore {
   posts;
