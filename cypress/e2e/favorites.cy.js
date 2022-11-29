@@ -1,0 +1,15 @@
+describe('favorites', () => {
+  it('adding/removing', () => {
+    cy.visit('https://dtu.praktikportal.diplomportal.dk/')
+    cy.contains("Employer").click()
+    cy.get("input[name='username']").type("cypress")
+    cy.get("input[name='password'").type("12345678")
+    cy.get("button[name='signin'").click()
+    cy.wait(2500)
+    cy.contains("Praktikpladser").click()
+    cy.wait(2500)
+    cy.contains("Tilføj til favoritter").click()
+    cy.wait(5000)
+    cy.contains("Fjern fra favoritter").click()
+  })
+})
