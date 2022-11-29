@@ -10,7 +10,7 @@ const baseUrl =
 */
 const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : ""; //Check if dev environment
 
-class FavoriteStore {
+class Favoritestore {
   favorites = [];
 
   constructor() {
@@ -52,4 +52,4 @@ class FavoriteStore {
   }
 }
 
-export const favoriteStore = new FavoriteStore();
+export const favoriteStore = new Favoritestore();
