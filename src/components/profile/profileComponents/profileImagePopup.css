@@ -18,6 +18,12 @@
     background: none;
 }
 
+#popup-1 {
+    border: 0;
+    padding: 0;
+    background: none;
+}
+
 .buttonContainer {
     display: flex;
     flex-direction: row;

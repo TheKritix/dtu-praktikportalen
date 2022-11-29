@@ -156,7 +156,7 @@ const Navigation = () => {
         <Button
           className="student-login"
           variant="outline-danger"
-          href={process.env.REACT_APP_DTU_AUTH}
+          href={process.env.REACT_APP_DTU_AUTH_LOCAL}
           //onClick={handleLogin}
         >
           Login Campus Net
