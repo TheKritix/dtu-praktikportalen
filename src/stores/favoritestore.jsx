@@ -2,13 +2,13 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import { profileStore } from "./profileStore";
 import authHeader from "../services/auth-header";
-/*
+
 const baseUrl =
-  //process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === "development"
     ? "https://api.praktikportal.diplomportal.dk/"
     : ""; //Check if dev environment
-*/
-const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : ""; //Check if dev environment
+
+//const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : ""; //Check if dev environment
 
 class FavoriteStore {
   favorites = [];
@@ -40,15 +40,15 @@ class FavoriteStore {
   };
 
   async fetchFavorite() {
-    await axios
-      .get(baseUrl + "api/favorite", { headers: authHeader() })
-      .then((response) => {
+    await axios.get(baseUrl + "api/favorite", { headers: authHeader() }).then(
+      (response) => {
         this.favorites = response.data;
-        
-      }, (error) => {
+      },
+      (error) => {
         console.log("favorites fetched");
         console.log(error);
-      });
+      }
+    );
   }
 }
 

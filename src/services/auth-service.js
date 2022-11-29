@@ -1,6 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-const API_URL = process.env.REACT_APP_API_LOCAL_AUTH;
+const API_URL = process.env.REACT_APP_API_AUTH;
 
 const studentSignup = (ticket) => {
   return axios.post(API_URL + "studentSignup", {

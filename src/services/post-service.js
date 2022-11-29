@@ -6,7 +6,7 @@ import authHeader from "./auth-header";
 // const BannerApi = "http://localhost:3000/api/bannerImage"
 // const ApiUrl = "https://api.praktikportal.diplomportal.dk/api/post"
 
-const API_URL = process.env.REACT_APP_API_LOCAL;
+const API_URL = process.env.REACT_APP_API;
 
 export const fetchPosts = () => {
   axios.get(API_URL + "post").then((response) => {
