@@ -13,28 +13,10 @@ import { profileStore } from "../../stores/profileStore";
 const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   const fs = feedbackStore;
 
-  const name_arr = profileStore.user.name.split(" ");
-  const firstName = name_arr[0];
-  const lastName = profileStore.user.name.replace(firstName, "");
-  var currentdate = new Date();
-  var datetime =
-    currentdate.getDate() +
-    "/" +
-    (currentdate.getMonth() + 1) +
-    "/" +
-    currentdate.getFullYear() +
-    " @ " +
-    currentdate.getHours() +
-    ":" +
-    currentdate.getMinutes();
-
-  console.log("TEST INPUT SECTION");
-  console.log(datetime);
-
   const defaultFeedback = () => ({
-    firstName: firstName,
-    lastName: lastName,
-    postedAt: datetime,
+    firstName: "",
+    lastName: "",
+    postedAt: "",
     text: "",
     ratingOutOfFive: "",
     internshipId: internshipId,
@@ -62,6 +44,9 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
       e.stopPropagation();
       window.alert("Venligst udfyld alle påkrævede felter");
       setValidated(true);
+    } else if ( profileStore.user == null ){
+      e.stopPropagation();
+      window.alert("Du skal være logget ind for at kunne give feedback")
     } else if (window.confirm("Vil du oprette dette opslag?")) {
       fs.postFeedback(newFeedback);
       console.log(newFeedback);
@@ -81,10 +66,12 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
       total = total + rating;
     }
     const avg = total / amount;
+    const avg_fixed = avg.toFixed(2);
     console.log("AVERAGE RATING:");
     console.log(avg);
-    setAverageRating(avg);
-  }, [avgRating, feedbacks]);
+    setAverageRating(avg_fixed);
+  },[avgRating, feedbacks]);
+
 
   return (
     <Form
