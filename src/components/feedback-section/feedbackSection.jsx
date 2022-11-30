@@ -8,8 +8,6 @@ import { feedbackStore } from "../../stores/feedbackStore";
 import FeedbackInputSection from "./feedbackInputSection";
 
 const FeedbackSection = (internshipId) => {
-  console.log("internshipId");
-  console.log(internshipId);
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {

@@ -10,7 +10,6 @@ const API_URL = process.env.REACT_APP_API;
 
 export const fetchPosts = () => {
   axios.get(API_URL + "post").then((response) => {
-    console.log(response.data);
     return response.data;
   });
 };
@@ -40,7 +39,6 @@ export const uploadPost = (post) => {
 export const uploadBannerImage = (post, image) => {
   var formData = new FormData();
   formData.append(post, image);
-  console.log(formData);
   return axios.put(API_URL + "bannerImage", formData, {
     headers: {
       "Content-Type": "multipart/form-data",

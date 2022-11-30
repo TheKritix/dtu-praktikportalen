@@ -82,7 +82,6 @@ const Navigation = () => {
     const user = authService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
-      console.log("navbar user");
     } else {
       setCurrentUser(undefined);
     }
@@ -92,17 +91,17 @@ const Navigation = () => {
     if (currentUser) {
       authService.checkToken().then(
         (response) => {
-          console.log(response.data);
+          //console.log(response.data);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           if (error.response.status === 401) {
             authService.refreshToken(currentUser.refreshToken).then(
               (response) => {
-                console.log(response.data);
+                //console.log(response.data);
               },
               (error) => {
-                console.log(error);
+                //console.log(error);
                 if (error.response.status === 403) {
                   authService.logout();
                   navigate("/");
@@ -114,22 +113,21 @@ const Navigation = () => {
         }
       );
     } else {
-      console.log("not logged in");
+      //console.log("not logged in");
     }
   }, [currentUser, navigate]);
 
   useEffect(() => {
     searchParam.get("ticket");
-    console.log(searchParam.get("ticket"));
+    //console.log(searchParam.get("ticket"));
     if (searchParam.get("ticket") != null && currentUser == null) {
       authService.studentLogin(searchParam.get("ticket")).then(
         () => {
-          console.log("student signup");
           navigate("/profile");
           window.location.reload();
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
         }
       );
     }

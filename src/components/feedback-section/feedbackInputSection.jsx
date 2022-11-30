@@ -38,7 +38,6 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   };
 
   const postFeedback = (e) => {
-    console.log(newFeedback);
     e.preventDefault();
     if (newFeedback.text === "" || newFeedback.ratingOutOfFive === "") {
       e.stopPropagation();
@@ -49,7 +48,6 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
       window.alert("Du skal være logget ind for at kunne give feedback")
     } else if (window.confirm("Vil du oprette dette opslag?")) {
       fs.postFeedback(newFeedback);
-      console.log(newFeedback);
       setDefaultState();
       setValidated(false);
     }
@@ -58,17 +56,12 @@ const FeedbackInputSection = ({ internshipId, feedbacks }) => {
   useEffect(() => {
     var total = 0;
     const amount = feedbacks.length;
-    console.log("LENGTH");
-    console.log(amount);
     for (let i = 0; i < feedbacks.length; i++) {
-      console.log(feedbacks[i]);
       const rating = parseInt(feedbacks[i].ratingOutOfFive);
       total = total + rating;
     }
     const avg = total / amount;
     const avg_fixed = avg.toFixed(2);
-    console.log("AVERAGE RATING:");
-    console.log(avg);
     setAverageRating(avg_fixed);
   },[avgRating, feedbacks]);
 

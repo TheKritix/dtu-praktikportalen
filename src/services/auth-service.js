@@ -21,7 +21,6 @@ const studentLogin = (ticket) => {
       ticket,
     })
     .then((response) => {
-      console.log(response);
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -41,14 +40,12 @@ const employerSignup = (username, email, password, companyName, name) => {
 };
 
 const employerLogin = (username, password) => {
-  console.log("auth here");
   return axios
     .post(API_URL + "signin", {
       username,
       password,
     })
     .then((response) => {
-      console.log(response);
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -61,7 +58,6 @@ const checkToken = () => {
   return axios
     .get(API_URL + "checkToken", { headers: authHeader() })
     .then((response) => {
-      console.log(response);
       return response.data;
     });
 };
@@ -72,7 +68,6 @@ const refreshToken = (refreshToken) => {
       refreshToken,
     })
     .then((response) => {
-      console.log(response);
       if (response.data.accessToken) {
         const user = JSON.parse(localStorage.getItem("user"));
         user.accessToken = response.data.accessToken;

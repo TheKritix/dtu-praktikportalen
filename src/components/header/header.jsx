@@ -6,6 +6,8 @@ import { getAllPosts } from "../../services/post-service";
 import { postStore } from "../../stores/post-store";
 import { observer } from "mobx-react";
 //XXXX Bootstrap XXXX
+// Source: https://react-bootstrap.github.io/components/cards/
+// Source: https://react-bootstrap.github.io/layout/grid/
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -31,7 +33,6 @@ const Header = () => {
     const user = authService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
-      console.log("navbar user");
     } else {
       setCurrentUser(undefined);
     }
@@ -41,7 +42,6 @@ const Header = () => {
     await getAllPosts()
       .then((response) => {
         setPosts(response.data);
-        console.log(response.data);
         if (postStore.bannerImageList.length === 0) {
           response.data
             .filter(({ bannerImageID }) => bannerImageID)

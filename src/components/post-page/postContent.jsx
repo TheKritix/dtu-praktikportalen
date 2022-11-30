@@ -12,7 +12,6 @@ const PostContent = ({post, review}) => {
         if (review === false) {
             postStore.fetchBannerImage(post).then(() => {
                 setBanner(postStore.bannerImage);
-                console.log(banner)
               });
         } else {
             setBanner(post.bannerImg);

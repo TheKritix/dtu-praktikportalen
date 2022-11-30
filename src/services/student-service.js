@@ -6,7 +6,6 @@ const API_URL = process.env.REACT_APP_API;
 const studentPDFUpload = (pdf, user) => {
   var formData = new FormData();
   formData.append(user.studentID, pdf[0]);
-  console.log(formData);
   return axios.post(API_URL + "pdfUpload", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -21,14 +20,12 @@ const getStudentPDFName = (user) => {
 };
 
 const getStudentPDFDownload = (pdfFileName) => {
-  console.log(pdfFileName);
   window.open(API_URL + `pdfCVDownload/${pdfFileName._id}`, "_blank");
 };
 
 const updateBackdropImage = (user, image) => {
   var formData = new FormData();
   formData.append(user.studentID, image);
-  console.log(formData);
   return axios.put(API_URL + "studentBackdropImg", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -51,7 +48,6 @@ const getBackdropImage = (user) => {
 const updateProfileImage = (user, image) => {
   var formData = new FormData();
   formData.append(user.studentID, image);
-  console.log(formData);
   return axios.put(API_URL + "studentProfileImg", formData, {
     headers: {
       "Content-Type": "multipart/form-data",

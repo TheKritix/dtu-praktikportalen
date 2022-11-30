@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+// Source: https://react-bootstrap.github.io/components/modal/
+// Source: https://react-bootstrap.github.io/components/forms/
+// Source: https://react-bootstrap.github.io/components/buttons/
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
+//Source: https://www.npmjs.com/package/react-typist-component
 import Typist from "react-typist-component";
 import { useEffect } from "react";
 import authService from "../../services/auth-service";

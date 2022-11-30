@@ -16,7 +16,6 @@ const updateEmployerPosition = (user) => {
 const updateBackdropImage = (user, image) => {
   var formData = new FormData();
   formData.append(user.email, image);
-  console.log(formData);
   return axios.put(API_URL + "employersBackdropImg", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -39,7 +38,6 @@ const getBackdropImage = (user) => {
 const updateProfileImage = (user, image) => {
   var formData = new FormData();
   formData.append(user.email, image);
-  console.log(formData);
   return axios.put(API_URL + "employersProfileImg", formData, {
     headers: {
       "Content-Type": "multipart/form-data",

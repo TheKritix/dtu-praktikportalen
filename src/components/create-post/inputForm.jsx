@@ -66,7 +66,6 @@ const InputForm = () => {
         bannerImg: imgObject.src})
       //fil til upload
       setUploadImage(e.target.files[0])
-      console.log(createdPost.bannerImg)
     }
   };
 
@@ -83,7 +82,6 @@ const InputForm = () => {
   };
 
   const submitPost = (e) => {
-    console.log(createdPost);
     e.preventDefault();
     if (
       createdPost.title === "" ||
@@ -104,8 +102,6 @@ const InputForm = () => {
       postStore.postID = createdPost.title;
       postService.uploadPost(createdPost)
       postStore.uploadBannerImage(uploadImage);
-      
-      console.log(createdPost);
       setDefaultState();
       setValidated(false);
     }

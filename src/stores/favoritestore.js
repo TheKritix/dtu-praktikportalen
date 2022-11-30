@@ -9,13 +9,13 @@ const baseUrl =
     : ""; //Check if dev environment
 */
 //const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : "" //Check if dev environment
-const baseUrl = process.env.REACT_APP_API
+const baseUrl = process.env.REACT_APP_API;
 
 class Favoritestore {
-  favorites = []
+  favorites = [];
 
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true })
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   addFavorite = (postID) => {
@@ -26,30 +26,29 @@ class Favoritestore {
         favorite: postID,
       },
       { headers: authHeader() }
-    )
-  }
+    );
+  };
 
   deleteFavorite = (user, postID) => {
     const favorite = {
       uid: user.id,
       favorite: postID,
-    }
+    };
     return axios.put(baseUrl + "favorite", favorite, {
       headers: authHeader(),
-    })
-  }
+    });
+  };
 
   async fetchFavorite() {
-    await axios
-      .get(baseUrl + "favorite", { headers: authHeader() })
-      .then((response) => {
-        this.favorites = response.data
-        
-      }, (error) => {
-        console.log("favorites fetched")
-        console.log(error)
-      })
+    await axios.get(baseUrl + "favorite", { headers: authHeader() }).then(
+      (response) => {
+        this.favorites = response.data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
 
-export const favoriteStore = new Favoritestore()
+export const favoriteStore = new Favoritestore();
