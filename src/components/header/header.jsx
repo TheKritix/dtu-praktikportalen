@@ -85,7 +85,7 @@ const Header = () => {
                 </p>
               )}
               {currentUser ? (
-                <p>Velkommen til, {currentUser.name}</p>
+                <p>Hej til, {currentUser.name}</p>
               ) : (
                 <div className="d-flex flex-row landingpage-buttons">
                   <button
